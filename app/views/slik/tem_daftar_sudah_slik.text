@@ -1,0 +1,65 @@
+<!-- fungsi server side mengambil data secara bertahap dengan menggunakan datatables -->
+<script>
+        $(function() {
+            $('#example1').DataTable({
+
+                    "processing": true,
+                    "serverSide": true,
+
+                    // "processing": true,
+                    // "language": {
+                    //     processing: '<i class="fa fa-spinner fa-spin fa-3x fa-fw"></i><span class="sr-only">Loading...</span> '
+                    // },
+                    // "serverSide": true,
+
+                    // searchable: true,
+                    // "aaSorting": [
+                    //     [0, "asc"]
+                    // ],
+
+                    "ajax": {
+                        "url": "<?= BASEURL . '/slik/get_data_daftar_sudah_slik' ?>",
+                        "dataType": "json",
+                        "type": "POST",
+                        "dataSrc": 'data',
+                    },
+
+
+
+                    "columns": [{
+                            "data": "id"
+                        },
+                        {
+                            "data": "no_permohonan_kredit"
+                        },
+                        {
+                            "data": "nama_pemohon",
+                            "name": "nama_pemohon"
+                        },
+                        {
+                            "data": "nama_instansi"
+                        },
+                        {
+                            "data": "plafond"
+                        },
+                        {
+                            "data": "jangka_waktu"
+                        },
+                        {
+                            "data": "tanggal_slik"
+                        },
+                        {
+                            "data": "user_create"
+                        },
+                        {
+                            "data": "aksi"
+                        },
+                    ]
+
+                }
+
+
+
+            );
+        });
+    </script>
