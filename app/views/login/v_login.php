@@ -4,6 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Aplikasi LOS BPR HASAMITRA">
+    <meta name="author" content="faturungimuharram">
     <title>LOS | LOGIN</title>
 
     <!-- Google Font: Source Sans Pro -->
@@ -33,7 +35,7 @@
             <div class="card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
 
-                
+
 
                 <form action="<?= BASEURL ?>/login/cek_login" method="post">
                     <div class="input-group mb-3">
