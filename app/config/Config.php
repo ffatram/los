@@ -51,6 +51,7 @@ define('w_ungu', '#9311c4'); // warna untuk tombol log
 define('w_orange', '#EC994B'); //warna untuk tombol detail
 define('w_brown', '#561C24'); //warna untuk tombol detail
 
+// tes
 
 
 // nama tabel database
