@@ -199,7 +199,7 @@ class cetak extends Controller
 
 
     // cetak PK KSG Cabang Kawin
-    public function cetakpkksg($noreg)
+    public function cetak_pk($noreg)
     {
         try {
 
@@ -438,6 +438,15 @@ class cetak extends Controller
             $outputFilePath = 'cetak/cetakbaru/' . '_download_' . $namafile;
             $data->saveAs($outputFilePath);
 
+          
+            // Pisahkan nama file dan ekstensi
+            $nama_ekstensi = explode('.', $namafile);
+            $nama = $nama_ekstensi[0]; // Nama file
+            $ekstensi = $nama_ekstensi[1]; // Ekstensi file
+
+            // Ubah nama file dengan menambahkan " oke" sebelum ekstensi
+            $namafile = $nama . ' ' . trim($j['nama_debitur']) . '.' . trim($ekstensi);
+
 
             // Setel header untuk pengunduhan
             header('Content-Type: application/octet-stream');
@@ -463,160 +472,102 @@ class cetak extends Controller
 
 
 
-    public function cetak_pk($id)
-    {
+    // public function cetak_pk($id)
+    // {
 
-        $terbilang = new terbilang();
-        $format_tgl = new format_tanggal_indo();
-        $data = $this->model('m_cetak')->cetak_pk($id);
+    //     $terbilang = new terbilang();
+    //     $format_tgl = new format_tanggal_indo();
+    //     $data = $this->model('m_cetak')->cetak_pk($id);
 
-        $data2 = $this->model('m_cetak')->ref_pejabat($data['pejabat_ttd']);
+    //     $data2 = $this->model('m_cetak')->ref_pejabat($data['pejabat_ttd']);
 
-        $data5 = $this->model('m_cetak')->ref_sk_limit($data['id_sk']);
+    //     $data5 = $this->model('m_cetak')->ref_sk_limit($data['id_sk']);
 
-        $data3 = $this->model('m_cetak')->tbl_cabang($_COOKIE['kode_cabang']);
+    //     $data3 = $this->model('m_cetak')->tbl_cabang($_COOKIE['kode_cabang']);
 
-        // $jaminan = $this->model('m_cetak')->jaminan_tbl_wawancara($id);
+    //     // $jaminan = $this->model('m_cetak')->jaminan_tbl_wawancara($id);
 
-        // nama file ketika download file dengan memberi nama pemohon
-        $data['tbl_permohon_kredit'] = $this->model('m_cetak')->get_tbl_permohon_kredit($id);
-        $nama_pemohon = $data['tbl_permohon_kredit']['nama_pemohon'];
-        $nama_file1 = "PK";
-        $ext = ".rtf";
-        $nama_file2 = $nama_file1 . " " . $nama_pemohon . $ext;
-
-
-
-        $jk = $data['jenis_kelamin_debitur'];
-
-
-        if ($jk == "PRIA") {
-            $jk2 = "ISTRI";
-        } else {
-            $jk2 = "SUAMI";
-        }
+    //     // nama file ketika download file dengan memberi nama pemohon
+    //     $data['tbl_permohon_kredit'] = $this->model('m_cetak')->get_tbl_permohon_kredit($id);
+    //     $nama_pemohon = $data['tbl_permohon_kredit']['nama_pemohon'];
+    //     $nama_file1 = "PK";
+    //     $ext = ".rtf";
+    //     $nama_file2 = $nama_file1 . " " . $nama_pemohon . $ext;
 
 
 
+    //     $jk = $data['jenis_kelamin_debitur'];
 
-        if ($data != null) {
-            $temp = '';
 
-            for ($a = 1; $a <= 20; $a++) {
-                if ($data['jaminan_' . $a] != '') {
-                    $jaminan[$a] = '- ' . $data['jaminan_' . $a] . '\par' . ' ';
-                    $temp = $temp . $jaminan[$a];
-                }
-            }
-        }
+    //     if ($jk == "PRIA") {
+    //         $jk2 = "ISTRI";
+    //     } else {
+    //         $jk2 = "SUAMI";
+    //     }
 
 
 
 
-        if ($data['tgl_surat_kuasa_pasangan'] != "") {
-            $document = file_get_contents("cetak/PK " . $data2['tipe_pejabat'] . " Surat Kuasa.rtf");
-            // cetak untuk keterangan pasangan
-            $document = str_replace("#pasangan", $jk2, $document);
-            $document = str_replace("#tglsuratkuasa", $format_tgl->format_tgl($data['tgl_surat_kuasa_pasangan']), $document);
-        } else {
-            if ($data['nama_pasangan'] != '' || $data['nama_pasangan'] != null) {
-                $document = file_get_contents("cetak/PK " . $data2['tipe_pejabat'] . " Kawin.rtf");
-            } else {
-                $document = file_get_contents("cetak/PK " . $data2['tipe_pejabat'] . " Lajang.rtf");
-            }
-        }
+    //     if ($data != null) {
+    //         $temp = '';
+
+    //         for ($a = 1; $a <= 20; $a++) {
+    //             if ($data['jaminan_' . $a] != '') {
+    //                 $jaminan[$a] = '- ' . $data['jaminan_' . $a] . '\par' . ' ';
+    //                 $temp = $temp . $jaminan[$a];
+    //             }
+    //         }
+    //     }
 
 
 
 
-
-
-        // if ($data['nama_pasangan'] != '' || $data['nama_pasangan'] != null) {
-        //     $document = file_get_contents("cetak/PK Kawin.rtf");
-        // } else {
-        //     $document = file_get_contents("cetak/Surat Pernyataan - Lajang.rtf");
-        // }
-
-
-
-        $document = str_replace("#no_pk", $data['no_pk'], $document);
-
-
-        $document = str_replace("#sebutan", $data2['sebutan'], $document);
-        $document = str_replace("#nama_pejabat", $data2['nama_pejabat'], $document);
-        $document = str_replace("#temp_lahir", $data2['tempat_lahir'], $document);
-        $document = str_replace("#kot_pejabat", $data2['kota_pejabat'], $document);
-        $document = str_replace("#alamat_pejabat", $data2['alamat'], $document);
-        $document = str_replace("#tanggal_lahir", $format_tgl->format_tgl($data2['tanggal_lahir']), $document);
-        $document = str_replace("#jabatan_pejabat", $data2['jabatan'], $document);
-        $document = str_replace("#jns_surat", $data2['jenis_surat'], $document);
-        $document = str_replace("#no_surat", $data2['nomor_surat'], $document);
-        $document = str_replace("#tg_surat", $format_tgl->format_tgl($data2['tanggal_surat']), $document);
-        $document = str_replace("#perihal_surat", $data2['perihal_surat'], $document);
-
-        $document = str_replace("#jenis_surat_limit", $data5['jenis_surat_limit'], $document);
-        $document = str_replace("#nomor_surat_limit", $data5['nomor_surat_limit'], $document);
-
-        $document = str_replace("#tg_s_limit",  $format_tgl->format_tgl($data5['tanggal_surat_limit']), $document);
-        $document = str_replace("#ps_limit", $data5['perihal_surat_limit'], $document);
+    //     if ($data['tgl_surat_kuasa_pasangan'] != "") {
+    //         $document = file_get_contents("cetak/PK " . $data2['tipe_pejabat'] . " Surat Kuasa.rtf");
+    //         // cetak untuk keterangan pasangan
+    //         $document = str_replace("#pasangan", $jk2, $document);
+    //         $document = str_replace("#tglsuratkuasa", $format_tgl->format_tgl($data['tgl_surat_kuasa_pasangan']), $document);
+    //     } else {
+    //         if ($data['nama_pasangan'] != '' || $data['nama_pasangan'] != null) {
+    //             $document = file_get_contents("cetak/PK " . $data2['tipe_pejabat'] . " Kawin.rtf");
+    //         } else {
+    //             $document = file_get_contents("cetak/PK " . $data2['tipe_pejabat'] . " Lajang.rtf");
+    //         }
+    //     }
 
 
 
 
 
 
-
-
-        $document = str_replace("#nama_alias_debitur", $data['nama_alias_debitur'], $document);
-        $document = str_replace("#tempat_lahir", $data['tempat_lahir_debitur'], $document);
-        $document = str_replace("#tgl_lahir_debitur", date('d-m-Y', strtotime($data['tgl_lahir_debitur'])), $document);
-        $document = str_replace("#jenis_pekerjaan_debitur", $data['jenis_pekerjaan_debitur'], $document);
-        $document = str_replace("#instansi_debitur", $data['instansi_debitur'], $document);
-        $document = str_replace("#no_ktp_debitur", $data['no_ktp_debitur'], $document);
-        $document = str_replace("#alamat_ktp_debitur", $data['alamat_ktp_debitur'], $document);
-        $document = str_replace("#alamat_domisili_debitur", $data['alamat_domisili_debitur'], $document);
-        $document = str_replace("#nama_alias_pasangan", $data['nama_alias_pasangan'], $document);
-        $document = str_replace("#t_lahir_pasangan", $data['tempat_lahir_pasangan'], $document);
-        $document = str_replace("#tgl_lahir_pasangan", date('d-m-Y', strtotime($data['tgl_lahir_pasangan'])),  $document);
-        $document = str_replace("#jenis_pekerjaan_pasangan", $data['jenis_pekerjaan_pasangan'], $document);
-        $document = str_replace("#instansi_pasangan", $data['instansi_pasangan'], $document);
-
-        $document = str_replace("#no_ktp_pasangan", $data['no_ktp_pasangan'], $document);
-        $document = str_replace("#alamat_ktp_pasangan", $data['alamat_ktp_pasangan'], $document);
-        $document = str_replace("#alamat_domisili_pasangan", $data['alamat_domisili_pasangan'], $document);
+    //     // if ($data['nama_pasangan'] != '' || $data['nama_pasangan'] != null) {
+    //     //     $document = file_get_contents("cetak/PK Kawin.rtf");
+    //     // } else {
+    //     //     $document = file_get_contents("cetak/Surat Pernyataan - Lajang.rtf");
+    //     // }
 
 
 
-        $document = str_replace("#plafond", number_format($data['plafond'], 0, ',', '.'), $document);
-        $document = str_replace("#terbilang", preg_replace("/[[:blank:]]+/", " ", $terbilang->terbilang(strval($data['plafond']))), $document);
-        $document = str_replace("#jwterbilang", preg_replace("/[[:blank:]]+/", " ", $terbilang->terbilang(strval($data['jangka_waktu']))), $document);
-        $document = str_replace("#sbterbilang", $terbilang->terbilang($data['suku_bunga']), $document);
-        $document = str_replace("#ppterbilang", $terbilang->terbilang($data['persen_provisi']), $document);
-        $document = str_replace("#paterbilang", $terbilang->terbilang($data['persen_administrasi']), $document);
-        $document = str_replace("#apterbilang", $terbilang->terbilang(strval($data['angsuran_perbulan'])), $document);
-        $document = str_replace("#pdterbilang", $terbilang->terbilang(strval($data['denda'])), $document);
-        // $document = str_replace("#terbilang",  $this->terbilang($data['plafond']), $document);
-        $document = str_replace("#tipe_kredit", $data['jenis_kredit'], $document);
-        $document = str_replace("#jangka_waktu", $data['jangka_waktu'], $document);
-        $document = str_replace("#tgl_mulai_jw", date('d-m-Y', strtotime($data['tgl_mulai_jw'])), $document);
-        $document = str_replace("#tgl_akhir_jw",  date('d-m-Y', strtotime($data['tgl_akhir_jw'])), $document);
-        $document = str_replace("#jaminan", $temp, $document);
+    //     $document = str_replace("#no_pk", $data['no_pk'], $document);
 
-        $document = str_replace("#suku_bunga", $data['suku_bunga'], $document);
-        $document = str_replace("#sistem_bunga", $data['sistem_bunga'], $document);
-        $document = str_replace("#angsuran_perbulan", number_format($data['angsuran_perbulan'], 0, ',', '.'), $document);
-        $document = str_replace("#persen_provisi", $data['persen_provisi'], $document);
-        $document = str_replace("#persen_administrasi", $data['persen_administrasi'], $document);
-        $document = str_replace("#tujuan_penggunaan_kredit", $data['tujuan_penggunaan_kredit'], $document);
-        $document = str_replace("#kota", $data3['kota'], $document);
 
-        $document = str_replace("#tgl_mulai_angsuran",  date('d-m-Y', strtotime($data['tgl_mulai_angsuran'])), $document);
-        $document = str_replace("#tgl_angsuran",  $data['tgl_angsuran'], $document);
-        $document = str_replace("#tgl_akhir_angsuran",  date('d-m-Y', strtotime($data['tgl_akhir_angsuran'])), $document);
-        $document = str_replace("#persen_denda", $data['denda'], $document);
-        $document = str_replace("#pejabat_ttd", $data['pejabat_ttd'], $document);
-        $document = str_replace("#tujuan_penggunaan_kredit", $data['tujuan_penggunaan_kredit'], $document);
-        $document = str_replace("#pengadilan_negeri", $data3['pengadilan_negeri'], $document);
+    //     $document = str_replace("#sebutan", $data2['sebutan'], $document);
+    //     $document = str_replace("#nama_pejabat", $data2['nama_pejabat'], $document);
+    //     $document = str_replace("#temp_lahir", $data2['tempat_lahir'], $document);
+    //     $document = str_replace("#kot_pejabat", $data2['kota_pejabat'], $document);
+    //     $document = str_replace("#alamat_pejabat", $data2['alamat'], $document);
+    //     $document = str_replace("#tanggal_lahir", $format_tgl->format_tgl($data2['tanggal_lahir']), $document);
+    //     $document = str_replace("#jabatan_pejabat", $data2['jabatan'], $document);
+    //     $document = str_replace("#jns_surat", $data2['jenis_surat'], $document);
+    //     $document = str_replace("#no_surat", $data2['nomor_surat'], $document);
+    //     $document = str_replace("#tg_surat", $format_tgl->format_tgl($data2['tanggal_surat']), $document);
+    //     $document = str_replace("#perihal_surat", $data2['perihal_surat'], $document);
+
+    //     $document = str_replace("#jenis_surat_limit", $data5['jenis_surat_limit'], $document);
+    //     $document = str_replace("#nomor_surat_limit", $data5['nomor_surat_limit'], $document);
+
+    //     $document = str_replace("#tg_s_limit",  $format_tgl->format_tgl($data5['tanggal_surat_limit']), $document);
+    //     $document = str_replace("#ps_limit", $data5['perihal_surat_limit'], $document);
 
 
 
@@ -625,14 +576,72 @@ class cetak extends Controller
 
 
 
-        $document = str_replace("#jaminan1", $temp, $document);
+    //     $document = str_replace("#nama_alias_debitur", $data['nama_alias_debitur'], $document);
+    //     $document = str_replace("#tempat_lahir", $data['tempat_lahir_debitur'], $document);
+    //     $document = str_replace("#tgl_lahir_debitur", date('d-m-Y', strtotime($data['tgl_lahir_debitur'])), $document);
+    //     $document = str_replace("#jenis_pekerjaan_debitur", $data['jenis_pekerjaan_debitur'], $document);
+    //     $document = str_replace("#instansi_debitur", $data['instansi_debitur'], $document);
+    //     $document = str_replace("#no_ktp_debitur", $data['no_ktp_debitur'], $document);
+    //     $document = str_replace("#alamat_ktp_debitur", $data['alamat_ktp_debitur'], $document);
+    //     $document = str_replace("#alamat_domisili_debitur", $data['alamat_domisili_debitur'], $document);
+    //     $document = str_replace("#nama_alias_pasangan", $data['nama_alias_pasangan'], $document);
+    //     $document = str_replace("#t_lahir_pasangan", $data['tempat_lahir_pasangan'], $document);
+    //     $document = str_replace("#tgl_lahir_pasangan", date('d-m-Y', strtotime($data['tgl_lahir_pasangan'])),  $document);
+    //     $document = str_replace("#jenis_pekerjaan_pasangan", $data['jenis_pekerjaan_pasangan'], $document);
+    //     $document = str_replace("#instansi_pasangan", $data['instansi_pasangan'], $document);
 
-        header("Content-type: application/vnd.ms-word");
-        header("Content-Disposition: attachment; Filename=" . $nama_file2);
-        header('Pragma: no-cache');
-        header("Expires: 0");
-        echo $document;
-    }
+    //     $document = str_replace("#no_ktp_pasangan", $data['no_ktp_pasangan'], $document);
+    //     $document = str_replace("#alamat_ktp_pasangan", $data['alamat_ktp_pasangan'], $document);
+    //     $document = str_replace("#alamat_domisili_pasangan", $data['alamat_domisili_pasangan'], $document);
+
+
+
+    //     $document = str_replace("#plafond", number_format($data['plafond'], 0, ',', '.'), $document);
+    //     $document = str_replace("#terbilang", preg_replace("/[[:blank:]]+/", " ", $terbilang->terbilang(strval($data['plafond']))), $document);
+    //     $document = str_replace("#jwterbilang", preg_replace("/[[:blank:]]+/", " ", $terbilang->terbilang(strval($data['jangka_waktu']))), $document);
+    //     $document = str_replace("#sbterbilang", $terbilang->terbilang($data['suku_bunga']), $document);
+    //     $document = str_replace("#ppterbilang", $terbilang->terbilang($data['persen_provisi']), $document);
+    //     $document = str_replace("#paterbilang", $terbilang->terbilang($data['persen_administrasi']), $document);
+    //     $document = str_replace("#apterbilang", $terbilang->terbilang(strval($data['angsuran_perbulan'])), $document);
+    //     $document = str_replace("#pdterbilang", $terbilang->terbilang(strval($data['denda'])), $document);
+    //     // $document = str_replace("#terbilang",  $this->terbilang($data['plafond']), $document);
+    //     $document = str_replace("#tipe_kredit", $data['jenis_kredit'], $document);
+    //     $document = str_replace("#jangka_waktu", $data['jangka_waktu'], $document);
+    //     $document = str_replace("#tgl_mulai_jw", date('d-m-Y', strtotime($data['tgl_mulai_jw'])), $document);
+    //     $document = str_replace("#tgl_akhir_jw",  date('d-m-Y', strtotime($data['tgl_akhir_jw'])), $document);
+    //     $document = str_replace("#jaminan", $temp, $document);
+
+    //     $document = str_replace("#suku_bunga", $data['suku_bunga'], $document);
+    //     $document = str_replace("#sistem_bunga", $data['sistem_bunga'], $document);
+    //     $document = str_replace("#angsuran_perbulan", number_format($data['angsuran_perbulan'], 0, ',', '.'), $document);
+    //     $document = str_replace("#persen_provisi", $data['persen_provisi'], $document);
+    //     $document = str_replace("#persen_administrasi", $data['persen_administrasi'], $document);
+    //     $document = str_replace("#tujuan_penggunaan_kredit", $data['tujuan_penggunaan_kredit'], $document);
+    //     $document = str_replace("#kota", $data3['kota'], $document);
+
+    //     $document = str_replace("#tgl_mulai_angsuran",  date('d-m-Y', strtotime($data['tgl_mulai_angsuran'])), $document);
+    //     $document = str_replace("#tgl_angsuran",  $data['tgl_angsuran'], $document);
+    //     $document = str_replace("#tgl_akhir_angsuran",  date('d-m-Y', strtotime($data['tgl_akhir_angsuran'])), $document);
+    //     $document = str_replace("#persen_denda", $data['denda'], $document);
+    //     $document = str_replace("#pejabat_ttd", $data['pejabat_ttd'], $document);
+    //     $document = str_replace("#tujuan_penggunaan_kredit", $data['tujuan_penggunaan_kredit'], $document);
+    //     $document = str_replace("#pengadilan_negeri", $data3['pengadilan_negeri'], $document);
+
+
+
+
+
+
+
+
+    //     $document = str_replace("#jaminan1", $temp, $document);
+
+    //     header("Content-type: application/vnd.ms-word");
+    //     header("Content-Disposition: attachment; Filename=" . $nama_file2);
+    //     header('Pragma: no-cache');
+    //     header("Expires: 0");
+    //     echo $document;
+    // }
 
     public function cetak_tanda_terima_jaminan($id)
     {
