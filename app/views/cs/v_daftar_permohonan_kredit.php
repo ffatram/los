@@ -299,55 +299,69 @@
                                                             <td><?= $row['no_permohonan_kredit'] ?></td>
                                                             <td><?= $row['nama_pemohon'] ?></td>
                                                             <td><?= $row['nama_instansi'] ?></td>
-
                                                             <td><?= number_format($row['plafond_dimohon'], 0, ",", "."); ?></td>
                                                             <td><?= $row['jangka_waktu'] ?></td>
                                                             <td><?= $row['jenis_permohonan'] ?></td>
                                                             <td><?= $row['id_analis'] ?></td>
                                                             <td><?= $row['id_marketing'] ?></td>
-
                                                             <td><?= isset($row['tanggal_permohonan']) ?  date('d-m-Y', strtotime($row['tanggal_permohonan'])) : ''  ?></td>
-
                                                             <td><?= isset($row['tanggal_slik']) ? date('d-m-Y', strtotime($row['tanggal_slik'])) : ''   ?></td>
                                                             <td><?= isset($row['tanggal_wawancara']) ? date('d-m-Y', strtotime($row['tanggal_wawancara']))  : ''  ?></td>
                                                             <td><?= isset($row['tanggal_komite']) ?  date('d-m-Y', strtotime($row['tanggal_komite'])) : ''   ?></td>
                                                             <td><?= isset($row['tanggal_batal']) ?  date('d-m-Y', strtotime($row['tanggal_batal'])) : ''   ?></td>
                                                             <td><?= isset($row['tanggal_tolak']) ? date('d-m-Y', strtotime($row['tanggal_tolak']))  : ''  ?></td>
                                                             <td><?= isset($row['tanggal_pencairan']) ?  date('d-m-Y', strtotime($row['tanggal_pencairan'])) : '' ?></td>
-
-
-
-
-
                                                             <td><?= $row['lokasi_berkas'] ?></td>
 
                                                             <td style="display: flex; justify-content: flex-end; align-items: center; gap: 2px;">
 
 
                                                                 <?php
-                                                                if ($row['kredit_online'] == 'YA') {
+                                                                $level = $_COOKIE['level'];
+                                                                $kredit_online = $row['kredit_online'];
+                                                                if ($level == 'CS' || $level == 'RO') {
+                                                                    if ($kredit_online == 'YA') {
                                                                 ?>
-                                                                    <button id="btn_cetak_berkas_permohonan_kredit" class="btn btn-m" style="background-color: <?= w_brown ?>; color:white;" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>">Cetak Permohonan </button>
-                                                                <?php } ?>
-
-                                                                <button id="btn_modal_detail" class="btn btn-m" style="background-color: <?= w_orange ?>; color:white;" data-toggle="modal" data-target="#modal_detail" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>">Detail</button>
-                                                                <button id="btn_modal_log" class="btn btn-m" style="background-color: <?= w_ungu ?>; color:white; " data-toggle="modal" data-target="#modal_log" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>">Log</button>
-                                                                <button class='btn btn-success btn_riwayat' data-no_ktp_pemohon='<?= $row['no_ktp_pemohon'] ?>' data-toggle="modal" data-target="#riwayat" data-backdrop="static" data-keyboard="false">Riwayat </button>
-
-
-                                                                <?php
-                                                                if ($_COOKIE['level'] == 'CS' || $_COOKIE['level'] == 'RO') {
-                                                                ?>
-                                                                    <!-- <button class='btn btn-success btn_riwayat' data-no_ktp_pemohon='<?= $row['no_ktp_pemohon'] ?>' data-toggle="modal" data-target="#riwayat" data-backdrop="static" data-keyboard="false">Riwayat </button> -->
-                                                                    <a href="<?= BASEURL; ?>/cs/edit_permohonan_kredit/<?= $row['no_permohonan_kredit'] ?>" class="btn btn-primary btn-m">Edit</a>
-                                                                    <!-- <a onclick="delete_data_kredit(event); return false" href="<?= BASEURL; ?>/cs/delete/<?= $row['no_permohonan_kredit'] ?>" class="btn btn-danger btn-m ">Hapus</a> -->
-                                                                    <button type='submit' class="btn btn-danger btn_hapus" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>" data-nama_pemohon="<?= $row['nama_pemohon'] ?>" data-nama_instansi="<?= $row['nama_instansi'] ?>"> Hapus</button>
+                                                                        <button id="btn_cetak_berkas_permohonan_kredit" class="btn btn-m" style="background-color: <?= w_brown ?>; color:white;" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>">Cetak Permohonan</button>
+                                                                        <button id="btn_modal_detail" class="btn btn-m" style="background-color: <?= w_orange ?>; color:white;" data-toggle="modal" data-target="#modal_detail" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>">Detail</button>
+                                                                        <button id="btn_modal_log" class="btn btn-m" style="background-color: <?= w_ungu ?>; color:white; " data-toggle="modal" data-target="#modal_log" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>">Log</button>
+                                                                        <button class='btn btn-success btn_riwayat' data-no_ktp_pemohon='<?= $row['no_ktp_pemohon'] ?>' data-toggle="modal" data-target="#riwayat" data-backdrop="static" data-keyboard="false">Riwayat </button>
+                                                                        <a href="<?= BASEURL; ?>/cs/edit_permohonan_kredit/<?= $row['no_permohonan_kredit'] ?>" class="btn btn-primary btn-m">Edit</a>
+                                                                        <button type='submit' class="btn btn-danger btn_hapus" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>" data-nama_pemohon="<?= $row['nama_pemohon'] ?>" data-nama_instansi="<?= $row['nama_instansi'] ?>"> Hapus</button>
 
 
-                                                                <?php
-                                                                }
-                                                                ?>
+                                                                    <?php    } else if ($kredit_online != 'YA') {
+                                                                    ?>
+                                                                        <button id="btn_modal_detail" class="btn btn-m" style="background-color: <?= w_orange ?>; color:white;" data-toggle="modal" data-target="#modal_detail" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>">Detail</button>
+                                                                        <button id="btn_modal_log" class="btn btn-m" style="background-color: <?= w_ungu ?>; color:white; " data-toggle="modal" data-target="#modal_log" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>">Log</button>
+                                                                        <button class='btn btn-success btn_riwayat' data-no_ktp_pemohon='<?= $row['no_ktp_pemohon'] ?>' data-toggle="modal" data-target="#riwayat" data-backdrop="static" data-keyboard="false">Riwayat </button>
+                                                                        <a href="<?= BASEURL; ?>/cs/edit_permohonan_kredit/<?= $row['no_permohonan_kredit'] ?>" class="btn btn-primary btn-m">Edit</a>
+                                                                        <button type='submit' class="btn btn-danger btn_hapus" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>" data-nama_pemohon="<?= $row['nama_pemohon'] ?>" data-nama_instansi="<?= $row['nama_instansi'] ?>"> Hapus</button>
 
+
+                                                                    <?php     }
+                                                                } else {
+                                                                    
+                                                                    if ($kredit_online == 'YA') {
+                                                                    ?>
+
+                                                                        <button id="btn_cetak_berkas_permohonan_kredit" class="btn btn-m" style="background-color: <?= w_brown ?>; color:white;" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>">Cetak Permohonan</button>
+                                                                        <button id="btn_modal_detail" class="btn btn-m" style="background-color: <?= w_orange ?>; color:white;" data-toggle="modal" data-target="#modal_detail" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>">Detail</button>
+                                                                        <button id="btn_modal_log" class="btn btn-m" style="background-color: <?= w_ungu ?>; color:white; " data-toggle="modal" data-target="#modal_log" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>">Log</button>
+                                                                        <button class='btn btn-success btn_riwayat' data-no_ktp_pemohon='<?= $row['no_ktp_pemohon'] ?>' data-toggle="modal" data-target="#riwayat" data-backdrop="static" data-keyboard="false">Riwayat </button>
+
+                                                                    <?php
+                                                                    } else if ($kredit_online != 'YA') {
+
+                                                                    ?>
+
+                                                                        <button id="btn_modal_detail" class="btn btn-m" style="background-color: <?= w_orange ?>; color:white;" data-toggle="modal" data-target="#modal_detail" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>">Detail</button>
+                                                                        <button id="btn_modal_log" class="btn btn-m" style="background-color: <?= w_ungu ?>; color:white; " data-toggle="modal" data-target="#modal_log" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>">Log</button>
+                                                                        <button class='btn btn-success btn_riwayat' data-no_ktp_pemohon='<?= $row['no_ktp_pemohon'] ?>' data-toggle="modal" data-target="#riwayat" data-backdrop="static" data-keyboard="false">Riwayat </button>
+
+
+                                                                <?php    }
+                                                                } ?>
 
 
                                                             </td>

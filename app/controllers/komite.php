@@ -686,6 +686,7 @@ class komite extends Controller
                 // echo "cek tolak : " . $cek_tolak . "\n";
                 if ($jumlah_komite <= ($batas_approve - 1)) { // jika kondisi komite lebih kecil dari batas jumlah aprrove // echo "batas approve komite : " . $batas_approve . "\n" ; // echo "Komite sekarang : " . $jumlah_komite . "\n" ; // echo "Status : komite" ; // update status di tbl_wawancara $this->model('m_komite')->update_status_komite($no_permohonan_kredit, "KOMITE");
                     if ($_POST['status'] == 'DISETUJUI') {
+
                         echo "DISETUJUI";
                     } else if ($_POST['status'] == 'DITOLAK') {
 
