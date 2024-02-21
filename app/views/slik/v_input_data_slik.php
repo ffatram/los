@@ -178,9 +178,9 @@
                                                                     <td id="66"><?= $data['get_data_cs_where_no_req']['nama_instansi'] ?></td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td>No. KTP</td>
+                                                                    <td>No. KTP / NPWP</td>
                                                                     <td>:</td>
-                                                                    <td id="67"><?= $data['get_data_cs_where_no_req']['no_ktp_pemohon'] ?></td>
+                                                                    <td id="67"><?= $data['get_data_cs_where_no_req']['no_ktp_pemohon'].' / '.  $data['get_data_cs_where_no_req']['npwp_pemohon'] ?></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Tempat Tanggal Lahir</td>

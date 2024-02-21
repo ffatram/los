@@ -205,7 +205,7 @@
                                         <?php
                                         foreach ($data['level'] as $i) {
                                         ?>
-                                            <option><?= $i ?></option>
+                                            <option><?= $i['level'] ?></option>
 
                                         <?php
                                         }

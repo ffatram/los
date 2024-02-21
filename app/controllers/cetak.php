@@ -438,7 +438,7 @@ class cetak extends Controller
             $outputFilePath = 'cetak/cetakbaru/' . '_download_' . $namafile;
             $data->saveAs($outputFilePath);
 
-          
+
             // Pisahkan nama file dan ekstensi
             $nama_ekstensi = explode('.', $namafile);
             $nama = $nama_ekstensi[0]; // Nama file
@@ -1813,6 +1813,7 @@ class cetak extends Controller
             }
 
             $batas = $b;
+
 
 
 

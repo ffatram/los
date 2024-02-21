@@ -13,7 +13,7 @@ class supervisor extends Controller
 {
 
 
-    public $ref;
+    public $get_level;
     public $daftar_cabang;
     public $tipe_komite;
     public $tipe_kredit;
@@ -32,7 +32,7 @@ class supervisor extends Controller
     public function __construct()
     {
         $data = new ref();
-        $this->ref = $data->get_level();
+        $this->get_level = $data->get_level();
         $this->daftar_cabang = $data->get_daftar_cabang();
         $this->tipe_komite = $data->get_tipe_komite();
         $this->tipe_kredit = $data->get_tipe_kredit();
@@ -55,14 +55,14 @@ class supervisor extends Controller
         $data['title'] = "User";
         $data['nama_halaman'] = "User";
 
-        $data['level'] = $this->ref;
+       
+        $data['level'] = $this->get_level;
         $data['daftar_cabang'] = $this->daftar_cabang;
         $data['tipe_komite'] = $this->tipe_komite;
         $data['tipe_kredit'] = $this->tipe_kredit;
 
 
         $data['get_tbl_user'] = $this->model('m_user')->get_tbl_user();
-
         $this->view("supervisor/user/v_user_home", $data);
     }
 

@@ -5,7 +5,7 @@ class ref extends Controller
 
     public function get_level()
     {
-        $data = ["CS", "SLIK", "RO", "PENCAIRAN", "KOMITE"];
+        $data =  $this->model("m_ref")->get_tbl_ref_level_user();
         return $data;
     }
 
@@ -56,13 +56,13 @@ class ref extends Controller
 
     public function get_surat_kuasa_pencairan()
     {
-        $data = ["TASPEN", "ASABRI","Saldo BPJS Ketenagakerjaan","-"];
+        $data = ["TASPEN", "ASABRI", "Saldo BPJS Ketenagakerjaan", "-"];
         return $data;
     }
 
     public function get_checklist_berkas()
     {
-        $data = ["Wiraswasta", "TNI-POLRI","PPPK","PNS", "Pensiunan", "Pegawai Swasta-BUMN","-"];
+        $data = ["Wiraswasta", "TNI-POLRI", "PPPK", "PNS", "Pensiunan", "Pegawai Swasta-BUMN", "-"];
         return $data;
     }
 }
