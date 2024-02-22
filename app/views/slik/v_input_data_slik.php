@@ -206,9 +206,10 @@
 
                                                         <div class="col-lg-6">
                                                             <form action="<?= BASEURL; ?>/slik2/upload_data_slik" method="post" enctype="multipart/form-data">
-                                                                <input type="hidden" class="ktp2" name="ktp2">
+                                                                <input type="hidden" class="ktp_npwp_file" name="ktp_npwp_file">
+                                                                <input type="hidden" class="ktp_npwp_db" name="ktp_npwp_db">
                                                                 <input type="hidden" name="nama_pemohon" value="<?= $data['get_data_cs_where_no_req']['nama_pemohon'] ?>">
-                                                                <input type="hidden" value="<?= $data['get_data_cs_where_no_req']['no_ktp_pemohon'] ?>" name="ktp3">
+
                                                                 <input type="hidden" name="no_permohonan_kredit" value="<?= $data['get_data_cs_where_no_req']['no_permohonan_kredit'] ?>">
                                                                 <div>
                                                                     <label class="btn btn-success custom-file-button">
@@ -492,9 +493,10 @@
 
                                                             <div class="col-lg-6">
                                                                 <form action="<?= BASEURL; ?>/slik2/upload_data_slik" method="post" enctype="multipart/form-data">
-                                                                    <input type="hidden" class="ktp_pasangan2" name="ktp2">
+                                                                    <input type="hidden" class="ktp_npwp_file" name="ktp_npwp_file">
+                                                                    <input type="hidden" class="ktp_npwp_db" name="ktp_npwp_db">
                                                                     <input type="hidden" name="nama_pemohon" value="<?= $data['get_data_cs_where_no_req']['nama_pemohon'] ?>">
-                                                                    <input type="hidden" value="<?= $data['get_data_cs_where_no_req']['no_ktp_pasangan'] ?>" name="ktp3">
+
                                                                     <input type="hidden" name="no_permohonan_kredit" value="<?= $data['get_data_cs_where_no_req']['no_permohonan_kredit'] ?>">
                                                                     <div>
                                                                         <label class="btn btn-success custom-file-button">
@@ -1011,13 +1013,21 @@
             const uploadButton = document.getElementById('uploadButton');
 
             if (input.files.length > 0) {
+
                 fileNameDisplay.textContent = 'Selected file: ' + input.files[0].name;
                 var no_ktp = input.files[0].name.split('_');
-                var ktp_fix = no_ktp[1].split('.');
+                var namafileideb = no_ktp[0]
+                var nofilektp_npwp = no_ktp[1].split('.');
 
-                var ktp2 = "<?= $data['get_data_cs_where_no_req']['no_ktp_pemohon'] ?>"
+                if (namafileideb === 'KTP') {
+                    $(".ktp_npwp_file").val(nofilektp_npwp[0]);
+                    $(".ktp_npwp_db").val("<?= $data['get_data_cs_where_no_req']['no_ktp_pemohon'] ?>");
 
-                $(".ktp2").val(ktp_fix[0]);
+                } else if (namafileideb === 'NPWP') {
+                    $(".ktp_npwp_file").val(nofilektp_npwp[0]);
+                    $(".ktp_npwp_db").val("<?= $data['get_data_cs_where_no_req']['npwp_pemohon'] ?>");
+
+                }
 
                 uploadButton.style.display = 'block';
             } else {
@@ -1028,19 +1038,28 @@
 
 
         function fileSelected2() {
+
             const input = document.getElementById('fileToUpload2');
             const fileNameDisplay = document.getElementById('selectedFileName2');
             const uploadButton = document.getElementById('uploadButton2');
 
             if (input.files.length > 0) {
+
                 fileNameDisplay.textContent = 'Selected file: ' + input.files[0].name;
-
                 var no_ktp = input.files[0].name.split('_');
-                var ktp_fix = no_ktp[1].split('.');
+                var namafileideb = no_ktp[0]
+                var nofilektp_npwp = no_ktp[1].split('.');
 
-                var ktp2 = "<?= $data['get_data_cs_where_no_req']['no_ktp_pemohon'] ?>"
+                if (namafileideb === 'KTP') {
+                    $(".ktp_npwp_file").val(nofilektp_npwp[0]);
+                    $(".ktp_npwp_db").val("<?= $data['get_data_cs_where_no_req']['no_ktp_pasangan'] ?>");
 
-                $(".ktp_pasangan2").val(ktp_fix[0]);
+                } else if (namafileideb === 'NPWP') {
+                    $(".ktp_npwp_file").val(nofilektp_npwp[0]);
+                    $(".ktp_npwp_db").val("<?= $data['get_data_cs_where_no_req']['npwp_pemohon'] ?>");
+
+                }
+
                 uploadButton.style.display = 'block';
             } else {
                 fileNameDisplay.textContent = '';
@@ -1237,8 +1256,8 @@
         $(document).ready(function() {
 
             // bagian disable tombol button hapus
-            $('.btn_hapus_slik_pasangan_id').prop('disabled', true);
-            $('.btn_hapus_slik_pemohon_id').prop('disabled', true);
+            // $('.btn_hapus_slik_pasangan_id').prop('disabled', true);
+            // $('.btn_hapus_slik_pemohon_id').prop('disabled', true);
 
             $('.btn_hapus_slik_pemohon_id').on('click', function(e) {
                 var no_permohonan_kredit = $(this).data('no_permohonan_kredit')
