@@ -180,7 +180,7 @@
                                                                 <tr>
                                                                     <td>No. KTP / NPWP</td>
                                                                     <td>:</td>
-                                                                    <td id="67"><?= $data['get_data_cs_where_no_req']['no_ktp_pemohon'].' / '.  $data['get_data_cs_where_no_req']['npwp_pemohon'] ?></td>
+                                                                    <td id="67"><?= $data['get_data_cs_where_no_req']['no_ktp_pemohon'] . ' / ' .  $data['get_data_cs_where_no_req']['npwp_pemohon'] ?></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>Tempat Tanggal Lahir</td>
@@ -1235,6 +1235,11 @@
     <!-- hapus slik pemohon where id -->
     <script>
         $(document).ready(function() {
+
+            // bagian disable tombol button hapus
+            $('.btn_hapus_slik_pasangan_id').prop('disabled', true);
+            $('.btn_hapus_slik_pemohon_id').prop('disabled', true);
+
             $('.btn_hapus_slik_pemohon_id').on('click', function(e) {
                 var no_permohonan_kredit = $(this).data('no_permohonan_kredit')
                 var nama_pemohon = $(this).data('nama_pemohon')
