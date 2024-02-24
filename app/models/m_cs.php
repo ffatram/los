@@ -755,7 +755,7 @@ class m_cs
     {
 
 
-        if ($_COOKIE['level'] == 'SKAI' ||  $_COOKIE['level'] == 'KOMITE') {
+        if ($_COOKIE['level'] == 'INQUIRY' ||  $_COOKIE['level'] == 'KOMITE') {
 
             if ($_POST['kode_cabang'] == '00') {
                 $this->db->query('SELECT * FROM tbl_permohon_kredit WHERE tanggal_permohonan >= :dari_tanggal  AND tanggal_permohonan <= :sampai_tanggal');
@@ -785,7 +785,7 @@ class m_cs
 
 
 
-        if ($_COOKIE['level'] == 'SKAI' ||  $_COOKIE['level'] == 'KOMITE') {
+        if ($_COOKIE['level'] == 'INQUIRY' ||  $_COOKIE['level'] == 'KOMITE') {
 
             if ($_POST['kode_cabang'] == '00') {
                 $this->db->query('SELECT * FROM tbl_permohon_kredit WHERE tanggal_pencairan >= :dari_tanggal  AND tanggal_pencairan <= :sampai_tanggal');
@@ -810,7 +810,7 @@ class m_cs
 
     public function cetak_tolak_cs()
     {
-        if ($_COOKIE['level'] == 'SKAI' ||  $_COOKIE['level'] == 'KOMITE') {
+        if ($_COOKIE['level'] == 'INQUIRY' ||  $_COOKIE['level'] == 'KOMITE') {
 
             if ($_POST['kode_cabang'] == '00') {
                 $this->db->query('SELECT * FROM tbl_permohon_kredit WHERE tanggal_tolak >= :dari_tanggal  AND tanggal_tolak <= :sampai_tanggal');
@@ -836,7 +836,7 @@ class m_cs
     {
 
 
-        if ($_COOKIE['level'] == 'SKAI' ||  $_COOKIE['level'] == 'KOMITE') {
+        if ($_COOKIE['level'] == 'INQUIRY' ||  $_COOKIE['level'] == 'KOMITE') {
 
             if ($_POST['kode_cabang'] == '00') {
                 $this->db->query('SELECT * FROM tbl_permohon_kredit WHERE tanggal_batal >= :dari_tanggal  AND tanggal_batal <= :sampai_tanggal');
@@ -864,7 +864,7 @@ class m_cs
     {
 
 
-        if ($_COOKIE['level'] == 'SKAI' ||  $_COOKIE['level'] == 'KOMITE') {
+        if ($_COOKIE['level'] == 'INQUIRY' ||  $_COOKIE['level'] == 'KOMITE') {
 
             if ($_POST['kode_cabang'] == '00') {
                 $this->db->query('SELECT * FROM tbl_permohon_kredit WHERE tanggal_permohonan >= :dari_tanggal  AND tanggal_permohonan <= :sampai_tanggal AND tanggal_pencairan IS NULL AND tanggal_tolak IS NULL AND tanggal_batal IS NULL');
@@ -901,7 +901,7 @@ class m_cs
     {
 
 
-        if ($_COOKIE['level'] == "SKAI" || $_COOKIE['level'] == 'KOMITE') {
+        if ($_COOKIE['level'] == "INQUIRY" || $_COOKIE['level'] == 'KOMITE') {
 
             $this->db->query('SELECT * FROM tbl_permohon_kredit WHERE tanggal_permohonan >= :dari_tanggal  AND tanggal_permohonan <= :sampai_tanggal AND kode_cabang =:kode_cabang');
             $this->db->bind('dari_tanggal', $_POST['dari_tanggal']);
@@ -922,7 +922,7 @@ class m_cs
     public function export_csv_all()
     {
 
-        if ($_COOKIE['level'] == 'SKAI' || $_COOKIE['level'] == 'KOMITE') {
+        if ($_COOKIE['level'] == 'INQUIRY' || $_COOKIE['level'] == 'KOMITE') {
 
             $this->db->query('SELECT * FROM tbl_permohon_kredit WHERE tanggal_permohonan >= :dari_tanggal  AND tanggal_permohonan <= :sampai_tanggal');
             $this->db->bind('dari_tanggal', $_POST['dari_tanggal']);
