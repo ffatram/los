@@ -310,7 +310,7 @@
                                         <?php
                                         foreach ($data['level'] as $i) {
                                         ?>
-                                            <option><?= $i ?></option>
+                                            <option value="<?= $i['level'] ?>"><?= $i['level'] ?></option>
 
                                         <?php
                                         }
