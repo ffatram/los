@@ -341,26 +341,12 @@
 
                                                                     <?php     }
                                                                 } else {
-                                                                    
-                                                                    if ($kredit_online == 'YA') {
                                                                     ?>
+                                                                    <button id="btn_modal_detail" class="btn btn-m" style="background-color: <?= w_orange ?>; color:white;" data-toggle="modal" data-target="#modal_detail" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>">Detail</button>
+                                                                    <button id="btn_modal_log" class="btn btn-m" style="background-color: <?= w_ungu ?>; color:white; " data-toggle="modal" data-target="#modal_log" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>">Log</button>
+                                                                    <button class='btn btn-success btn_riwayat' data-no_ktp_pemohon='<?= $row['no_ktp_pemohon'] ?>' data-toggle="modal" data-target="#riwayat" data-backdrop="static" data-keyboard="false">Riwayat </button>
 
-                                                                        <button id="btn_cetak_berkas_permohonan_kredit" class="btn btn-m" style="background-color: <?= w_brown ?>; color:white;" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>">Cetak Permohonan</button>
-                                                                        <button id="btn_modal_detail" class="btn btn-m" style="background-color: <?= w_orange ?>; color:white;" data-toggle="modal" data-target="#modal_detail" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>">Detail</button>
-                                                                        <button id="btn_modal_log" class="btn btn-m" style="background-color: <?= w_ungu ?>; color:white; " data-toggle="modal" data-target="#modal_log" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>">Log</button>
-                                                                        <button class='btn btn-success btn_riwayat' data-no_ktp_pemohon='<?= $row['no_ktp_pemohon'] ?>' data-toggle="modal" data-target="#riwayat" data-backdrop="static" data-keyboard="false">Riwayat </button>
-
-                                                                    <?php
-                                                                    } else if ($kredit_online != 'YA') {
-
-                                                                    ?>
-
-                                                                        <button id="btn_modal_detail" class="btn btn-m" style="background-color: <?= w_orange ?>; color:white;" data-toggle="modal" data-target="#modal_detail" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>">Detail</button>
-                                                                        <button id="btn_modal_log" class="btn btn-m" style="background-color: <?= w_ungu ?>; color:white; " data-toggle="modal" data-target="#modal_log" data-no_permohonan_kredit="<?= $row['no_permohonan_kredit'] ?>">Log</button>
-                                                                        <button class='btn btn-success btn_riwayat' data-no_ktp_pemohon='<?= $row['no_ktp_pemohon'] ?>' data-toggle="modal" data-target="#riwayat" data-backdrop="static" data-keyboard="false">Riwayat </button>
-
-
-                                                                <?php    }
+                                                                <?php
                                                                 } ?>
 
 

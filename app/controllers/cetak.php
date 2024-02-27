@@ -1958,15 +1958,6 @@ class cetak extends Controller
 
 
 
-
-
-
-
-
-
-
-
-
         $ka = $akm - $akk;
         $document = str_replace("#akk", number_format($akk, 0, ',', '.'), $document);
 
@@ -2409,10 +2400,6 @@ class cetak extends Controller
         $document = str_replace("#komite_plafond", $komite_plafond, $document);
         $document = str_replace("#komite_jw", $komite_jw, $document);
         $document = str_replace("#status", $status, $document);
-
-
-
-
 
 
 

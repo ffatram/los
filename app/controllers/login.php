@@ -206,7 +206,7 @@ class login extends Controller
 
 
 
-            if ($data['level'] == 'INQUIRY') {
+            if ($data['level'] == 'MARKETING') {
                 $username = $data['username'];
                 $nama_lengkap =  $data['nama_lengkap'];
                 $level =  $data['level'];
@@ -228,9 +228,34 @@ class login extends Controller
                 setcookie('nama_cabang', $nama_cabang, time() + (60 * 60 * 60), '/');
                 // setcookie('limit', $limit, time() + (60 * 60 * 60), '/');
                 // setcookie('aturan_jumlah_komite', $aturan_jumlah_komite, time() + (60 * 60 * 60), '/');
-                header('Location:' . BASEURL . '/inquiry/beranda');
+                header('Location:' . BASEURL . '/users/index');
                 exit;
             }
+
+
+            $username = $data['username'];
+            $nama_lengkap =  $data['nama_lengkap'];
+            $level =  $data['level'];
+            $kode_cabang =  $data['kode_cabang'];
+            $nama_cabang =  $data['nama_cabang'];
+            $limit =  $data['limit'];
+            $aturan_jumlah_komite =  $data['aturan_jumlah_komite'];
+
+            // set sesi login
+
+            $_SESSION['waktu_login'] = date("d M Y H:i:s");
+            $_SESSION['level'] = $level;
+
+
+            setcookie('username', $username, time() + (60 * 60 * 60), '/');
+            setcookie('nama_lengkap', $nama_lengkap, time() + (60 * 60 * 60), '/');
+            setcookie('level', $level, time() + (60 * 60 * 60), '/');
+            setcookie('kode_cabang', $kode_cabang, time() + (60 * 60 * 60), '/');
+            setcookie('nama_cabang', $nama_cabang, time() + (60 * 60 * 60), '/');
+            // setcookie('limit', $limit, time() + (60 * 60 * 60), '/');
+            // setcookie('aturan_jumlah_komite', $aturan_jumlah_komite, time() + (60 * 60 * 60), '/');
+            header('Location:' . BASEURL . '/inquiry/beranda');
+            exit;
         } else if ($data == "ubah_password") {
             header('Location:' . BASEURL . '/login/ubah_password');
             exit;
