@@ -361,6 +361,9 @@
                                                         <table id='tabel_modal2'>
                                                             <!-- inoutttttt  -->
                                                             <input type="hidden" id='no_permohonan_kredit' name="no_permohonan_kredit">
+                                                            <!-- <input type="hidden" id='syarat_lainnya' name='syarat_lainnya'> -->
+
+                                                            <textarea class="form-control h-50" rows='4' id="syarat_lainnya" name="syarat_lainnya" hidden></textarea>
 
                                                             <tbody>
 
@@ -607,6 +610,30 @@
                     </div>
 
 
+
+
+                    <!-- modal menampilkan catatan pending komite ketika klik tombol catatan pending komite -->
+                    <div class="modal fade modal_catatan_pending_komite" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-sm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="h4"><strong>Catatan Pending</strong></h1>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body catatan_pending_komite">
+                                    <td><textarea id='catatan_pending_komite' class="form-control h-25" rows="9" style="margin: 0; padding: 0;"></textarea></td>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
                     <!-- Modal Reject -->
 
                     <!-- style untuk bagian modal reject bagian ketika tekan button reject -->
@@ -699,18 +726,13 @@
     <!-- SweetAlert2 -->
     <script src="<?= BASEURL ?>/assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 
-    <!-- <script>
-        $(document).on('click', '.modal_cetak_analisa', function() {
-            alert('halo')
 
-        })
-    </script> -->
 
 
     <!-- jika modal terclose maka hapus modal tersebut -->
     <script>
         $("#modal_proses_komite").on('hidden.bs.modal', function() {
-            $(this).find('#modal_proses_komite').trigger('reset');
+            $(this).find('.modal-body').empty();
         });
     </script>
 
@@ -927,11 +949,11 @@
                         } else if (res == "kuota_penuh") {
                             res = "Kuota komite pejabat cabang telah terpenuhi. Selanjutnya dibutuhkan komite direksi."
                             alert_eror(res, 5000)
-                        }else{
+                        } else {
                             alert(res)
                         }
-                       
-                        
+
+
                     },
                     error: function(e_data_disetujui) {
                         console.log("erorr disetujui");
@@ -1021,7 +1043,6 @@
         $(document).on('click', '.btn_modal_proses_komite', function(e) {
             var id = $(this).data('id')
 
-
             $.ajax({
                 type: 'post',
                 url: '<?= BASEURL . '/login/cek_pin_komite' ?>',
@@ -1029,6 +1050,7 @@
                 success: function(res) {
                     if (res.trim() == "pin_sama") {
                         console.log(res.trim())
+
 
                         $('#modal_ubah_pin').modal('show');
 
@@ -1038,11 +1060,8 @@
                             data: 'no_permohonan_kredit=' + id,
                             success: function(data) {
                                 $('.data_modal_ubah_pin').html(data)
-
                             }
                         })
-
-
 
 
                     } else if (res.trim() == "pin_beda") {
@@ -1080,29 +1099,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <script>
         $(document).ready(function() {
             $('#modal_catatan_pending').on('show.bs.modal', function(e) {
@@ -1118,14 +1114,29 @@
 
 
 
+    <script>
+        $(document).on('click', '.lihat_catatan_pending', function(e) {
 
+            var catatan_pending = $(this).data('catatan_pending')
 
+            var modal = $('.modal_catatan_pending_komite')
+            modal.find('textarea#catatan_pending_komite').html(catatan_pending) 
 
+            $('.modal_catatan_pending_komite').modal('show');
+            // Menambahkan gaya CSS langsung untuk modal berada di tengah
+            // Ketika modal ditampilkan
 
+            var modal = $('.modal_catatan_pending_komite');
 
+            // Calculate the top margin to center the modal vertically
+            var modalHeight = modal.find('.modal-dialog').outerHeight();
+            var windowHeight = $(window).height();
+            var marginTop = (windowHeight - modalHeight) / 2 - 200;
 
-
-
+            // Apply the top margin to center the modal
+            modal.find('.modal-dialog').css('margin-top', marginTop + 'px');
+        });
+    </script>
 
 
 </body>

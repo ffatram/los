@@ -359,9 +359,7 @@
                                                                             <label class="mt-2 mb-2">Jaminan Utama</label>
                                                                             <input type="text" name="jaminan_utama" class="form-control" oninput="this.value = this.value.toUpperCase()" value='<?= $data['data_wawancara']['jaminan_utama'] ?>' />
 
-                                                                            <label class="mt-2 mb-2">Syarat Lainnya</label>
-                                                                            <input type="text" name="syarat_lainnya" class="form-control" oninput="this.value = this.value.toUpperCase()" value='<?= $data['data_wawancara']['syarat_lainnya'] ?>' />
-
+                                                                            
                                                                             <label class="mt-2 mb-2">Dasar Pertimbangan Analis</label>
                                                                             <textarea name="dasar_pertimbangan_analis" class="form-control h-25" rows="15"><?= $data['data_wawancara']['dasar_pertimbangan_analis'] ?></textarea>
 

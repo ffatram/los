@@ -2425,7 +2425,224 @@ class cetak extends Controller
 
 
 
+    public function database_ref($id)
+    {
+
+
+        // master
+        // tbl_wawancara
+        $data['a'] = $this->model('ref_tbl_permohon_kredit')->showsingle_no_permohonan_kredit($id);
+        $data['b'] = $this->model('ref_tbl_wawancara')->showsingle_no_permohonan_kredit($id);
+        $data['c'] = $this->model('ref_tbl_pencairan')->showsingle_no_permohonan_kredit($id);
+        $data['d'] = $this->model('ref_tbl_keputusan_kredit')->showsingle_no_permohonan_kredit($id);
+
+
+
+
+        // ref
+        // tbl_cabang
+        $data['e'] = $this->model('ref_tbl_cabang')->showsingle_kode_cabang($_COOKIE['kode_cabang']);
+        $data['f'] = $this->model('ref_tbl_pejabat')->showsingle_namapejabat($data['c']['pejabat_ttd']);
+
+
+        return $data;
+    }
+
+
+
+
     public function cetak_sppk($id)
+    {
+        $namafile = 'SPPK.docx';
+        $data = new \PhpOffice\PhpWord\TemplateProcessor('cetak/' . $namafile);
+
+
+        $tbl = $this->database_ref($id);
+
+        $a = $tbl['a'];
+        $b = $tbl['b'];
+        $c = $tbl['c'];
+        $d = $tbl['d'];
+        $e = $tbl['e'];
+        $f = $tbl['f'];
+
+
+
+        $data->setValue('nama_pemohon', $a['nama_pemohon']);
+        $data->setValue('alamat_ktp_pemohon', $a['alamat_ktp_pemohon']);
+
+
+
+
+
+        $data->setValue('suku_bunga', $c['suku_bunga']);
+        $data->setValue('sistem_pembayaran', $b['sistem_pembayaran']);
+        $data->setValue('jaminan_utama', $b['jaminan_utama']);
+
+        $jumlah_data = 0;
+
+        for ($a = 1; $a <= 20; $a++) {
+            if ($c['jaminan_' . $a] != '') {
+                $jumlah_data = $a;
+            }
+        }
+        $data->cloneRow('jaminan',  $jumlah_data);
+
+        for ($a = 1; $a <= $jumlah_data; $a++) {
+
+            $data->setValue('jaminan#' . $a, $c['jaminan_' . $a]);
+            $data->setValue('keadaan#' . $a, 'A S L I');
+        }
+
+        $syarat_lainnya = $this->formattextareatoarray($b['syarat_lainnya']);
+        $row = count($syarat_lainnya);
+        $data->cloneRow('syarat_lainnya',  $row);
+
+        foreach ($syarat_lainnya as $index => $item) {
+            $data->setValue('syarat_lainnya#' . $index + 1, $item);
+        }
+
+
+        $datasum = array(
+            $c['biaya_provisi'],
+            $c['biaya_administrasi'],
+            $c['asuransi_jiwa'],
+            $c['asuransi_kredit'],
+            $c['biaya_notaris'],
+            $c['asuransi_kerugian'],
+            $c['biaya_materai']
+        );
+
+
+        
+
+
+        $total = 0;
+        foreach ($datasum as $nilai) {
+            if ($nilai > 0) {
+                $total += $nilai;
+            }
+        }
+
+        
+
+
+
+        $c['biaya_provisi'] = number_format($c['biaya_provisi'], 0, ',', '.');
+        $c['biaya_administrasi'] = number_format($c['biaya_administrasi'], 0, ',', '.');
+        $c['asuransi_jiwa'] = number_format($c['asuransi_jiwa'], 0, ',', '.');
+        $c['asuransi_kredit'] = number_format($c['asuransi_kredit'], 0, ',', '.');
+        $c['biaya_notaris'] = number_format($c['biaya_notaris'], 0, ',', '.');
+        $c['asuransi_kerugian'] = number_format($c['asuransi_kerugian'], 0, ',', '.');
+        $c['biaya_materai'] = number_format($c['biaya_materai'], 0, ',', '.');
+
+        $total = number_format($total, 0, ',', '.');
+
+
+
+
+
+        $formatstring0 =  '<w:t> 0</w:t>';
+                        //    '<w:r><w:t>0000</w:t></w:r>'
+                        //    '<w:t> 0</w:t>'
+                        // '<w:r><w:t>0000</w:t></w:r>'
+
+        $c['biaya_provisi'] = ($c['biaya_provisi'] == '0') ? $formatstring0 : $c['biaya_provisi'];
+        $c['biaya_administrasi'] = ($c['biaya_administrasi'] == '0') ? $formatstring0 : $c['biaya_administrasi'];
+        $c['asuransi_jiwa'] = ($c['asuransi_jiwa'] == '0') ? $formatstring0 : $c['asuransi_jiwa'];
+        $c['asuransi_kredit'] = ($c['asuransi_kredit'] == '0') ? $formatstring0 : $c['asuransi_kredit'];
+        $c['biaya_notaris'] = ($c['biaya_notaris'] == '0') ? $formatstring0 : $c['biaya_notaris'];
+        $c['asuransi_kerugian'] = ($c['asuransi_kerugian'] == '0') ? $formatstring0 : $c['asuransi_kerugian'];
+        $c['biaya_materai'] = ($c['biaya_materai'] == '0') ? $formatstring0 : $c['biaya_materai'];
+
+
+
+        $data->setValue('biaya_provisi', $c['biaya_provisi']);
+        $data->setValue('biaya_administrasi', $c['biaya_administrasi']);
+        $data->setValue('asuransi_jiwa', $c['asuransi_jiwa']);
+        $data->setValue('asuransi_kredit', $c['asuransi_kredit']);
+        $data->setValue('biaya_notaris', $c['biaya_notaris']);
+        $data->setValue('asuransi_kerugian', $c['asuransi_kerugian']);
+        $data->setValue('biaya_materai', $c['biaya_materai']);
+        $data->setValue('total', $total);
+
+
+        $data->setValue('nama_debitur', $c['nama_debitur']);
+        $data->setValue('pejabat_ttd', $c['pejabat_ttd']);
+
+
+
+
+        $c['angsuran_perbulan'] =   number_format($c['angsuran_perbulan'], 0, ',', '.');
+        $data->setValue('angsuran_perbulan', $c['angsuran_perbulan']);
+        $c['tabungan_simitra'] =   number_format($c['tabungan_simitra'], 0, ',', '.');
+        $data->setValue('tabungan_simitra', $c['tabungan_simitra']);
+
+
+        $d['tgl_create'] =  date("d-m-Y", strtotime($d['tgl_create']));
+        $data->setValue('tgl_create', $d['tgl_create']);
+
+
+        $d['plafond'] =   number_format($d['plafond'], 0, ',', '.');
+
+        $data->setValue('plafond', $d['plafond']);
+        $data->setValue('plafond', $d['plafond']);
+
+        $data->setValue('jangka_waktu', $d['jangka_waktu']);
+
+
+
+        $data->setValue('kota', $e['kota']);
+
+        $data->setValue('jabatan', $f['jabatan']);
+
+
+
+
+
+
+
+
+
+        // Simpan hasilnya ke dalam file output.docx
+        $outputFilePath = 'cetak/' . '_download_' . $namafile;
+        $data->saveAs($outputFilePath);
+
+        // Setel header untuk pengunduhan
+        header('Content-Type: application/octet-stream');
+        header('Content-Disposition: attachment; filename="' . $namafile . '"');
+        header('Content-Length: ' . filesize($outputFilePath));
+
+        // Keluarkan isi file
+        readfile($outputFilePath);
+
+        // Hapus file yang dihasilkan setelah diunduh (opsional)
+        unlink($outputFilePath);
+        // Hentikan eksekusi script
+        exit();
+    }
+
+    public function formattextareatoarray($text)
+    {
+        // Memisahkan teks menjadi array berdasarkan baris
+        $array_baris = explode("\n", $text);
+
+        // Simpan ke dalam array
+        $array_teks = [];
+
+        foreach ($array_baris as $baris) {
+            // Jika baris bukan kosong, masukkan ke dalam array
+            if (!empty(trim($baris))) {
+                $array_teks[] = $baris;
+            }
+        }
+
+        return  $array_teks;
+    }
+
+
+
+    public function cetak_sppk_temp($id)
     {
 
         $format_tgl = new format_tanggal_indo();
@@ -2655,13 +2872,6 @@ class cetak extends Controller
 
 
 
-
-
-
-    public function get_data()
-    {
-        echo "halo";
-    }
 
 
 

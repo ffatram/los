@@ -38,6 +38,20 @@ class m_komite
             $this->db->bind('komite_2', $_COOKIE['username']);
             $this->db->bind('komite_3', $_COOKIE['username']);
             return $this->db->resultSet();
+        } else if ($komite == "CABANG" && $_COOKIE['kode_cabang'] == '00') {
+
+            $this->db->query("SELECT A.no_permohonan_kredit, A.kode_cabang, A.id_analis, A.nama_pemohon, A.nama_instansi, A.tipe_kredit, A.tanggal_permohonan, A.tanggal_wawancara, B.plafond,B.jangka_waktu, B.status,B.catatan_pending,A.tipe_kredit
+                FROM tbl_permohon_kredit A
+                JOIN tbl_wawancara B ON A.no_permohonan_kredit = B.no_permohonan_kredit WHERE  (B.plafond >= :limit_direksi_awal AND B.plafond <= :limit_direksi_akhir) AND A.tipe_kredit = :tipe_kredit AND (B.status =:status1 OR B.status =:status2)  AND (B.komite_1 !=:komite_1 ) AND (B.komite_2 !=:komite_2 ) AND (B.komite_3 !=:komite_3) ");
+            $this->db->bind('status1', 'DIAJUKAN');
+            $this->db->bind('status2', 'KOMITE');
+            $this->db->bind('limit_direksi_awal', $limit_direksi_awal);
+            $this->db->bind('limit_direksi_akhir', $limit_direksi_akhir);
+            $this->db->bind('tipe_kredit', $_COOKIE['tipe_kredit']);
+            $this->db->bind('komite_1', $_COOKIE['username']);
+            $this->db->bind('komite_2', $_COOKIE['username']);
+            $this->db->bind('komite_3', $_COOKIE['username']);
+            return $this->db->resultSet();
         }
         // jika login selain dari komite pusat atau jika ternyata login sebagai komite cabang
         else {
@@ -46,7 +60,6 @@ class m_komite
             //jika login sebagai cabang dan tipe komite permohonan kredit adalah pusat atau diatas limit maka batasi approve cabang hanya max 2 dan 1 komite pusat
             // jadi ketika telah sampai 2 di tbl_komite maka jangan tampilkan lagi daftar permohonan di user komite cabang yang belum approve
             // cek dlu bagian tabel komite berdasarkan no_registrasi dan user_tipe_komite apakah cabang jika ada 2 
-
 
 
             if ($_COOKIE['tipe_kredit'] == "ALL") {
@@ -113,7 +126,23 @@ class m_komite
             $this->db->bind('komite_3', $_COOKIE['username']);
             $this->db->execute();
             return $this->db->rowCount();
+        } else if ($komite == "CABANG" && $_COOKIE['kode_cabang'] == '00') {
+
+            $this->db->query("SELECT A.no_permohonan_kredit, A.kode_cabang, A.id_analis, A.nama_pemohon, A.nama_instansi, A.tipe_kredit, A.tanggal_permohonan, A.tanggal_wawancara, B.plafond,B.jangka_waktu, B.status,B.catatan_pending,A.tipe_kredit
+                FROM tbl_permohon_kredit A
+                JOIN tbl_wawancara B ON A.no_permohonan_kredit = B.no_permohonan_kredit WHERE  (B.plafond >= :limit_direksi_awal AND B.plafond <= :limit_direksi_akhir) AND A.tipe_kredit = :tipe_kredit AND (B.status =:status1 OR B.status =:status2)  AND (B.komite_1 !=:komite_1 ) AND (B.komite_2 !=:komite_2 ) AND (B.komite_3 !=:komite_3) ");
+            $this->db->bind('status1', 'DIAJUKAN');
+            $this->db->bind('status2', 'KOMITE');
+            $this->db->bind('limit_direksi_awal', $limit_direksi_awal);
+            $this->db->bind('limit_direksi_akhir', $limit_direksi_akhir);
+            $this->db->bind('tipe_kredit', $_COOKIE['tipe_kredit']);
+            $this->db->bind('komite_1', $_COOKIE['username']);
+            $this->db->bind('komite_2', $_COOKIE['username']);
+            $this->db->bind('komite_3', $_COOKIE['username']);
+            $this->db->execute();
+            return $this->db->rowCount();
         }
+
         // jika login selain dari komite pusat atau jika ternyata login sebagai komite cabang
         else {
 
@@ -346,20 +375,7 @@ class m_komite
     {
         date_default_timezone_set('Asia/Makassar');
 
-        // echo "tes : " .
-        //     $_POST['no_permohonan_kredit'] . " | " .
-        //     $_POST['plafond_disetujui'] . " | " .
-        //     $_POST['jangka_waktu'] . ' | ' .
-        //     $_POST['suku_bunga'] . ' | ' .
-        //     $_POST['penambahan'] . ' | ' .
-        //     $_POST['provisi_kredit'] . ' | ' .
-        //     $_POST['administrasi_kredit'] . ' | ' .
-        //     $_POST['angsuran_perbulan'] . ' | ' .
-        //     $_POST['tabungan'] . ' | ' .
-        //     $_POST['biaya_notaris'] . ' | ' .
-        //     $_POST['biaya_apht'] . ' | ' .
-        //     $_POST['asuransi_kerugian'] . ' | ' .
-        //     $_POST['dasar_pertimbangan_analis'];
+
 
 
         $query = "INSERT INTO tbl_komite 
@@ -380,6 +396,7 @@ class m_komite
         catatan_komite,
         user_create,
         tgl_create,
+        syarat_lainnya,
         status,
         keterangan,
         user_tipe_komite
@@ -402,6 +419,7 @@ class m_komite
         :catatan_komite,
         :user_create,
         :tgl_create,
+        :syarat_lainnya,
         :status,
         :keterangan,
         :user_tipe_komite 
@@ -423,7 +441,7 @@ class m_komite
         $this->db->bind('catatan_komite',  $_POST['dasar_pertimbangan_analis']);
         $this->db->bind('user_create',  $_COOKIE['username']);
         $this->db->bind('tgl_create',  date("Y-m-d H:i:s"));
-
+        $this->db->bind('syarat_lainnya',  $_POST['syarat_lainnya']);
         $this->db->bind('status',  $_POST['status']);
         $this->db->bind('keterangan',  $_POST['keterangan']);
         $this->db->bind('user_tipe_komite',  $_POST['user_tipe_komite']);

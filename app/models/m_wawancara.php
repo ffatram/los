@@ -246,7 +246,6 @@ class m_wawancara
                 kode_tujuan_penggunaan_kredit,  
                 tujuan_penggunaan_kredit,
                 jaminan_utama,
-                syarat_lainnya,
                 dasar_pertimbangan_analis,
                 plafond,
                 jangka_waktu,
@@ -388,7 +387,6 @@ class m_wawancara
                 :kode_tujuan_penggunaan_kredit,
                 :tujuan_penggunaan_kredit,
                 :jaminan_utama,
-                :syarat_lainnya,
                 :dasar_pertimbangan_analis,
                 :plafond,
                 :jangka_waktu,
@@ -532,7 +530,6 @@ class m_wawancara
 
         $this->db->bind('tujuan_penggunaan_kredit',  $_POST['tujuan_penggunaan_kredit']);
         $this->db->bind('jaminan_utama',  $_POST['jaminan_utama']);
-        $this->db->bind('syarat_lainnya',  $_POST['syarat_lainnya']);
         $this->db->bind('dasar_pertimbangan_analis',  $_POST['dasar_pertimbangan_analis']);
         $this->db->bind('plafond',  $_POST['plafond']);
         $this->db->bind('jangka_waktu',  $_POST['jangka_waktu']);
@@ -635,7 +632,6 @@ class m_wawancara
         tujuan_penggunaan_kredit=:tujuan_penggunaan_kredit,
         kode_tujuan_penggunaan_kredit = :kode_tujuan_penggunaan_kredit,
         jaminan_utama=:jaminan_utama,
-        syarat_lainnya=:syarat_lainnya,
         dasar_pertimbangan_analis=:dasar_pertimbangan_analis,
         plafond=:plafond,
         os_sebelumnya = :os_sebelumnya,
@@ -779,7 +775,6 @@ class m_wawancara
         $this->db->bind('tujuan_penggunaan_kredit',  $_POST['tujuan_penggunaan_kredit']);
         $this->db->bind('kode_tujuan_penggunaan_kredit',  $_POST['kode_tujuan_penggunaan_kredit']);
         $this->db->bind('jaminan_utama',  $_POST['jaminan_utama']);
-        $this->db->bind('syarat_lainnya',  $_POST['syarat_lainnya']);
         $this->db->bind('dasar_pertimbangan_analis',  $_POST['dasar_pertimbangan_analis']);
         $this->db->bind('plafond',  $_POST['plafond']);
         $this->db->bind('os_sebelumnya',  $_POST['os_sebelumnya']);
@@ -1136,7 +1131,6 @@ class m_wawancara
         komite_3 = :k3,
         status   = :k4 ,
         tipe_komite = :k5
-
         WHERE no_permohonan_kredit= :no_permohonan_kredit";
         $this->db->query($query);
         $this->db->bind('k1', "");
@@ -1179,6 +1173,20 @@ class m_wawancara
         $this->db->execute();
         return $this->db->rowCount();
     }
+
+
+    public function btn_lanjutkan_syarat_lainnya()
+    {
+        $query = "UPDATE tbl_wawancara SET 
+        syarat_lainnya = :k1
+        WHERE no_permohonan_kredit= :no_permohonan_kredit";
+        $this->db->query($query);
+        $this->db->bind('k1', $_POST['syarat_lainnya']);
+        $this->db->bind('no_permohonan_kredit', $_POST['no_permohonan_kredit']);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
+
 
     public function kode_tujuan_penggunaan_kredit()
     {
@@ -1228,4 +1236,24 @@ class m_wawancara
         $this->db->execute();
         return $this->db->rowCount();
     }
+
+
+    // fungsi untuk update field syarat lainnya ketika ada komite yang approve dan reject di tombol approve atau reject
+    public function update_syarat_lainnya()
+    {
+        $query = "UPDATE tbl_wawancara SET 
+        syarat_lainnya = :syarat_lainnya
+        WHERE no_permohonan_kredit= :no_permohonan_kredit";
+        $this->db->query($query);
+        $this->db->bind('syarat_lainnya', $_POST['syarat_lainnya']);
+        $this->db->bind('no_permohonan_kredit', $_POST['no_permohonan_kredit']);
+        $this->db->execute();
+        return $this->db->rowCount();
+    }
+
+    // public function cek_isi_syarat_lainnya(){
+    //     $this->db->query("SELECT syarat_lainnya FROM tbl_wawancara WHERE no_permohonan_kredit =:no_permohonan_kredit");
+    //     $this->db->bind('no_permohonan_kredit', $_POST['no_permohonan_kredit']);
+    //     return $this->db->single();
+    // }
 }

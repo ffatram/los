@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Aplikasi LOS BPR HASAMITRA">
     <meta name="author" content="faturungimuharram">
@@ -38,8 +39,9 @@
 
 
                 <form action="<?= BASEURL ?>/login/cek_login" method="post">
+                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token'] ?>">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="username" placeholder="Username" oninput="this.value = this.value.toUpperCase()" required>
+                        <input type="text" class="form-control" name="username" placeholder="Username" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <i class="far fa-user"></i>
@@ -105,6 +107,18 @@
             $("#myAlert").slideUp(500);
         });
     </script>
+
+    <script>
+       
+        $(document).ready(function() {
+            
+            $('.form-control').on('input', function() {
+                var value = $(this).val();
+                $(this).val(value.toUpperCase());
+            });
+        });
+    </script>
+
 </body>
 
 </html>

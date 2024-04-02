@@ -1872,7 +1872,7 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                                 <table cellpadding=5 cellspacing=15 id='tabel_modal'>
 
                                                     <tr>
-                                                        <td id='td_tabel_modal_ket'>Plafondd </td>
+                                                        <td id='td_tabel_modal_ket'>Plafond </td>
 
                                                         <!-- cek apakah plafond belum berubah anatar inpuran analis dengan persetujuan komite, jika berubah maka beri warna merah -->
 
@@ -1910,7 +1910,14 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                                     <tr>
                                                         <td id='td_tabel_modal_ket'>Catatan Komite</td>
 
-                                                        <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control h-25' rows='10'><?= $data_tbl_komite[$a - 1]['catatan_komite'] ?></textarea></td>
+                                                        <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control h-25' rows='5'><?= $data_tbl_komite[$a - 1]['catatan_komite'] ?></textarea></td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td id='td_tabel_modal_ket'>Syarat Lainnya</td>
+
+                                                        <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control h-25' rows='5'><?= $data_tbl_komite[$a - 1]['syarat_lainnya'] ?></textarea></td>
                                                     </tr>
 
                                                     <?php
@@ -2004,8 +2011,14 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                                     </tr>
                                                     <tr>
                                                         <td id='td_tabel_modal_ket'>Catatan Komite</td>
-                                                        <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control' rows='10'><?= "" ?></textarea></td>
+                                                        <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control' rows='5'><?= "" ?></textarea></td>
                                                     </tr>
+
+                                                    <tr>
+                                                        <td id='td_tabel_modal_ket'>Syarat Lainnya</td>
+                                                        <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control' rows='5'><?= "" ?></textarea></td>
+                                                    </tr>
+
                                                     <?php
 
                                                     if (isset($data_tbl_komite[$a - 1]['status'])) {
@@ -2094,7 +2107,7 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                     </div>
                     <div class="tab-pane active" id="e">
 
-
+                        <!-- 
                         <form id='form_proses_komite' action="<?= BASEURL; ?>/komite/proses_komite" method="POST">
                             <div class="row">
                                 <div class="col-6">
@@ -2217,7 +2230,181 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        </form> -->
+
+                        <div class="row mt-2">
+                            <div class="col">
+                                <table class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Aspek</th>
+                                            <th scope="col">Usulan Analis</th>
+                                            <th scope="col">Persetujuan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Plafond</td>
+                                            <td><?= $detail['plafond'] ?></td>
+                                            <td><input type="text" name='plafond' class="form-control no" onkeypress="return hanyaAngka(event)" id='plafond' value="<?= $detail['plafond']  ?> "></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jangka Waktu (Bulan)</td>
+                                            <td><?= $detail['jangka_waktu']  ?></td>
+                                            <td><input type="text" name='jangka_waktu' class="form-control" id='jangka_waktu' onkeypress="return hanyaAngka(event)" value='<?= $data_tbl_wawancara['jangka_waktu']  ?>'></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Suku Bunga</td>
+                                            <td><?= $data_tbl_wawancara['suku_bunga'] ?></td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Penambahan</td>
+                                            <td><?= number_format(($data_tbl_wawancara['penambahan']), 0, ',', '.')  ?> </td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Provisi Kredit</td>
+                                            <td><?= $data_tbl_wawancara['biaya_provisi_nominal']  ?></td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Administrasi Kredit</td>
+                                            <td><?= $data_tbl_wawancara['biaya_administrasi_nominal'] ?></td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Angsuran Perbulan</td>
+                                            <td><?= $data_tbl_wawancara['premi_asuransi'] ?></td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Premi Asuransi</td>
+                                            <td><?= $data_tbl_wawancara['premi_asuransi'] ?></td>
+                                            <td></td>
+                                        </tr>
+
+
+                                        <tr>
+                                            <td>Tabungan</td>
+                                            <td><?= $data_tbl_wawancara['tabungan']  ?></td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Biaya Notaris</td>
+                                            <td><?= $data_tbl_wawancara['biaya_notaris']  ?></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Biaya APHT</td>
+                                            <td><?= $data_tbl_wawancara['biaya_apht']   ?> </td>
+                                            <td></td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Asuransi Kerugian</td>
+                                            <td><?= $data_tbl_wawancara['asuransi_kerugian'] ?></td>
+                                            <td></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="col">
+
+                                <div class="col">
+                                    <table class="table table-hover table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>
+
+                                                    <div class="d-flex bd-highlight mb-3">
+                                                        <div class="">Catatan Komite</div>
+                                                        <div class=""></div>
+
+
+
+                                                        <?php
+
+                                                        if ($data_tbl_wawancara['catatan_pending'] != '') {
+                                                        ?>
+
+                                                            <div class="ml-auto btn btn-info lihat_catatan_pending" data-catatan_pending='<?= $data_tbl_wawancara['catatan_pending'] ?>'>Lihat Catatan Pending Sebelumnya</div>
+
+                                                        <?php
+                                                        } else {
+                                                        ?>
+
+                                                        <?php } ?>
+
+
+
+
+                                                    </div>
+
+
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="margin: 0; padding: 0;">
+
+                                                <td><textarea id='dasar_pertimbangan_analis' name="dasar_pertimbangan_analis" class="form-control h-25" rows="9" style="margin: 0; padding: 0;"></textarea></td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                                <div class="col">
+
+                                    <table class="table table-hover table-bordered">
+                                        <thead>
+                                            <tr>
+
+                                                <th scope="col">Syarat Lainnya</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr style="margin: 0; padding: 0;">
+
+                                                <td><textarea id='syarat_lainnya' name="syarat_lainnya" class="form-control h-25" rows="9" style="margin: 0; padding: 0;"><?= $data_tbl_wawancara['syarat_lainnya'] ?></textarea></td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="col" style="text-align: center;">
+                                    <a href="#modal_approve" data-action="Approve" style="width: 30%; height: 47px; display: inline-block; line-height: 32px; text-align: center;" class='btn btn_proses_approve1  btn-primary' data-no_permohonan_kredit="<?= $data_tbl_wawancara['no_permohonan_kredit'] ?>" data-no_permohonan_kredit2="<?= $data_tbl_wawancara['no_permohonan_kredit'] ?>" data-nama_pemohon="<?= $data_tbl_wawancara['nama_pemohon'] ?>" data-nama_instansi="<?= $data_tbl_wawancara['nama_instansi'] ?>" data-plafond-usulan="<?= $data_tbl_wawancara['plafond'] ?>" data-suku_bunga='<?= $data_tbl_wawancara['suku_bunga'] ?>' data-penambahan='<?= $data_tbl_wawancara['penambahan'] ?>' data-provisi_kredit='<?= $data_tbl_wawancara['biaya_provisi_nominal'] ?>' data-administrasi_kredit='<?= $data_tbl_wawancara['biaya_administrasi_nominal'] ?>' data-angsuran_perbulan='<?= $data_tbl_wawancara['angsuran_perbulan'] ?>' data-premi_asuransi='<?= $data_tbl_wawancara['premi_asuransi'] ?>' data-tabungan='<?= $data_tbl_wawancara['tabungan'] ?>' data-biaya_notaris='<?= $data_tbl_wawancara['biaya_notaris'] ?>' data-biaya_apht=<?= $data_tbl_wawancara['biaya_apht'] ?> data-asuransi_kerugian=<?= $data_tbl_wawancara['asuransi_kerugian'] ?> data-backdrop="static" data-keyboard="false">Approve </a>
+                                    <a href="#modal_approve" data-action="Reject" style="width: 30%; height: 47px; display: inline-block; line-height: 32px; text-align: center;" class='btn btn_proses_approve1  btn-danger' data-no_permohonan_kredit="<?= $data_tbl_wawancara['no_permohonan_kredit'] ?>" data-no_permohonan_kredit2="<?= $data_tbl_wawancara['no_permohonan_kredit'] ?>" data-nama_pemohon="<?= $data_tbl_wawancara['nama_pemohon'] ?>" data-nama_instansi="<?= $data_tbl_wawancara['nama_instansi'] ?>" data-plafond-usulan="<?= $data_tbl_wawancara['plafond'] ?>" data-suku_bunga='<?= $data_tbl_wawancara['suku_bunga'] ?>' data-penambahan='<?= $data_tbl_wawancara['penambahan'] ?>' data-provisi_kredit='<?= $data_tbl_wawancara['biaya_provisi_nominal'] ?>' data-administrasi_kredit='<?= $data_tbl_wawancara['biaya_administrasi_nominal'] ?>' data-angsuran_perbulan='<?= $data_tbl_wawancara['angsuran_perbulan'] ?>' data-premi_asuransi='<?= $data_tbl_wawancara['premi_asuransi'] ?>' data-tabungan='<?= $data_tbl_wawancara['tabungan'] ?>' data-biaya_notaris='<?= $data_tbl_wawancara['biaya_notaris'] ?>' data-biaya_apht=<?= $data_tbl_wawancara['biaya_apht'] ?> data-asuransi_kerugian=<?= $data_tbl_wawancara['asuransi_kerugian'] ?> data-backdrop="static" data-keyboard="false">Reject</a>
+                                    <a href="#modal_approve" data-action="Pending" style="width: 30%; height: 47px; display: inline-block; line-height: 32px; text-align: center;" class='btn btn_proses_approve1  btn-info' data-no_permohonan_kredit="<?= $data_tbl_wawancara['no_permohonan_kredit'] ?>" data-no_permohonan_kredit2="<?= $data_tbl_wawancara['no_permohonan_kredit'] ?>" data-nama_pemohon="<?= $data_tbl_wawancara['nama_pemohon'] ?>" data-nama_instansi="<?= $data_tbl_wawancara['nama_instansi'] ?>" data-plafond-usulan="<?= $data_tbl_wawancara['plafond'] ?>" data-suku_bunga='<?= $data_tbl_wawancara['suku_bunga'] ?>' data-penambahan='<?= $data_tbl_wawancara['penambahan'] ?>' data-provisi_kredit='<?= $data_tbl_wawancara['biaya_provisi_nominal'] ?>' data-administrasi_kredit='<?= $data_tbl_wawancara['biaya_administrasi_nominal'] ?>' data-angsuran_perbulan='<?= $data_tbl_wawancara['angsuran_perbulan'] ?>' data-premi_asuransi='<?= $data_tbl_wawancara['premi_asuransi'] ?>' data-tabungan='<?= $data_tbl_wawancara['tabungan'] ?>' data-biaya_notaris='<?= $data_tbl_wawancara['biaya_notaris'] ?>' data-biaya_apht=<?= $data_tbl_wawancara['biaya_apht'] ?> data-asuransi_kerugian=<?= $data_tbl_wawancara['asuransi_kerugian'] ?> data-backdrop="static" data-keyboard="false">Pending</a>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
 
                     </div>
 
@@ -2238,8 +2425,6 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                 <br>
                                 <br>
                                 <br>
-
-
 
 
                                 <div class="text-center" style="text-align: center;">
@@ -2263,21 +2448,12 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                     </div>
                                 </div>
 
-
-
-
-
-
-
                             </div>
                         </div>
                     </div>
 
 
                     <div class="tab-pane " id="g">
-
-
-
 
                         <div class="row">
                             <div class="col-lg-12">
@@ -2531,6 +2707,9 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
             modal.find('#biaya_apht').html(nilai.data('biaya_apht'))
             modal.find('#asuransi_kerugian').html(nilai.data('asuransi_kerugian'))
             modal.find('textarea#dasar_pertimbangan_analis').html($('textarea#dasar_pertimbangan_analis').val())
+            modal.find('#syarat_lainnya').html($('#syarat_lainnya').val())
+
+
 
             $('#modal_approve').modal('show');
 
@@ -2546,96 +2725,11 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
             })
         }
     })
-
-    // $('#btn_modal_reject').on('click', function() {
-
-    //     if ($('#dasar_pertimbangan_analis').val() != '') {
-
-    //         var nilai = $(this)
-    //         var plafond_usulan = nilai.data('plafond-usulan')
-    //         var no_permohoan_kredit = nilai.data('no_permohonan_kredit')
-    //         var no_permohoan_kredit2 = nilai.data('no_permohonan_kredit2')
-    //         var nama_pemohon = nilai.data('nama_pemohon')
-    //         var nama_instansi = nilai.data('nama_instansi')
-    //         var modal = $('#modal_reject');
-    //         modal.find('#no_permohonan_kredit2').html(no_permohoan_kredit2)
-    //         modal.find('#nama_pemohon').val(nama_pemohon)
-    //         modal.find('#nama_instansi').html(nama_instansi)
-    //         modal.find('#no_permohonan_kredit').val(no_permohoan_kredit)
-    //         modal.find('#plafond_usulan').html(plafond_usulan)
-    //         modal.find('#plafond_disetujui').html(angka($('#plafond').val().toString()))
-    //         modal.find('#jangka_waktu').html(angka($('#jangka_waktu').val().toString()))
-    //         modal.find('#suku_bunga').html(nilai.data('suku_bunga'))
-    //         modal.find('#penambahan').html(nilai.data('penambahan'))
-    //         modal.find('#provisi_kredit').html(nilai.data('provisi_kredit'))
-    //         modal.find('#administrasi_kredit').html(nilai.data('administrasi_kredit'))
-    //         modal.find('#angsuran_perbulan').html(nilai.data('angsuran_perbulan'))
-    //         modal.find('#premi_asuransi').html(nilai.data('premi_asuransi'))
-    //         modal.find('#tabungan').html(nilai.data('tabungan'))
-    //         modal.find('#biaya_notaris').html(nilai.data('biaya_notaris'))
-    //         modal.find('#biaya_apht').html(nilai.data('biaya_apht'))
-    //         modal.find('#asuransi_kerugian').html(nilai.data('asuransi_kerugian'))
-    //         modal.find('textarea#dasar_pertimbangan_analis').html($('textarea#dasar_pertimbangan_analis').val())
-
-    //         $('#modal_reject').modal('show');
-
-    //     } else {
-
-    //         Swal.fire({
-    //             position: 'center',
-    //             icon: 'error',
-    //             title: 'Catatan Komite tidak boleh kosong',
-    //             showConfirmButton: false,
-    //             timer: 1000
-    //         })
-
-    //     }
-    // })
-
-
-
-
-    // $('#btn_modal_pending').on('click', function() {
-    //     if ($('#dasar_pertimbangan_analis').val() != '') {
-    //         var nilai = $(this)
-    //         var plafond_usulan = nilai.data('plafond-usulan')
-    //         var no_permohoan_kredit = nilai.data('no_permohonan_kredit')
-    //         var no_permohoan_kredit2 = nilai.data('no_permohonan_kredit2')
-    //         var nama_pemohon = nilai.data('nama_pemohon')
-    //         var nama_instansi = nilai.data('nama_instansi')
-    //         var modal = $('#modal_pending');
-    //         modal.find('#no_permohonan_kredit2').html(no_permohoan_kredit2)
-    //         modal.find('#nama_pemohon').val(nama_pemohon)
-    //         modal.find('#nama_instansi').html(nama_instansi)
-    //         modal.find('#no_permohonan_kredit').val(no_permohoan_kredit)
-    //         modal.find('#plafond_usulan').html(plafond_usulan)
-    //         modal.find('#plafond_disetujui').html(angka($('#plafond').val().toString()))
-    //         modal.find('#jangka_waktu').html(angka($('#jangka_waktu').val().toString()))
-    //         modal.find('#suku_bunga').html(nilai.data('suku_bunga'))
-    //         modal.find('#penambahan').html(nilai.data('penambahan'))
-    //         modal.find('#provisi_kredit').html(nilai.data('provisi_kredit'))
-    //         modal.find('#administrasi_kredit').html(nilai.data('administrasi_kredit'))
-    //         modal.find('#angsuran_perbulan').html(nilai.data('angsuran_perbulan'))
-    //         modal.find('#premi_asuransi').html(nilai.data('premi_asuransi'))
-    //         modal.find('#tabungan').html(nilai.data('tabungan'))
-    //         modal.find('#biaya_notaris').html(nilai.data('biaya_notaris'))
-    //         modal.find('#biaya_apht').html(nilai.data('biaya_apht'))
-    //         modal.find('#asuransi_kerugian').html(nilai.data('asuransi_kerugian'))
-    //         modal.find('textarea#dasar_pertimbangan_analis').html($('textarea#dasar_pertimbangan_analis').val())
-
-    //         $('#modal_pending').modal('show');
-    //     } else {
-    //         Swal.fire({
-    //             position: 'center',
-    //             icon: 'error',
-    //             title: 'Catatan Komite tidak boleh kosong',
-    //             showConfirmButton: false,
-    //             timer: 1000
-    //         })
-    //     }
-
-    // })
 </script>
+
+
+
+
 
 
 
@@ -2672,243 +2766,4 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
             return false;
         return true;
     }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-<style>
-    .noPadding td {
-        padding: 5px;
-    }
-</style> -->
-
-
-
-<!-- tesssss -->
-
-
-
-
-
-<!-- tesssss -->
-
-
-<script>
-    // $(document).ready(function() {
-    //     var plafond_disetujui = $('#plafond').val();
-
-    // })
-
-    // $("#plafond").keyup(function() {
-    //     var plafond_disetujui = $('#plafond').val();
-
-    // })
-
-
-
-    // $(document).ready(function() {
-    //     var jangka_waktu = $('#jangka_waktu').val();
-
-    // })
-
-    // $("#jangka_waktu").keyup(function() {
-    //     var jangka_waktu = $('#jangka_waktu').val();
-    // })
-
-
-    // $(document).ready(function() {
-    //     var dasar_pertimbangan_analis = $('textarea#dasar_pertimbangan_analis').val();
-
-    // })
-
-    // $("textarea#dasar_pertimbangan_analis").keyup(function() {
-    //     var dasar_pertimbangan_analis = $('textarea#dasar_pertimbangan_analis').val();
-    //     console.log(dasar_pertimbangan_analis)
-    // })
-</script>
-
-
-
-
-
-
-<script>
-    // // modal proses komite tabel slik
-    // $(document).ready(function() {
-    //     $('#tbl_daftar_slik_pemohon').DataTable();
-    // })
-    // $(document).ready(function() {
-    //     $('#tbl_daftar_slik_pasangan').DataTable();
-    // })
-
-    // function hanyaAngka(evt) {
-    //     var charCode = (evt.which) ? evt.which : event.keyCode
-    //     if (charCode > 31 && (charCode < 48 || charCode > 57))
-
-    //         return false;
-    //     return true;
-    // }
-
-    // function ubah_input(angka, prefix) {
-
-
-    //     // tambahkan titik jika yang di input sudah menjadi angka ribuan
-
-
-    //     if (parseFloat(angka) >= 0) {
-
-    //         var number_string = angka.replace(/[^,\d]/g, '').toString(),
-    //             split = number_string.split(','),
-    //             sisa = split[0].length % 3,
-    //             plafond = split[0].substr(0, sisa),
-    //             ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-
-
-    //         if (ribuan) {
-    //             separator = sisa ? '.' : '';
-    //             plafond += separator + ribuan.join('.');
-    //         }
-
-    //         plafond = split[1] != undefined ? plafond + ',' + split[1] : plafond;
-    //         return prefix == undefined ? plafond : (plafond ? plafond : '');
-    //     } else {
-
-
-
-    //         angka = angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    //         return prefix == undefined ? angka : (angka ? angka : '');
-    //     }
-
-    // }
-
-
-
-    // var plafond = $('#plafond');
-    // $(document).keyup(function() {
-    //     plafond.val(ubah_input(plafond.val().toString()))
-    // })
-
-
-
-
-
-
-
-
-
-
-    // $(document).ready(function() {
-    //     $('#modal_approve').on('show.bs.modal', function(e) {
-    //         var nilai = $(e.relatedTarget)
-
-    //         var plafond_usulan = nilai.data('plafond-usulan')
-    //         var no_permohoan_kredit = nilai.data('no_permohonan_kredit')
-    //         var no_permohoan_kredit2 = nilai.data('no_permohonan_kredit2')
-    //         var nama_pemohon = nilai.data('nama_pemohon')
-    //         var nama_instansi = nilai.data('nama_instansi')
-
-
-
-    //         var modal = $('#modal_approve');
-
-    //         modal.find('#no_permohonan_kredit2').html(no_permohoan_kredit2)
-    //         modal.find('#nama_pemohon').val(nama_pemohon)
-    //         modal.find('#nama_instansi').html(nama_instansi)
-    //         modal.find('#no_permohonan_kredit').val(no_permohoan_kredit)
-    //         modal.find('#plafond_usulan').html(plafond_usulan)
-    //         modal.find('#plafond_disetujui').html(ubah_input($('#plafond').val().toString()))
-    //         modal.find('#jangka_waktu').html(ubah_input($('#jangka_waktu').val().toString()))
-    //         modal.find('#suku_bunga').html(nilai.data('suku_bunga'))
-    //         modal.find('#penambahan').html(nilai.data('penambahan'))
-    //         modal.find('#provisi_kredit').html(nilai.data('provisi_kredit'))
-    //         modal.find('#administrasi_kredit').html(nilai.data('administrasi_kredit'))
-    //         modal.find('#angsuran_perbulan').html(nilai.data('angsuran_perbulan'))
-    //         modal.find('#premi_asuransi').html(nilai.data('premi_asuransi'))
-    //         modal.find('#tabungan').html(nilai.data('tabungan'))
-    //         modal.find('#biaya_notaris').html(nilai.data('biaya_notaris'))
-    //         modal.find('#biaya_apht').html(nilai.data('biaya_apht'))
-    //         modal.find('#asuransi_kerugian').html(nilai.data('asuransi_kerugian'))
-    //         modal.find('textarea#dasar_pertimbangan_analis').html($('textarea#dasar_pertimbangan_analis').val())
-
-    //     })
-    // })
-
-
-
-
-
-
-    // $(document).ready(function() {
-    //     $('#modal_reject').on('show.bs.modal', function(e) {
-    //         var data_modal = $(e.relatedTarget)
-
-    //         var no_permohonan_kredit = data_modal.data('no_permohonan_kredit');
-    //         var modal = $(this);
-
-    //         modal.find('#no_permohonan_kredit_reject').val(no_permohonan_kredit)
-
-
-    //     })
-    // })
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // function ubah_input(angka, prefix) {
-
-
-    //     // tambahkan titik jika yang di input sudah menjadi angka ribuan
-
-
-    //     if (parseFloat(angka) >= 0) {
-
-    //         var number_string = angka.replace(/[^,\d]/g, '').toString(),
-    //             split = number_string.split(','),
-    //             sisa = split[0].length % 3,
-    //             plafond = split[0].substr(0, sisa),
-    //             ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-
-
-    //         if (ribuan) {
-    //             separator = sisa ? '.' : '';
-    //             plafond += separator + ribuan.join('.');
-    //         }
-
-    //         plafond = split[1] != undefined ? plafond + ',' + split[1] : plafond;
-    //         return prefix == undefined ? plafond : (plafond ? plafond : '');
-    //     } else {
-
-
-
-    //         angka = angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    //         return prefix == undefined ? angka : (angka ? angka : '');
-    //     }
-
-    // }
 </script>

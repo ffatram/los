@@ -135,7 +135,7 @@ if (!empty($detail)) {
         <div class="row">
             <div class="col-6">
                 <table class="table-hover tbl_modal" cellpadding=5 cellspacing=15 id='tabel_modal'>
-                   
+
                     <tr>
                         <td class="td_ket">No. Permohonan Kredit</td>
                         <td class="td_isi"><?= $data['detail']['no_permohonan_kredit'] ?></td>
@@ -1910,6 +1910,12 @@ if (!empty($detail)) {
                                                         <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control h-25' rows='10'><?= $data_tbl_komite[$a - 1]['catatan_komite'] ?></textarea></td>
                                                     </tr>
 
+                                                    <tr>
+                                                        <td id='td_tabel_modal_ket'>Syarat Lainnya</td>
+
+                                                        <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control h-25' rows='10'><?= $data_tbl_komite[$a - 1]['syarat_lainnya'] ?></textarea></td>
+                                                    </tr>
+
                                                     <?php
 
                                                     if ($data_tbl_komite[$a - 1]['status'] == "DISETUJUI") {
@@ -2121,6 +2127,24 @@ if (!empty($detail)) {
                                             </div>
 
 
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="col-6">
+                                    <div class="card center">
+                                        <div class="card-header">
+                                            <b style="font-size: 20px;">Syarat Lainnya</b>
+                                        </div>
+                                        <div class="card-body">
+                                            <table cellpadding=5 cellspacing=15 id='tabel_modal'>
+                                                <tr style="font-size: 20px;">
+                                                    <td id='td_tabel_modal'> <textarea class='form-control h-25' rows='15'><?= $data_tbl_wawancara['syarat_lainnya'] ?></textarea></td>
+                                                </tr>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>

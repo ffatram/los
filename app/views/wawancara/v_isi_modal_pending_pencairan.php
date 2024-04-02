@@ -1880,6 +1880,12 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                                         <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control h-25' rows='10'><?= $data_tbl_komite[$a - 1]['catatan_komite'] ?></textarea></td>
                                                     </tr>
 
+                                                    <tr>
+                                                        <td id='td_tabel_modal_ket'>Syarat Lainnya</td>
+                                                        <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control h-25' rows='10'><?= $data_tbl_komite[$a - 1]['syarat_lainnya'] ?></textarea></td>
+
+                                                    </tr>
+
                                                     <?php
 
                                                     if ($data_tbl_komite[$a - 1]['status'] == "DISETUJUI") {
@@ -2087,132 +2093,83 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
 
 
                     <div class="tab-pane" id="j">
-                        <div class="row mt-3">
-
-                            <?php
-                            if (isset($data_tbl_keputusan_komite['plafond'])) {
-                                $batas_komite = $data_tbl_wawancara['aturan_jumlah_komite'];
-                            ?>
-                                <!-- jika disetujui -->
-
-                                <div class="col-6">
-                                    <div class="card center">
-                                        <div class="card-header">
-                                            <b style="font-size: 20px;">Keputusan Komite</b>
-                                        </div>
-                                        <div class="card-body">
-                                            <table cellpadding=5 cellspacing=15 id='tabel_modal'>
-                                                <tr style="font-size: 20px;">
-                                                    <td id='td_tabel_modal_ket'>Plafond </td>
-                                                    <td id='td_tabel_modal'><?= number_format($data_tbl_keputusan_komite['plafond'], 0, ',', '.')  ?></td>
-                                                </tr>
-                                                <tr style="font-size: 20px;">
-                                                    <td id='td_tabel_modal_ket'>Jangka Waktu </td>
-                                                    <td id='td_tabel_modal'><?= $data_tbl_keputusan_komite['jangka_waktu'] ?></td>
-                                                </tr>
-                                            </table>
-                                            <div class="label text-center mt-3" style="background-color: blue; color:white; ">
-                                                <h1><b>DISETUJUI</b></h1>
-                                            </div>
-
-
-                                        </div>
-                                    </div>
-                                </div>
 
 
 
+                        <div class="row mt-2">
+                            <div class="col">
+
+                                <table class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2">Keputusan Komite</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Plafond</td>
+                                            <td><?= number_format($data_tbl_keputusan_komite['plafond'], 0, ',', '.')  ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jangka Waktu</td>
+                                            <td><?= $data_tbl_keputusan_komite['jangka_waktu'] ?></td>
+                                        </tr>
+                                        <tr style="height: 100px;  text-align: center;">
+                                            <th class="keputusan_komite" colspan="2" style="vertical-align: middle; font-size: 24px; font-weight: bold;"></th>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
 
+                            </div>
+                            <div class="col">
 
+                                <table class="table table-hover table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="2">Syarat Lainnya</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><textarea id='syarat_lainnya' name="syarat_lainnya" class="form-control h-25" rows="9" style="margin: 0; padding: 0;"><?= $data_tbl_wawancara['syarat_lainnya'] ?></textarea></td>
 
+                                        </tr>
 
-
-                            <?php
-                            } else if ($data['cek_tgl_tolak'] >= 1) {
-                            ?>
-
-                                <div class="col-6">
-                                    <div class="card center">
-                                        <div class="card-header">
-                                            <b style="font-size: 20px;">Keputusan Komite</b>
-                                        </div>
-                                        <div class="card-body">
-
-                                            <table cellpadding=5 cellspacing=15 id='tabel_modal'>
-
-                                                <tr style="font-size: 20px;">
-                                                    <td id='td_tabel_modal_ket'>Plafond </td>
-                                                    <td id='td_tabel_modal'>0</td>
-                                                </tr>
-                                                <tr style="font-size: 20px;">
-                                                    <td id='td_tabel_modal_ket'>Jangka Waktu </td>
-                                                    <td id='td_tabel_modal'>0</td>
-                                                </tr>
-                                            </table>
-
-
-                                            <div class="label text-center mt-3" style="background-color: red; color:white;">
-                                                <h1><b>DITOLAK</b></h1>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            <?php } else { ?>
-
-
-                                <div class="col-6">
-                                    <div class="card center">
-                                        <div class="card-header">
-                                            <b style="font-size: 20px;">Keputusan Komite</b>
-                                        </div>
-                                        <div class="card-body">
-
-                                            <table cellpadding=5 cellspacing=15 id='tabel_modal'>
-
-                                                <tr style="font-size: 20px;">
-                                                    <td id='td_tabel_modal_ket'>Plafond </td>
-                                                    <td id='td_tabel_modal'>0</td>
-                                                </tr>
-                                                <tr style="font-size: 20px;">
-                                                    <td id='td_tabel_modal_ket'>Jangka Waktu </td>
-                                                    <td id='td_tabel_modal'>0</td>
-                                                </tr>
-                                            </table>
-
-
-
-
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-
-                            <?php } ?>
-
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
 
+
+
+
+
                         <div class="row">
+                            <div class="col">
 
-                            <div class="col-12" style="margin-top: 50px;">
-
-                                <div class="text-center">
-
-                                    <button class="btn btn-danger mr-3 ajukan_kembali" style="font-size: 20px;" data-id="<?= $data['detail']['no_permohonan_kredit'] ?>"> <span> <i class="fas fa-sync-alt"></i> </span> Mengusulkan Analisa Kembali</button>
-                                    <button class="btn btn-primary btn_lanjutkan" style="font-size: 20px;" data-id="<?= $data['detail']['no_permohonan_kredit'] ?>"> <span><i class="fas fa-check"></i></span> Melanjutkan Pencairan Kredit</button>
-
+                                <div class="d-flex flex-row-reverse">
+                                    <button class="btn btn-danger mr-3 btn_ajukan_kembali" style="font-size: 20px;" data-id="<?= $data['detail']['no_permohonan_kredit'] ?>"> <span> <i class="fas fa-sync-alt"></i> </span> Mengusulkan Analisa Kembali</button>
                                 </div>
 
                             </div>
+                            <div class="col">
+                                <div class="d-flex flex-row">
+                                    <button class="btn btn-primary btn_lanjutkan" style="font-size: 20px;" data-id="<?= $data['detail']['no_permohonan_kredit'] ?>"> <span><i class="fas fa-check"></i></span> Melanjutkan Pencairan Kredit</button>
+                                </div>
 
 
+                            </div>
                         </div>
+
+
+
+
+
+
+
+
+
                     </div>
 
 
@@ -2277,65 +2234,48 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
 </main>
 
 
-
-
-<!-- fungsi untuk handel button ajukan kembali -->
 <script>
     $(document).ready(function() {
 
-        $("#example2").DataTable({})
+        var data_tbl_keputusan_komite = "<?= $data_tbl_keputusan_komite['plafond'] ?>"
+        var cek_tgl_tolak = "<?= $data['cek_tgl_tolak'] ?>"
+        var ket_keputusan_komite = '';
 
-        $('.ajukan_kembali').click(function() {
-            var no_permohonan_kredit = $(this).data('id');
 
+        if (data_tbl_keputusan_komite !== null) {
+            ket_keputusan_komite = "DISETUJUI";
+        } else if (cek_tgl_tolak >= 1) {
+            ket_keputusan_komite = "DITOLAK";
+        } else {
+            ket_keputusan_komite = "tess";
+        }
 
-            Swal.fire({
-                title: "Yakin ingin mengusulkan analisa kembali?",
-                showCancelButton: true,
-                confirmButtonText: "Ya",
-                cancelButtonText: "Batal",
-                confirmButtonColor: "#3EC59D",
-                cancelButtonColor: "#BB2D3B",
+        $('.keputusan_komite').text(ket_keputusan_komite);
 
-            }).then((res) => {
-                if (res.isConfirmed) {
+        if (ket_keputusan_komite == "DISETUJUI") {
+            $('.keputusan_komite').css('background-color', '#008DDA');
+            $('.keputusan_komite').css('color', '#FFFFFF');
+        } else if (ket_keputusan_komite == "DITOLAK") {
+            $('.keputusan_komite').css('background-color', '#E72929');
+            $('.keputusan_komite').css('color', '#FFFFFF');
+        }
 
-                    $.post('<?= BASEURL . '/wawancara/btn_ajukan_kembali' ?>', {
-                            no_permohonan_kredit: no_permohonan_kredit
-                        },
-                        function(data, status) {
-
-                            // cek data yang di ambil dari controller wawancara jika ada kata suskses yang dikirim maka cek dan tampung ke dalam var hasil
-                            var hasil = data.includes("sukses");
-
-                            if (hasil == true) {
-                                Swal.fire({
-                                    position: 'center',
-                                    icon: 'success',
-                                    title: 'Berhasil ajukan kembali',
-                                    showConfirmButton: false,
-                                    timer: 1000
-                                }).then((ok) => {
-                                    location.reload();
-                                })
-                            } else {
-
-                            }
-                        });
-                }
-            })
-        });
     });
 </script>
 
-<!-- fungsi untuk lanjutkan -->
 
+
+
+<!-- fungsi untuk lanjutkan -->
 <script>
     var btn_lanjutkan = $('.btn_lanjutkan');
 
     btn_lanjutkan.click(function() {
 
         var no_permohonan_kredit = $(this).data('id');
+        var syarat_lainnya = $('#syarat_lainnya').val()
+
+
 
 
         Swal.fire({
@@ -2349,15 +2289,22 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
         }).then((res) => {
             if (res.isConfirmed) {
 
-                $.post('<?= BASEURL . '/wawancara/btn_lanjutkan' ?>', {
-                        no_permohonan_kredit: no_permohonan_kredit
+
+
+                $.ajax({
+                    type: 'post',
+                    url: '<?= BASEURL . '/wawancara/btn_lanjutkan' ?>',
+                    // simpan data jumlah komite dengan cara beri simbol dan & pada nama 
+                    data: {
+                        no_permohonan_kredit: no_permohonan_kredit,
+                        syarat_lainnya: syarat_lainnya
                     },
-                    function(data, status) {
+                    success: function(res) {
+                        console.log(res);
 
-                        // cek data yang di ambil dari controller wawancara jika ada kata suskses yang dikirim maka cek dan tampung ke dalam var hasil
-                        var hasil = data.includes("sukses");
+                        res = res.trim();
 
-                        if (hasil == true) {
+                        if (res == "sukses") {
                             Swal.fire({
                                 position: 'center',
                                 icon: 'success',
@@ -2368,9 +2315,24 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                 location.reload();
                             })
                         } else {
-
+                            Swal.fire({
+                                position: 'center',
+                                icon: 'success',
+                                title: 'Eror ' + res,
+                                showConfirmButton: false,
+                                timer: 1000
+                            }).then((ok) => {
+                                location.reload();
+                            })
                         }
-                    });
+
+
+                    },
+                    error: function(res) {
+                        console.log("erorr : " + res);
+                    }
+                })
+
             }
         })
 
@@ -2382,117 +2344,47 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
 
 
 
-
+<!-- ajukan kembali -->
 <script>
-    // temp
+    $('.btn_ajukan_kembali').on('click', function() {
+        var no_permohonan_kredit = $(this).data('id');
 
 
-
-    // $.ajax({
-    //     method: "POST",
-    //     url: '<?= BASEURL . '/wawancara/btn_ajukan_kembali' ?>',
-    //     data: {
-    //         'no_permohonan_kredit': no_permohonan_kredit
-    //     },
-    //     success: function(dataRes) {
-    //         // if (res == "sukses") {
-    //         //     Swal.fire({
-    //         //         position: 'center',
-    //         //         icon: 'success',
-    //         //         title: 'Berhasil ajukan kembali',
-    //         //         showConfirmButton: false,
-    //         //         timer: 1500
-    //         //     }).then((result) => {
-    //         //         window.location.href = urlToRedirect;
-    //         //     })
-    //         // }
-
-    //         console.log(dataRes);
-    //         // console.log('errror')
-    //         if (dataRes == "sukses") {
-    //             Swal.fire({
-    //                 position: 'center',
-    //                 icon: 'success',
-    //                 title: 'Berhasil ajukan kembali',
-    //                 showConfirmButton: false,
-    //                 timer: 1000
-    //             }).then((ok) => {
-
-    //                 // $('#modal_approve').remove();
-    //                 // $('.modal-backdrop').remove(); // removes the overlay
-    //                 // $('#modal_proses_komite').remove();
-    //                 // reload halaman 
-    //                 location.reload();
-    //             })
-    //         }
-
-
-
-    //     },
-    //     error: function(data) {
-    //         console.log('errror')
-    //     }
-    // });
-
-
-
-    // temp
-
-
-
-    // btn_ajukan_kembali.click(function(e) {
-    //     e.preventDefault();
-    //     var no_permohonan_kredit = $(this).data('id');
-
-
-
-
-
-    //     $.ajax({
-    //         type: 'post',
-    //         url: '<?= BASEURL . '/wawancara/btn_ajukan_kembali' ?>',
-    //         // simpan data jumlah komite dengan cara beri simbol dan & pada nama 
-    //         data: 'no_permohonan_kredit=' + no_permohonan_kredit,
-    //         success: function(s_data_disetujui) {
-    //             console.log(s_data_disetujui);
-    //             console.log("hore");
-    //         },
-    //         error: function(e_data_disetujui) {
-    //             console.log("erorr disetujui");
-    //         }
-    //     })
-
-
-
-
-
-
-
-
-    //     // Swal.fire({
-    //     //     title: "Yakin ajukan kembali?",
-    //     //     showCancelButton: true,
-    //     //     confirmButtonText: "Ya",
-    //     //     cancelButtonText: "Batal",
-    //     //     confirmButtonColor: "#3EC59D",
-    //     //     cancelButtonColor: "#BB2D3B",
-
-    //     // }).then((res) => {
-    //     //     if (res.isConfirmed) {
-
-
-
-
-    //     //     }
-    //     // })
-
-
-
-
-
-
-
-    // })
+        $.ajax({
+            method: "POST",
+            url: '<?= BASEURL . '/wawancara/btn_ajukan_kembali' ?>',
+            data: {
+                'no_permohonan_kredit': no_permohonan_kredit
+            },
+            success: function(dataRes) {
+                dataRes = dataRes.trim()
+                if (dataRes == "sukses") {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Berhasil ajukan kembali',
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then((result) => {
+                        location.reload();
+                    })
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'warning',
+                        title: 'Gagal ' + dataRes,
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then((result) => {
+                        location.reload();
+                    })
+                }
+            },
+            error: function(data) {
+                console.log('errror ' + data)
+            }
+        });
+    })
 </script>
 
 

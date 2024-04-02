@@ -5,11 +5,23 @@ if (!isset($_SESSION['level'])) {
     exit;
 }
 
-include 'cs.php';
+
+// include 'cs.php';
+include 'wawancara.php';
+
 
 class komite extends Controller
 {
 
+    public $wawancara;
+    public $cs;
+
+    public function __construct()
+    {
+
+        $this->wawancara = new wawancara();
+        $this->cs = new cs();
+    }
 
     public function index()
     {
@@ -473,7 +485,7 @@ class komite extends Controller
 
         // jumlah komite yang telah approve
         $jumlah_komite = ($data['komite_approve'] + 1);
-       
+
 
         // set unutuk bagian update komite_1,komite_2,komite_3 tbl_wawancara ketika berhasil di simpan di tbl_komite
         $username_komite = $_COOKIE['username'];
@@ -495,10 +507,12 @@ class komite extends Controller
 
             if ($data['hitung_komite_pusat'] <= 1 and $_COOKIE['tipe_komite'] == "PUSAT") {
                 $data['simpan'] = $this->model('m_komite')->permohonan_disetujui($_POST);
+                // update data pada tabel komite filed syarat lainnya sesuai inputan syarat lainny pada modal approve komite
+                $this->update_syarat_lainnya();
 
                 // modal untuk hitung apakah ada tolak di dalam tabel tbl_komite
                 $cek_tolak = $this->model('m_komite')->cek_tolak($no_permohonan_kredit);
-               
+
 
 
 
@@ -520,7 +534,6 @@ class komite extends Controller
                     if ($_POST['status'] == 'DISETUJUI') {
                         echo "DISETUJUI";
                     } else if ($_POST['status'] == 'DITOLAK') {
-
                         echo "DITOLAK";
                     }
                 } else if ($jumlah_komite == $batas_approve) {
@@ -572,10 +585,12 @@ class komite extends Controller
                 }
             } else if (($data['hitung_komite_cabang'] < ((int)$batas_approve - 1)) and $_COOKIE['tipe_komite'] == "CABANG") {
                 $data['simpan'] = $this->model('m_komite')->permohonan_disetujui($_POST);
+                // update data pada tabel komite filed syarat lainnya sesuai inputan syarat lainny pada modal approve komite
+                $this->update_syarat_lainnya();
 
                 // modal untuk hitung apakah ada tolak di dalam tabel tbl_komite
                 $cek_tolak = $this->model('m_komite')->cek_tolak($no_permohonan_kredit);
-               
+
 
 
                 // jika berhasil simpan ke tbl_komite maka update field status dan komite_1,komite_2,komite_3 tbl_wawancara
@@ -661,10 +676,12 @@ class komite extends Controller
 
             if ($data['hitung_komite_cabang'] < ($batas_approve - 0)) {
                 $data['simpan'] = $this->model('m_komite')->permohonan_disetujui($_POST);
+                // update data pada tabel komite filed syarat lainnya sesuai inputan syarat lainny pada modal approve komite
+                $this->update_syarat_lainnya();
 
                 // modal untuk hitung apakah ada tolak di dalam tabel tbl_komite
                 $cek_tolak = $this->model('m_komite')->cek_tolak($no_permohonan_kredit);
-               
+
 
                 // setelah hasil komite di simpan maka cek kembali data di tbl komite apakah ada tolak atau tidak jika ada maka jangan simpan data ke keputusan
                 $cek_tolak = $this->model('m_komite')->cek_tolak($no_permohonan_kredit);
@@ -1451,4 +1468,26 @@ class komite extends Controller
             echo "gagal" . $output;
         }
     }
+
+    public function update_syarat_lainnya()
+    {
+        // $_POST['no_permohonan_kredit'] = '012401814';
+        // $_POST['syarat_lainnya'] = 'tessd';
+
+        return $this->wawancara->update_syarat_lainnya();
+    }
+
+
+
+    // // fungsi ini untuk menampilkan syarat_lainnnya ke halaman modal proses komite di kolom syarat lainnya
+    // public function cek_isi_syarat_lainnya()
+    // {
+
+    //     // $_POST['no_permohonan_kredit'] = '012401814';
+
+    //     $query = $this->wawancara->cek_isi_syarat_lainnya();
+    //     echo $query;
+
+
+    // }
 }

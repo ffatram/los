@@ -13,6 +13,11 @@ class wawancara extends Controller
 {
 
 
+    public function __construct()
+    {
+        // $wawancara = new cs();
+    }
+
 
     public function index()
     {
@@ -692,16 +697,14 @@ class wawancara extends Controller
 
         $data['simpan'] = $this->model('m_wawancara')->simpan_data_wawancara($_POST);
         $data['update'] = $this->model('m_wawancara')->update_tbl_permohonan_kredit($_POST);
-        
 
-        if ($data['simpan'] > 0  and $data['update'] > 0 ) {
+
+        if ($data['simpan'] > 0  and $data['update'] > 0) {
             $this->model('m_log')->simpan_analisa();
             echo "berhasil";
         } else {
             echo "gagal";
         }
-
-
     }
 
 
@@ -3658,7 +3661,14 @@ class wawancara extends Controller
 
     public function btn_lanjutkan()
     {
+
+
+
+
         $update = $this->model('m_wawancara')->btn_lanjutkan();
+
+
+        $update_syarat_lainnya = $this->model('m_wawancara')->btn_lanjutkan_syarat_lainnya();
 
         if ($update >= 0) {
             $cs = new cs();
@@ -3873,4 +3883,29 @@ class wawancara extends Controller
             echo json_encode(["message" => "Permintaan tidak valid."]);
         }
     }
+
+    // fungsi untuk update field syarat lainnya ketika ada komite yang approve dan reject di tombol approve atau reject
+    public function update_syarat_lainnya()
+    {
+
+        $query = $this->model('m_wawancara')->update_syarat_lainnya();
+        if ($query > 0) {
+            return 'sukses';
+        } else {
+            return 'gagal';
+        }
+    }
+
+    // public function cek_isi_syarat_lainnya(){
+
+    //     $query = $this->model('m_wawancara')->cek_isi_syarat_lainnya();
+
+    //    if($query == true) {
+    //     return $query['syarat_lainnya'];
+    //    }else{
+    //     return null;
+    //    }
+
+
+    // }
 }

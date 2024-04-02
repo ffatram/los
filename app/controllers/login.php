@@ -4,13 +4,23 @@ class login extends Controller
 {
 
 
+    // Fungsi untuk menghasilkan dan menyimpan token CSRF
+    private function generateCsrfToken()
+    {
+        if (!isset($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+    }
 
     public function index()
     {
         // session_start();
         if (isset($_SESSION['level'])) {
+            
             header('Location:' . BASEURL . '/login/cek_sesi_login');
         } else {
+
+            $this->generateCsrfToken(); // Generate CSRF token
             $this->view('login/v_login');
         }
 
@@ -21,6 +31,11 @@ class login extends Controller
     {
 
 
+
+        // Verifikasi token CSRF
+        if ($_POST['csrf_token'] !== $_SESSION['csrf_token']) {
+            die("Token CSRF tidak valid");
+        }
 
 
 
@@ -41,6 +56,9 @@ class login extends Controller
 
                 $_SESSION['waktu_login'] = date("d M Y H:i:s");
                 $_SESSION['level'] = $level;
+
+                // Hapus token CSRF setelah digunakan
+                unset($_SESSION['csrf_token']);
 
 
                 setcookie('username', $username, time() + (60 * 60 * 60), '/');
@@ -68,6 +86,8 @@ class login extends Controller
                 $_SESSION['waktu_login'] = date("d M Y H:i:s");
                 $_SESSION['level'] = $level;
 
+                // Hapus token CSRF setelah digunakan
+                unset($_SESSION['csrf_token']);
 
                 setcookie('username', $username, time() + (60 * 60 * 60), '/');
                 setcookie('nama_lengkap', $nama_lengkap, time() + (60 * 60 * 60), '/');
@@ -92,6 +112,9 @@ class login extends Controller
 
                 $_SESSION['waktu_login'] = date("d M Y H:i:s");
                 $_SESSION['level'] = $level;
+
+                // Hapus token CSRF setelah digunakan
+                unset($_SESSION['csrf_token']);
 
 
                 setcookie('username', $username, time() + (60 * 60 * 60), '/');
@@ -119,6 +142,9 @@ class login extends Controller
 
                 $_SESSION['waktu_login'] = date("d M Y H:i:s");
                 $_SESSION['level'] = $level;
+
+                // Hapus token CSRF setelah digunakan
+                unset($_SESSION['csrf_token']);
 
 
                 setcookie('username', $username, time() + (60 * 60 * 60), '/');
@@ -159,6 +185,9 @@ class login extends Controller
                 $_SESSION['waktu_login'] = date("d M Y H:i:s");
                 $_SESSION['level'] = $level;
 
+                // Hapus token CSRF setelah digunakan
+                unset($_SESSION['csrf_token']);
+
 
                 setcookie('nama_lengkap', $nama_lengkap, time() + (60 * 60 * 60), '/');
                 setcookie('level', $level, time() + (60 * 60 * 60), '/');
@@ -193,6 +222,9 @@ class login extends Controller
                 $_SESSION['waktu_login'] = date("d M Y H:i:s");
                 $_SESSION['level'] = $level;
 
+                // Hapus token CSRF setelah digunakan
+                unset($_SESSION['csrf_token']);
+
                 setcookie('username', $username, time() + (60 * 60 * 60), '/');
                 setcookie('nama_lengkap', $nama_lengkap, time() + (60 * 60 * 60), '/');
                 setcookie('level', $level, time() + (60 * 60 * 60), '/');
@@ -220,6 +252,9 @@ class login extends Controller
                 $_SESSION['waktu_login'] = date("d M Y H:i:s");
                 $_SESSION['level'] = $level;
 
+                // Hapus token CSRF setelah digunakan
+                unset($_SESSION['csrf_token']);
+
 
                 setcookie('username', $username, time() + (60 * 60 * 60), '/');
                 setcookie('nama_lengkap', $nama_lengkap, time() + (60 * 60 * 60), '/');
@@ -246,7 +281,8 @@ class login extends Controller
             $_SESSION['waktu_login'] = date("d M Y H:i:s");
             $_SESSION['level'] = $level;
 
-
+            // Hapus token CSRF setelah digunakan
+            unset($_SESSION['csrf_token']);
             setcookie('username', $username, time() + (60 * 60 * 60), '/');
             setcookie('nama_lengkap', $nama_lengkap, time() + (60 * 60 * 60), '/');
             setcookie('level', $level, time() + (60 * 60 * 60), '/');
@@ -257,9 +293,13 @@ class login extends Controller
             header('Location:' . BASEURL . '/inquiry/beranda');
             exit;
         } else if ($data == "ubah_password") {
+            // Hapus token CSRF setelah digunakan
+            unset($_SESSION['csrf_token']);
             header('Location:' . BASEURL . '/login/ubah_password');
             exit;
         } else {
+            // Hapus token CSRF setelah digunakan
+            unset($_SESSION['csrf_token']);
 
             $_SESSION['login'] = "salah";
             // Flasher::setFlash('Login Gagal', '', 'danger');
