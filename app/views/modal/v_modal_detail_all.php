@@ -2130,7 +2130,7 @@ if (!empty($detail)) {
                                         <div class="card-body">
                                             <table cellpadding=5 cellspacing=15 id='tabel_modal'>
                                                 <tr style="font-size: 20px;">
-                                                    <td id='td_tabel_modal'> <textarea class='form-control h-25' rows='15'><?= $data_tbl_wawancara['syarat_lainnya'] ?></textarea></td>
+                                                    <td id='td_tabel_modal'> <textarea disabled style='background-color: white;' class='form-control h-25' rows='15'><?= $data_tbl_wawancara['syarat_lainnya'] ?></textarea></td>
                                                 </tr>
                                             </table>
                                         </div>

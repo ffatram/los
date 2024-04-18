@@ -1842,7 +1842,9 @@ if (!empty($detail)) {
 
 
                     </div>
-                    <div class="tab-pane active" id="d">
+                    
+
+                    <div class="tab-pane " id="d">
                         <div class="row mt-3">
                             <?php
 
@@ -1866,16 +1868,14 @@ if (!empty($detail)) {
 
                                                         <!-- cek apakah plafond belum berubah anatar inpuran analis dengan persetujuan komite, jika berubah maka beri warna merah -->
 
+
+
+
                                                         <?php
 
-                                                        $plafond_tbl_wawancara = trim(str_replace('.', '', $data['get_tbl_wawancara']['plafond']));
-                                                        // echo "Plafon 1 tbl_wawancara : " . $plafond_tbl_wawancara;
-                                                        // echo "<br>";
+                                                        $data_tbl_wawancara['plafond'] = str_replace(".", "", $data_tbl_wawancara['plafond']);
 
-                                                        // echo "Plafon 2 tbl_komite    : " . $data_tbl_komite[$a - 1]['plafond'];
-
-
-                                                        if ($plafond_tbl_wawancara == $data_tbl_komite[$a - 1]['plafond']) {
+                                                        if (((int)$data_tbl_wawancara['plafond']) == ((int)$data_tbl_komite[$a - 1]['plafond'])) {
 
                                                         ?>
 
@@ -1889,7 +1889,7 @@ if (!empty($detail)) {
 
                                                         <td id='td_tabel_modal_ket'>Jangka Waktu </td>
                                                         <?php
-                                                        if ($data['get_tbl_wawancara']['jangka_waktu'] == $data_tbl_komite[$a - 1]['jangka_waktu']) {
+                                                        if ($data_tbl_wawancara['jangka_waktu'] == $data_tbl_komite[$a - 1]['jangka_waktu']) {
                                                         ?>
                                                             <td id='td_tabel_modal'><?= $data_tbl_komite[$a - 1]['jangka_waktu']  ?></td>
 
@@ -1902,7 +1902,14 @@ if (!empty($detail)) {
                                                     <tr>
                                                         <td id='td_tabel_modal_ket'>Catatan Komite</td>
 
-                                                        <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control h-25' rows='10'><?= $data_tbl_komite[$a - 1]['catatan_komite'] ?></textarea></td>
+                                                        <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control h-25' rows='5'><?= $data_tbl_komite[$a - 1]['catatan_komite'] ?></textarea></td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td id='td_tabel_modal_ket'>Syarat Lainnya</td>
+
+                                                        <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control h-25' rows='5'><?= $data_tbl_komite[$a - 1]['syarat_lainnya'] ?></textarea></td>
                                                     </tr>
 
                                                     <?php
@@ -1912,7 +1919,7 @@ if (!empty($detail)) {
                                                     ?>
                                                         <tr>
                                                             <td id='td_tabel_modal_ket'>Status </td>
-                                                            <td id='td_tabel_modal' style="background-color: blue; color:white; "> <b> <?= $data_tbl_komite[$a - 1]['status'] == "DISETUJUI" ? 'SETUJU' : ''  ?> </b></td>
+                                                            <td id='td_tabel_modal' style="background-color: blue; color:white; "> <b> SETUJU </b></td>
                                                         </tr>
 
 
@@ -1922,7 +1929,7 @@ if (!empty($detail)) {
 
                                                         <tr>
                                                             <td id='td_tabel_modal_ket'>Status </td>
-                                                            <td id='td_tabel_modal' style="background-color: red; color:white; "> <b> <?= $data_tbl_komite[$a - 1]['status']  == "DITOLAK" ? 'TOLAK' : '' ?> </b></td>
+                                                            <td id='td_tabel_modal' style="background-color: red; color:white; "> <b> TOLAK </b></td>
                                                         </tr>
 
                                                     <?php } else { ?>
@@ -1930,7 +1937,7 @@ if (!empty($detail)) {
 
                                                         <tr>
                                                             <td id='td_tabel_modal_ket'>Status </td>
-                                                            <td id='td_tabel_modal' style="background-color: white; color:white; "> <b> <?= $data_tbl_komite[$a - 1]['status'] == 'DISETUJUI' ? 'SETUJU' : ''  ?> </b></td>
+                                                            <td id='td_tabel_modal' style="background-color: white; color:white; "> <b> <?= $data_tbl_komite[$a - 1]['status']  ?> </b></td>
                                                         </tr>
 
                                                     <?php
@@ -1996,8 +2003,14 @@ if (!empty($detail)) {
                                                     </tr>
                                                     <tr>
                                                         <td id='td_tabel_modal_ket'>Catatan Komite</td>
-                                                        <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control' rows='10'><?= "" ?></textarea></td>
+                                                        <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control' rows='5'><?= "" ?></textarea></td>
                                                     </tr>
+
+                                                    <tr>
+                                                        <td id='td_tabel_modal_ket'>Syarat Lainnya</td>
+                                                        <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control' rows='5'><?= "" ?></textarea></td>
+                                                    </tr>
+
                                                     <?php
 
                                                     if (isset($data_tbl_komite[$a - 1]['status'])) {
@@ -2115,6 +2128,24 @@ if (!empty($detail)) {
                                             </div>
 
 
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="col-6">
+                                    <div class="card center">
+                                        <div class="card-header">
+                                            <b style="font-size: 20px;">Syarat Lainnya</b>
+                                        </div>
+                                        <div class="card-body">
+                                            <table cellpadding=5 cellspacing=15 id='tabel_modal'>
+                                                <tr style="font-size: 20px;">
+                                                    <td id='td_tabel_modal'> <textarea disabled style='background-color: white;' class='form-control h-25' rows='15'><?= $data_tbl_wawancara['syarat_lainnya'] ?></textarea></td>
+                                                </tr>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
