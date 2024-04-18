@@ -2467,6 +2467,10 @@ class cetak extends Controller
         $f = $tbl['f'];
 
 
+      
+
+
+        $nama_pemohon = $a['nama_pemohon'];
 
         $data->setValue('nama_pemohon', $a['nama_pemohon']);
         $data->setValue('alamat_ktp_pemohon', $a['alamat_ktp_pemohon']);
@@ -2604,6 +2608,7 @@ class cetak extends Controller
 
 
 
+
         // Simpan hasilnya ke dalam file output.docx
         $outputFilePath = 'cetak/' . '_download_' . $namafile;
         $data->saveAs($outputFilePath);
@@ -2616,7 +2621,8 @@ class cetak extends Controller
         $ekstensi = $nama_ekstensi[1]; // Ekstensi file
 
         // Ubah nama file dengan menambahkan " oke" sebelum ekstensi
-        $namafile = $nama . ' ' . trim($a['nama_pemohon']) . '.' . trim($ekstensi);
+        $namafile = $nama . ' ' . trim($nama_pemohon) . '.' . trim($ekstensi);
+
 
 
 
