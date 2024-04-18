@@ -2514,7 +2514,7 @@ class cetak extends Controller
         );
 
 
-        
+
 
 
         $total = 0;
@@ -2524,7 +2524,7 @@ class cetak extends Controller
             }
         }
 
-        
+
 
 
 
@@ -2543,9 +2543,9 @@ class cetak extends Controller
 
 
         $formatstring0 =  '<w:t> 0</w:t>';
-                        //    '<w:r><w:t>0000</w:t></w:r>'
-                        //    '<w:t> 0</w:t>'
-                        // '<w:r><w:t>0000</w:t></w:r>'
+        //    '<w:r><w:t>0000</w:t></w:r>'
+        //    '<w:t> 0</w:t>'
+        // '<w:r><w:t>0000</w:t></w:r>'
 
         $c['biaya_provisi'] = ($c['biaya_provisi'] == '0') ? $formatstring0 : $c['biaya_provisi'];
         $c['biaya_administrasi'] = ($c['biaya_administrasi'] == '0') ? $formatstring0 : $c['biaya_administrasi'];
@@ -2607,6 +2607,18 @@ class cetak extends Controller
         // Simpan hasilnya ke dalam file output.docx
         $outputFilePath = 'cetak/' . '_download_' . $namafile;
         $data->saveAs($outputFilePath);
+
+
+        // ubah nama file beri nama pemohon
+
+        $nama_ekstensi = explode('.', $namafile);
+        $nama = $nama_ekstensi[0]; // Nama file
+        $ekstensi = $nama_ekstensi[1]; // Ekstensi file
+
+        // Ubah nama file dengan menambahkan " oke" sebelum ekstensi
+        $namafile = $nama . ' ' . trim($a['nama_pemohon']) . '.' . trim($ekstensi);
+
+
 
         // Setel header untuk pengunduhan
         header('Content-Type: application/octet-stream');
