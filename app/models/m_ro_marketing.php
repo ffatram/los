@@ -3,6 +3,8 @@
 class ro_marketing
 {
 
+    public $db;
+
     
 
 

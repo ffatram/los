@@ -3,6 +3,8 @@
 class m_ref
 {
 
+    public $db;
+
     public $tbl_ref_level_user = 'tbl_ref_level_user';
 
 

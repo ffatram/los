@@ -2,6 +2,8 @@
 
 class m_admin
 {
+
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

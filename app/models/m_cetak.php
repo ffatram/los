@@ -3,6 +3,7 @@
 class m_cetak
 {
 
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

@@ -3,6 +3,8 @@
 class m_ref_hubungan_debitur_dengan_bank
 {
 
+    public $db;
+
     public function __construct()
     {
         $this->db = new Database;

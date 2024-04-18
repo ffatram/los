@@ -3,6 +3,8 @@
 class m_ref_provisi_administrasi
 {
 
+    public $db;
+
     public function __construct()
     {
         $this->db = new Database;

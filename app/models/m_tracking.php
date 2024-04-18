@@ -3,6 +3,7 @@
 
 class m_tracking
 {
+    public $db;
 
     public function __construct()
     {

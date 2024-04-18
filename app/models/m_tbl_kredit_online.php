@@ -3,6 +3,8 @@ date_default_timezone_set('Asia/Makassar');
 class m_tbl_kredit_online
 {
 
+    public $db;
+
 
     public function __construct()
     {

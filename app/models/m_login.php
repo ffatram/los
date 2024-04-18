@@ -2,6 +2,8 @@
 
 class m_login
 {
+
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

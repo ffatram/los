@@ -3,6 +3,7 @@
 class m_ref_sektor_ekonomi
 {
 
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

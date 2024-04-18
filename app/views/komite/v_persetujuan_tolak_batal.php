@@ -997,6 +997,7 @@
             var user_tipe_komite = "<?= $_COOKIE['tipe_komite'] ?>"
             var tgl_create = "<?= date('Y-m-d H:i:s') ?>"
             var status = "TIDAK SETUJU " + $('#ket_modal_footer_2').text().toString();
+            // var status = "TIDAK SETUJU tes " + "Halo";
 
             var lokasi_berkas = "ANALISA";
             var newplafond = $('#plafond').text().toString()

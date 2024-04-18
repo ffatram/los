@@ -18,20 +18,15 @@ class modal extends Controller
         $data['get_tbl_wawancara'] = $this->model('m_wawancara')->detail_wawancara($_POST);
 
 
-
-        if ($data['get_tbl_wawancara']['user_edit'] != '') {
-            $data['get_tbl_wawancara']['user_create'] =  $data['get_tbl_wawancara']['user_edit'];
-        } else {
-            $data['get_tbl_wawancara']['user_create'] =  $data['get_tbl_wawancara']['user_create'];
+        // cek data pada tabel wawancara jika data no_permohonan tersedia di tabel wawancara maka jalankan ifnya
+        if ($data['get_tbl_wawancara']) {
+            if ($data['get_tbl_wawancara']['user_edit'] != '') {
+                $data['get_tbl_wawancara']['user_create'] =  $data['get_tbl_wawancara']['user_edit'];
+            } else {
+                $data['get_tbl_wawancara']['user_create'] =  $data['get_tbl_wawancara']['user_create'];
+            }
         }
-
-
-
-
-
-
-
-
+        
 
         if (empty($data['get_tbl_wawancara'])) {
 

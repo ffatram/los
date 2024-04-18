@@ -3,6 +3,7 @@
 
 class m_keputusan_kredit
 {
+    public $db;
     public function __construct()
     {
         date_default_timezone_set('Asia/Makassar');

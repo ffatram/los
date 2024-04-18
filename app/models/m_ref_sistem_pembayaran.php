@@ -1,6 +1,7 @@
 <?php
 class m_ref_sistem_pembayaran
 {
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

@@ -3,6 +3,7 @@ date_default_timezone_set('Asia/Makassar');
 class m_slik
 {
 
+    public $db;
 
     public function __construct()
     {

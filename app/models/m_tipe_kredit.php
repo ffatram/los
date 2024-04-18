@@ -2,6 +2,7 @@
 
 class m_tipe_kredit
 {
+    public $db;
 
     public function __construct()
     {

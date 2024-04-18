@@ -1,6 +1,7 @@
 <?php
 class m_slik_daftar_slik
 {
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

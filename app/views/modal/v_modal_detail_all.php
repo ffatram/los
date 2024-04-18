@@ -1848,9 +1848,6 @@ if (!empty($detail)) {
 
                             for ($a = 1; $a <= 3; $a++) {
                                 if (isset($data_tbl_komite[$a - 1])) {
-
-
-
                             ?>
                                     <div class="col-4">
                                         <div class="card">
@@ -1863,25 +1860,8 @@ if (!empty($detail)) {
 
                                                     <tr>
                                                         <td id='td_tabel_modal_ket'>Plafond </td>
-
                                                         <!-- cek apakah plafond belum berubah anatar inpuran analis dengan persetujuan komite, jika berubah maka beri warna merah -->
-
                                                         <?php
-
-                                                        // echo $data['get_tbl_wawancara']['plafond'] . $data_tbl_komite[$a - 1]['plafond'];
-                                                        // if ($data['get_tbl_wawancara']['plafond'] == $data_tbl_komite[$a - 1]['plafond']) {
-                                                        //     echo "sama";
-                                                        // } else {
-
-                                                        //     echo "beda";
-                                                        // }
-
-                                                        // echo "Plafon 1 tbl_wawancara : " . $data['get_tbl_wawancara']['plafond'];
-                                                        // echo "<br>";
-
-                                                        // echo "Plafon 2 tbl_komite    : " . $data_tbl_komite[$a - 1]['plafond'];
-
-
                                                         if ($data['get_tbl_wawancara']['plafond'] == $data_tbl_komite[$a - 1]['plafond']) {
                                                         ?>
                                                             <td id='td_tabel_modal'><?= number_format(($data_tbl_komite[$a - 1]['plafond']), 0, ",", ".")   ?></td>
@@ -1941,7 +1921,7 @@ if (!empty($detail)) {
 
                                                         <tr>
                                                             <td id='td_tabel_modal_ket'>Status </td>
-                                                            <td id='td_tabel_modal' style="background-color: white; color:white; "> <b> <?= $data_tbl_komite[$a - 1]['status'] == 'DISETUJUI' ? 'SETUJU' : ''  ?> </b></td>
+                                                            <td id='td_tabel_modal' style="background-color: white; color:black; "> <b> <?= $data_tbl_komite[$a - 1]['status'] ?> </b></td>
                                                         </tr>
 
                                                     <?php
@@ -2009,6 +1989,14 @@ if (!empty($detail)) {
                                                         <td id='td_tabel_modal_ket'>Catatan Komite</td>
                                                         <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control' rows='10'><?= "" ?></textarea></td>
                                                     </tr>
+
+                                                    <tr>
+                                                        <td id='td_tabel_modal_ket'>Syarat Lainnya</td>
+
+                                                        <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control h-25' rows='10'></textarea></td>
+                                                    </tr>
+
+
                                                     <?php
 
                                                     if (isset($data_tbl_komite[$a - 1]['status'])) {

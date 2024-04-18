@@ -3,6 +3,7 @@
 class m_ref_jenis_penggunaan
 {
 
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

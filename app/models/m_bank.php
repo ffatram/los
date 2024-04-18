@@ -1,6 +1,7 @@
 <?php
 class m_bank
 {
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

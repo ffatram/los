@@ -2,6 +2,8 @@
 
 class m_funding
 {
+
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

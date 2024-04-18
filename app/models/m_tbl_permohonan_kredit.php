@@ -2,6 +2,7 @@
 
 class m_tbl_permohonan_kredit
 {
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

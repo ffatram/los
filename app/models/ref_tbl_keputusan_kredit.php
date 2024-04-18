@@ -4,6 +4,7 @@
 class ref_tbl_keputusan_kredit
 {
 
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

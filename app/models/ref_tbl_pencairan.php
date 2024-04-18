@@ -3,6 +3,7 @@
 
 class ref_tbl_pencairan
 {
+    public $db;
 
     public function __construct()
     {

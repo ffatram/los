@@ -3,6 +3,8 @@
 class m_komite
 {
 
+    public $db;
+
     public function __construct()
     {
 
@@ -895,6 +897,7 @@ class m_komite
         plafond,
         jangka_waktu,
         catatan_komite,
+        status,
         user_create,
         user_tipe_komite,
         tgl_create
@@ -906,6 +909,7 @@ class m_komite
         :plafond,
         :jangka_waktu,
         :catatan_komite,
+        :status,
         :user_create,
         :user_tipe_komite,
         :tgl_create
@@ -916,6 +920,7 @@ class m_komite
         $this->db->bind('plafond',  $_POST['plafond']);
         $this->db->bind('jangka_waktu',  $_POST['jangka_waktu']);
         $this->db->bind('catatan_komite',  $_POST['dasar_pertimbangan_analis']);
+        $this->db->bind('status',  $_POST['status']);
         $this->db->bind('user_create',  $_POST['username']);
         $this->db->bind('user_tipe_komite',  $_POST['user_tipe_komite']);
         $this->db->bind('tgl_create',  $_POST['tgl_create']);

@@ -3,6 +3,8 @@
 class m_ref_provisi_adm_kredit
 {
 
+    public $db;
+
     public function __construct()
     {
         $this->db = new Database;

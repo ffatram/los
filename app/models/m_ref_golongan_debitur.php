@@ -3,6 +3,8 @@
 class m_ref_golongan_debitur
 {
 
+
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

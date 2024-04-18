@@ -1,6 +1,8 @@
 <?php
 class m_ref_tujuan_penggunaan_kredit
 {
+
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

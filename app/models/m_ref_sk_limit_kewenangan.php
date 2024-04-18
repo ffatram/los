@@ -1,6 +1,8 @@
 <?php
 class m_ref_sk_limit_kewenangan
 {
+
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

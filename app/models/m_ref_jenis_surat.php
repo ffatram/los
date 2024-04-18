@@ -3,6 +3,7 @@
 
 class m_ref_jenis_surat
 {
+    public $db;
 
     public function __construct()
     {

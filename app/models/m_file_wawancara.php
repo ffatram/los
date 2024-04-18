@@ -2,6 +2,8 @@
 
 class m_file_wawancara
 {
+
+    public $db;
     public function __construct()
     {
         date_default_timezone_set('Asia/Makassar');

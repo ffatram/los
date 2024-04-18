@@ -3,6 +3,8 @@
 class m_ref_all
 {
 
+    public $db;
+
     public function __construct()
     {
         $this->db = new Database;

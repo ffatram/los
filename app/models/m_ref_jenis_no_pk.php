@@ -1,6 +1,7 @@
 <?php
 class m_ref_jenis_no_pk
 {
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

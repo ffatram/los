@@ -3,6 +3,8 @@
 class m_slik_input_data_slik
 {
 
+
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

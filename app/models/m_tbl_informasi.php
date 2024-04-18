@@ -2,6 +2,7 @@
 date_default_timezone_set('Asia/Makassar');
 class m_tbl_informasi
 {
+    public $db;
 
     public function __construct()
     {

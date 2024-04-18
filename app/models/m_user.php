@@ -4,6 +4,7 @@
 class m_user
 {
 
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

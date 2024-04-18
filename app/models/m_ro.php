@@ -1,6 +1,8 @@
 <?php
 class m_ro
 {
+
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

@@ -5,6 +5,8 @@ date_default_timezone_set('Asia/Makassar');
 class m_log
 {
 
+    public $db;
+
     public function __construct()
     {
         $this->db = new Database;

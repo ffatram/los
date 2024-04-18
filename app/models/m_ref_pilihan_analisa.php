@@ -1,6 +1,8 @@
 <?php
 class m_ref_pilihan_analisa
 {
+
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

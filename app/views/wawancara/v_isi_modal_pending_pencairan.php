@@ -1821,9 +1821,6 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
 
                             for ($a = 1; $a <= 3; $a++) {
                                 if (isset($data_tbl_komite[$a - 1])) {
-
-
-
                             ?>
                                     <div class="col-4">
                                         <div class="card">
@@ -1835,25 +1832,16 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                                 <table cellpadding=5 cellspacing=15 id='tabel_modal'>
 
                                                     <tr>
-                                                        <td id='td_tabel_modal_ket'>Plafond </td>
-
-                                                        <!-- cek apakah plafond belum berubah anatar inpuran analis dengan persetujuan komite, jika berubah maka beri warna merah -->
+                                                        <td id='td_tabel_modal_ket'>Plafond 1 </td>
 
                                                         <?php
-
-
-
-                                                        $plafond_tbl_wawancara = trim(str_replace('.', '', $data['get_tbl_wawancara']['plafond']));
-                                                        // echo "Plafon 1 tbl_wawancara : " . $plafond_tbl_wawancara;
-                                                        // echo "<br>";
-                                                        // echo "Plafon 2 tbl_komite    : " . $data_tbl_komite[$a - 1]['plafond'];
-
-
-
-                                                        if ($plafond_tbl_wawancara == $data_tbl_komite[$a - 1]['plafond']) {
-
+                                                        $plafond = $data['get_tbl_wawancara']['plafond'];
+                                                        $data['get_tbl_wawancara']['plafond'] = str_replace('.', '', $plafond);
                                                         ?>
-
+                                                        <!-- cek apakah plafond belum berubah anatar inpuran analis dengan persetujuan komite, jika berubah maka beri warna merah -->
+                                                        <?php
+                                                        if ($data['get_tbl_wawancara']['plafond'] == $data_tbl_komite[$a - 1]['plafond']) {
+                                                        ?>
                                                             <td id='td_tabel_modal'><?= number_format(($data_tbl_komite[$a - 1]['plafond']), 0, ",", ".")   ?></td>
                                                         <?php  } else { ?>
 
@@ -1864,7 +1852,7 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
 
                                                         <td id='td_tabel_modal_ket'>Jangka Waktu </td>
                                                         <?php
-                                                        if ($data['detail']['jangka_waktu'] == $data_tbl_komite[$a - 1]['jangka_waktu']) {
+                                                        if ($data['get_tbl_wawancara']['jangka_waktu'] == $data_tbl_komite[$a - 1]['jangka_waktu']) {
                                                         ?>
                                                             <td id='td_tabel_modal'><?= $data_tbl_komite[$a - 1]['jangka_waktu']  ?></td>
 
@@ -1882,8 +1870,8 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
 
                                                     <tr>
                                                         <td id='td_tabel_modal_ket'>Syarat Lainnya</td>
-                                                        <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control h-25' rows='10'><?= $data_tbl_komite[$a - 1]['syarat_lainnya'] ?></textarea></td>
 
+                                                        <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control h-25' rows='10'><?= $data_tbl_komite[$a - 1]['syarat_lainnya'] ?></textarea></td>
                                                     </tr>
 
                                                     <?php
@@ -1968,42 +1956,25 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                                 <table cellpadding=5 cellspacing=15 id='tabel_modal'>
 
                                                     <tr>
-                                                        <td id='td_tabel_modal_ket'>Plafondd </td>
-
-                                                        <!-- cek apakah plafond belum berubah anatar inpuran analis dengan persetujuan komite, jika berubah maka beri warna merah -->
-
-                                                        <?php
-
-                                                        $data_tbl_wawancara['plafond'] = str_replace(".", "", $data_tbl_wawancara['plafond']);
-
-                                                        if (((int)$data_tbl_wawancara['plafond']) == ((int)$data_tbl_komite[$a - 1]['plafond'])) {
-
-                                                        ?>
-
-                                                            <td id='td_tabel_modal'><?= number_format(($data_tbl_komite[$a - 1]['plafond']), 0, ",", ".")   ?></td>
-                                                        <?php  } else { ?>
-
-                                                            <td id='td_tabel_modal' style="color:red; "><?= number_format(($data_tbl_komite[$a - 1]['plafond']), 0, ",", ".")   ?></td>
-                                                        <?php } ?>
+                                                        <td id='td_tabel_modal_ket'>Plafond </td>
+                                                        <td id='td_tabel_modal'><?= ""  ?></td>
                                                     </tr>
                                                     <tr>
-
                                                         <td id='td_tabel_modal_ket'>Jangka Waktu </td>
-                                                        <?php
-                                                        if ($data_tbl_wawancara['jangka_waktu'] == $data_tbl_komite[$a - 1]['jangka_waktu']) {
-                                                        ?>
-                                                            <td id='td_tabel_modal'><?= $data_tbl_komite[$a - 1]['jangka_waktu']  ?></td>
-
-                                                        <?php  } else { ?>
-
-                                                            <td id='td_tabel_modal' style="color:red; "><?= $data_tbl_komite[$a - 1]['jangka_waktu']  ?></td>
-
-                                                        <?php } ?>
+                                                        <td id='td_tabel_modal'><?= ""  ?></td>
                                                     </tr>
                                                     <tr>
                                                         <td id='td_tabel_modal_ket'>Catatan Komite</td>
                                                         <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control' rows='10'><?= "" ?></textarea></td>
                                                     </tr>
+
+                                                    <tr>
+                                                        <td id='td_tabel_modal_ket'>Syarat Lainnya</td>
+
+                                                        <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control h-25' rows='10'></textarea></td>
+                                                    </tr>
+
+
                                                     <?php
 
                                                     if (isset($data_tbl_komite[$a - 1]['status'])) {
@@ -2115,7 +2086,7 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                             <td><?= $data_tbl_keputusan_komite['jangka_waktu'] ?></td>
                                         </tr>
                                         <tr style="height: 100px;  text-align: center;">
-                                            <th class="keputusan_komite" colspan="2" style="vertical-align: middle; font-size: 24px; font-weight: bold;"></th>
+                                            <th class="keputusan_komite" colspan="2" style="vertical-align: middle; font-size: 30px; font-weight: bold;"></th>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -2132,7 +2103,7 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><textarea id='syarat_lainnya' name="syarat_lainnya" class="form-control h-25" rows="9" style="margin: 0; padding: 0;"><?= $data_tbl_wawancara['syarat_lainnya'] ?></textarea></td>
+                                            <td><textarea disabled id='syarat_lainnya' name="syarat_lainnya" class="form-control h-25" rows="9" style="margin: 0; padding: 0;"><?= $data_tbl_wawancara['syarat_lainnya'] ?></textarea></td>
 
                                         </tr>
 

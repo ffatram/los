@@ -4,6 +4,7 @@
 class ref_tbl_cabang
 {
 
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

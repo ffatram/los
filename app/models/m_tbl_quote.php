@@ -3,6 +3,7 @@
 class m_tbl_quote
 {
 
+    public $db;
     public function __construct()
     {
         $this->db = new Database;

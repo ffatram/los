@@ -1428,6 +1428,12 @@ class komite extends Controller
 
 
 
+
+
+
+
+
+
         // update tbl_permohon_kredit
         $query_1 = $this->model('m_komite')->update_tbl_wawancara();
         $query_2 = $this->model('m_komite')->update_tbl_permohon_kredit();
@@ -1451,6 +1457,11 @@ class komite extends Controller
 
     public function tidak_setuju_tolak_batal()
     {
+
+
+    
+
+
 
         $query_1 = $this->model('m_komite')->tidak_setuju_tolak_batal_update_tbl_wawancara();
         $query_2 = $this->model('m_komite')->tidak_setuju_tolak_batal_update_tbl_permohon_kredit();
