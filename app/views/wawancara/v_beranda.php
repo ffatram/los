@@ -174,6 +174,9 @@
                                                     <div style="color: rgba(0, 0, 0, 0.7);">
                                                         <h1 class="mb-3">Selamat Datang, <?= $res['nama_lengkap'] ?></h1>
                                                         <h5 class="mb-1">
+                                                            <?php 
+                                                            $res['level'] = level_3;
+                                                            ?>
                                                             Anda login sebagai <?= $res['level'] ?>, Pada tanggal <?= $_SESSION['waktu_login'] ?>
                                                         </h5>
                                                     </div>

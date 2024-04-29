@@ -1257,4 +1257,10 @@ class m_wawancara
     //     $this->db->bind('no_permohonan_kredit', $_POST['no_permohonan_kredit']);
     //     return $this->db->single();
     // }
+
+
+
+   
+
+
 }

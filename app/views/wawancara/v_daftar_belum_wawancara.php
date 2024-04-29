@@ -89,10 +89,10 @@
                                                     <a class="nav-link active" id="li_daftar_belum_wawacara" data-toggle="tab" href="#daftar_belum_wawacara">Daftar Belum Analisa (<?= $data['jumlah_daftar_belum_wawancara'] ?>) </a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" id="li_daftar_tolak_ro" data-toggle="tab" href="#daftar_tolak_ro">Daftar Tolak RO</a>
+                                                    <a class="nav-link" id="li_daftar_tolak_ro" data-toggle="tab" href="#daftar_tolak_ro">Daftar Tolak <?= level_3?></a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" id="li_daftar_batal" data-toggle="tab" href="#daftar_batal">Daftar Batal</a>
+                                                    <a class="nav-link" id="li_daftar_batal" data-toggle="tab" href="#daftar_batal">Daftar Batal <?= level_3?></a>
                                                 </li>
                                             </ul>
 

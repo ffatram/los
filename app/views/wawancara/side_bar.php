@@ -14,7 +14,7 @@
 
             <div class="info">
 
-                <a href="#" class="d-block"><?= $_COOKIE['level'] . ' (' . $_COOKIE['nama_cabang'] . ')' ?> </a>
+                <a href="#" class="d-block"><?= level_3. ' (' . $_COOKIE['nama_cabang'] . ')' ?> </a>
             </div>
         </div>
 

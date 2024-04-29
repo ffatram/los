@@ -805,9 +805,7 @@
                                                                 <label class="mt-2 mb-2">Sektor Ekonomi</label><span class="ml-1" style="color:red;">*</span>
                                                                 <select name="kode_sektor_ekonomi" class="form-control select2bs4 kode_sektor_ekonomi">
                                                                     <option value="" required selected>- Silahkan Pilih -</option>
-                                                                    <?php foreach ($data['ref_sektor_ekonomi'] as $i) : ?>
-                                                                        <option value="<?= $i['kode_sektor_ekonomi'] ?>" <?= $i['kode_sektor_ekonomi'] == $data['data_wawancara']['kode_sektor_ekonomi'] ? 'selected="selected"' : ''; ?>><?= $i['kode_sektor_ekonomi'] . ' - ' . $i['sektor_ekonomi'] ?></option>
-                                                                    <?php endforeach; ?>
+                                                                    
                                                                 </select>
 
 
@@ -2696,6 +2694,55 @@
 </script>
 
 
+
+<script>
+        // Ketika dokumen siap
+        $(document).ready(function() {
+            // Ketika ada perubahan pada elemen select
+            $('select[name="kode_jenis_penggunaan"]').change(function() {
+                // Dapatkan nilai terpilih dari elemen select
+                var mapping_sektor_ekonomi = $(this).val();
+
+                if (mapping_sektor_ekonomi === '10' || mapping_sektor_ekonomi === '20') {
+                    mapping_sektor_ekonomi = '1'
+                } else if (mapping_sektor_ekonomi === '31' || mapping_sektor_ekonomi === '32') {
+                    mapping_sektor_ekonomi = '2'
+                } else if (mapping_sektor_ekonomi === '35') {
+                    mapping_sektor_ekonomi = '3'
+                } else if (mapping_sektor_ekonomi === '39') {
+                    mapping_sektor_ekonomi = '4'
+                }
+
+
+                $.ajax({
+                    url: '<?= BASEURL ?>/wawancara/mapping_sektor_ekonomi',
+                    type: 'POST',
+                    data: {
+                        mapping_sektor_ekonomi: mapping_sektor_ekonomi
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+
+                        console.log(response)
+
+                        var kode_sektor_ekonomi = $('select[name="kode_sektor_ekonomi"]');
+                        kode_sektor_ekonomi.empty();
+                        $.each(response, function(key, value) {
+                            kode_sektor_ekonomi.append('<option value="' + value.kode_sektor_ekonomi + '" ' + (value.kode_sektor_ekonomi == "<?php echo $data['data_wawancara']['kode_jenis_penggunaan']; ?>" ? 'selected="selected"' : '') + '>' + value.kode_sektor_ekonomi + ' - ' + value.sektor_ekonomi + '</option>');
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+
+
+
+
+
+            });
+        });
+    </script>
 
 
 

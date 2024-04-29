@@ -495,6 +495,7 @@ class wawancara extends Controller
         $data['ref_golongan_debitur'] = $this->model('m_ref_golongan_debitur')->get_all();
 
         $data['ref_jenis_penggunaan'] = $this->model('m_ref_jenis_penggunaan')->get_all();
+
         $data['ref_sektor_ekonomi'] = $this->model('m_ref_sektor_ekonomi')->get_all();
         $data['ref_hubungan_debitur_dengan_bank'] = $this->model('m_ref_hubungan_debitur_dengan_bank')->get_all();
 
@@ -525,6 +526,23 @@ class wawancara extends Controller
 
         $this->view('wawancara/v_input_wawancara', $data);
     }
+
+
+
+
+    public function mapping_sektor_ekonomi()
+    {
+
+        $jenisPenggunaan = $this->model('m_ref_sektor_ekonomi')->mapping_sektor_ekonomi();
+
+        echo json_encode($jenisPenggunaan);
+    }
+
+
+
+
+
+
 
 
     public function edit_data_wawancara($id)
