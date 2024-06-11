@@ -2098,7 +2098,7 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                 <table class="table table-hover table-bordered">
                                     <thead>
                                         <tr>
-                                            <th colspan="2">Syarat Pencairan</th>
+                                            <th colspan="2">Syarat Pencairan di SPPK</th>
                                         </tr>
                                     </thead>
                                     <tbody>
