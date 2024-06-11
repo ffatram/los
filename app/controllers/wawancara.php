@@ -3604,8 +3604,8 @@ class wawancara extends Controller
         $data['kode_sektor_ekonomi'] = $this->model('m_ref_sektor_ekonomi')->get_data_where_kode($data['get_tbl_wawancara']['kode_sektor_ekonomi']);
         $data['kode_hubungan_debitur_dengan_bank'] = $this->model('m_ref_hubungan_debitur_dengan_bank')->get_data_where_kode($data['get_tbl_wawancara']['kode_hubungan_debitur_dengan_bank']);
         $data['rekomendasi_komite'] = $this->model('m_komite')->rekomendasi_komite($data['no_permohonan_kredit']);
-
         $data['keputusan_komite'] = $this->model('m_komite')->keputusan_komite($data['no_permohonan_kredit']);
+        $data['syarat_lainnya'] = $this->model('m_komite')->syarat_lainnya($data['no_permohonan_kredit']);
 
 
 

@@ -212,7 +212,7 @@
                                                     </th>
 
                                                     <th>
-                                                        RO
+                                                        <?= level_3 ?>
                                                     </th>
 
                                                     <th>
@@ -624,6 +624,24 @@
                                 </div>
                                 <div class="modal-body catatan_pending_komite">
                                     <td><textarea id='catatan_pending_komite' class="form-control h-25" rows="9" style="margin: 0; padding: 0;"></textarea></td>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- bagian modal ketika tekan tombol  proses komite -->
+                    <div class="modal fade modal_detail_all" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="h4"><strong>Detail Komite</strong></h1>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body body_detail_all">
+
                                 </div>
                             </div>
                         </div>
@@ -1067,19 +1085,39 @@
                     } else if (res.trim() == "pin_beda") {
                         console.log(res.trim())
                         console.log(id)
+
                         $('#modal_proses_komite').modal('show');
+
+
                         $.ajax({
                             type: 'post',
                             url: '<?= BASEURL . '/komite/modal_proses_komite' ?>',
                             data: 'no_permohonan_kredit=' + id,
                             success: function(data) {
                                 $('.data_modal').html(data)
-                                $('.tabel_slik_pemohon').DataTable({
+
+
+                                var no_ktp_pemohon = $('.no_ktp_pemohon').text();
+
+                                $.ajax({
+                                    type: 'post',
+                                    url: '<?= BASEURL . '/komite/cek_tolak_where_nik' ?>',
+                                    data: 'no_ktp_pemohon=' + no_ktp_pemohon,
+                                    success: function(res) {
+                                        res = res.trim()
+                                        if (res > 0) {
+                                            $('.cek_tolak').hide().delay(0).slideDown(500);
+                                        }
+                                    }
+                                })
+
+
+                                $('.komite_tabel_slik_pemohon').DataTable({
                                     // "processing": true,
                                     // "paging": true,
                                 });
 
-                                $('.tabel_slik_pasangan').DataTable({
+                                $('.komite_tabel_slik_pasangan').DataTable({
                                     // "processing": true,
                                     // "paging": true,
                                 });
@@ -1096,6 +1134,18 @@
             })
         })
     </script>
+
+    <!-- <script>
+        $(document).ready(function() {
+            $('#modal_proses_komite').on('show.bs.modal', function(e) {
+                $('.cek_tolak').hide();
+                var modal = $('#modal_proses_komite');
+                modal.find('#cek_tolak').hide()
+            })
+        })
+    </script> -->
+
+
 
 
 
@@ -1120,7 +1170,7 @@
             var catatan_pending = $(this).data('catatan_pending')
 
             var modal = $('.modal_catatan_pending_komite')
-            modal.find('textarea#catatan_pending_komite').html(catatan_pending) 
+            modal.find('textarea#catatan_pending_komite').html(catatan_pending)
 
             $('.modal_catatan_pending_komite').modal('show');
             // Menambahkan gaya CSS langsung untuk modal berada di tengah
@@ -1135,6 +1185,30 @@
 
             // Apply the top margin to center the modal
             modal.find('.modal-dialog').css('margin-top', marginTop + 'px');
+        });
+    </script>
+
+    <script>
+        $('.modal_detail_all').on('show.bs.modal', function(e) {
+            var id = $(e.relatedTarget).data('id')
+            $.ajax({
+                type: 'post',
+                url: '<?= BASEURL . '/modal/modal_detail_all' ?>',
+                data: 'no_permohonan_kredit=' + id,
+                success: function(data) {
+                    $('.body_detail_all').html(data)
+                    $('.tabel_slik_pemohon').DataTable({});
+                    $('.tabel_slik_pasangan').DataTable({});
+
+                }
+            })
+        })
+    </script>
+
+
+    <script>
+        $(".modal_detail_all").on('hidden.bs.modal', function() {
+            $(this).find('.modal-body').empty();
         });
     </script>
 

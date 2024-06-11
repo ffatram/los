@@ -36,6 +36,12 @@ class komite extends Controller
         $this->view('komite/v_beranda', $data);
     }
 
+    public function alert()
+    {
+        // bagian ini untuk alert dan antni akan di hapus
+        $this->view('komite/alert');
+    }
+
     public function daftar_belum_komite()
     {
 
@@ -1459,7 +1465,7 @@ class komite extends Controller
     {
 
 
-    
+
 
 
 
@@ -1490,15 +1496,13 @@ class komite extends Controller
 
 
 
-    // // fungsi ini untuk menampilkan syarat_lainnnya ke halaman modal proses komite di kolom syarat lainnya
-    // public function cek_isi_syarat_lainnya()
-    // {
 
-    //     // $_POST['no_permohonan_kredit'] = '012401814';
+    public function cek_tolak_where_nik()
+    {
 
-    //     $query = $this->wawancara->cek_isi_syarat_lainnya();
-    //     echo $query;
+       
 
-
-    // }
+        $res1 = $this->model('ref_tbl_permohon_kredit')->cek_tolak_where_nik();
+        echo $res1;
+    }
 }

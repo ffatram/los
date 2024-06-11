@@ -1,12 +1,14 @@
 <?php
 
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+header("Access-Control-Allow-Headers: *");
+
 include 'ref_instansi.php';
 // header('Access-Control-Allow-Origin: *');
 // header('Access-Control-Allow-Headers: *');
 
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
-header("Access-Control-Allow-Headers: *");
+
 class restapi_credit_online extends Controller
 {
     public function cek_token($token)
@@ -41,14 +43,7 @@ class restapi_credit_online extends Controller
         $nik =  $this->model('m_cs')->m_nik_ktp();
 
         if (isset($nik)) {
-            // if($nik==''){
-            //     echo json_encode(["los_data_where_nik" => 'Data Belum Terdaftar']);
-            // }else{
-            //     echo json_encode(["los_data_where_nik" => $nik]);
-            // }
-
             echo json_encode(["los_data_where_nik" => $nik]);
-           
         } else {
             echo json_encode(["Error" => 'server eror']);
         }

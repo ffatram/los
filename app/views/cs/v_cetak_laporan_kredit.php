@@ -124,10 +124,10 @@
                     JW
                 </th>
                 <th>
-                    RO
+                <?= level_3?>
                 </th>
                 <th>
-                    MARKETING
+                    <?= level_6 ?>
                 </th>
                 <th>
                     TGL. MASUK

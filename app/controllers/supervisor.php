@@ -139,7 +139,7 @@ class supervisor extends Controller
 
 
         if ($_POST['level'] != 'KOMITE') {
-            $_POST['tipe_kredit'] = '-';
+            // $_POST['tipe_kredit'] = '-';
             $_POST['tipe_komite'] = '-';
             $_POST['limit_direksi_awal']  = 0;
             $_POST['limit_direksi_akhir'] = 0;

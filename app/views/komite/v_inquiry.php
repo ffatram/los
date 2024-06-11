@@ -179,10 +179,10 @@
                                                         Jenis Permohonan
                                                     </th>
                                                     <th>
-                                                        RO
+                                                        <?= level_3 ?>
                                                     </th>
                                                     <th>
-                                                        Marketing
+                                                        <?= level_6 ?>
                                                     </th>
                                                     <th>
                                                         Tgl. Masuk

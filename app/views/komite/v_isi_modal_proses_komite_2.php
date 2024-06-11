@@ -490,11 +490,11 @@ if (!empty($detail)) {
                                                     <td><?= number_format(($data['detail']['nilai_jaminan']), 0, ',', '.');  ?></td>
                                                 </tr>
                                                 <tr>
-                                                    <td style="width: 200px; background-color: #F4F4F4; ">Nama Marketing</td>
+                                                    <td style="width: 200px; background-color: #F4F4F4; ">Nama <?= level_6 ?></td>
                                                     <td><?= $data['detail']['id_marketing'] ?></td>
                                                 </tr>
                                                 <tr>
-                                                    <td style="width: 200px; background-color: #F4F4F4; ">Nama Analis</td>
+                                                    <td style="width: 200px; background-color: #F4F4F4; ">Nama <?= level_3 ?></td>
                                                     <td><?= $data['detail']['id_analis'] ?></td>
                                                 </tr>
                                             </tbody>
@@ -1224,6 +1224,11 @@ if (!empty($detail)) {
                                                 <td id='td_tabel_modal'><?= isset($data['get_tbl_wawancara']['pejabat_ttd_sppk']) ? $data['get_tbl_wawancara']['pejabat_ttd_sppk'] : '-' ?></td>
                                             </tr>
 
+                                            <tr>
+                                                <td id='td_tabel_modal_ket'>Informasi Pihak Ketiga</td>
+                                                <td><textarea class='form-control h-22' rows='12'><?= isset($data['get_tbl_wawancara']['informasi_pihak_ketiga']) ? $data['get_tbl_wawancara']['informasi_pihak_ketiga'] : '-' ?></textarea></td>
+                                            </tr>
+
 
                                         </table>
                                     </div>
@@ -1842,7 +1847,7 @@ if (!empty($detail)) {
 
 
                     </div>
-                    
+
 
                     <div class="tab-pane " id="d">
                         <div class="row mt-3">
@@ -2321,7 +2326,7 @@ if (!empty($detail)) {
                                             foreach ($data['get_tbl_wawancara_berkas_id'] as $index => $row) : ?>
 
                                                 <tr>
-                                                    <td><?= ($index +1) ?></td>
+                                                    <td><?= ($index + 1) ?></td>
                                                     <td><?= $row['no_permohonan_kredit'] ?></td>
                                                     <td><?= $row['nama_file'] ?></td>
                                                     <td><?= $row['jenis_file'] ?></td>

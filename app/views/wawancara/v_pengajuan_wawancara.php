@@ -587,11 +587,11 @@ $data  = $data['get_tbl_permohon_kredit'];
                                             <td><?= number_format(($data['nilai_jaminan']), 0, ',', '.');  ?></td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 200px; background-color: #F4F4F4; ">Nama Marketing</td>
+                                            <td style="width: 200px; background-color: #F4F4F4; ">Nama <?= level_6 ?></td>
                                             <td><?= $data['id_marketing'] ?></td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 200px; background-color: #F4F4F4; ">Nama Analis</td>
+                                            <td style="width: 200px; background-color: #F4F4F4; ">Nama <?= level_3 ?></td>
                                             <td><?= $data['id_analis'] ?></td>
                                         </tr>
                                     </tbody>
@@ -1316,6 +1316,10 @@ $data  = $data['get_tbl_permohon_kredit'];
                                         <td id='td_tabel_modal_ket'>Pejabat TTD SPPK</td>
 
                                         <td id='td_tabel_modal'><?= $detail['pejabat_ttd_sppk'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td id='td_tabel_modal_ket'>Informasi Pihak Ketiga</td>
+                                        <td><textarea class='form-control h-22' rows='12'><?= $detail['informasi_pihak_ketiga'] ?></textarea></td>
                                     </tr>
 
 

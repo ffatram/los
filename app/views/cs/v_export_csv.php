@@ -168,8 +168,8 @@
                                             <th scope="col">Plaf</th>
                                             <th scope="col">Jw (Bln)</th>
                                             <th scope="col">Jenis Permohonan</th>
-                                            <th scope="col">RO</th>
-                                            <th scope="col">Marketing</th>
+                                            <th scope="col"><?= level_3?></th>
+                                            <th scope="col"><?= level_6?></th>
                                             <th scope="col">Tgl. Masuk</th>
                                             <th scope="col">Tgl. SLIK</th>
                                             <th scope="col">Tgl. Analisa</th>

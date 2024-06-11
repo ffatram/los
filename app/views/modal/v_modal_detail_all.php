@@ -179,27 +179,27 @@ if (!empty($detail)) {
             <div class="col-12">
 
 
-                <ul class="nav nav-tabs mt-2 justify-content-center " id="nav-tabs" role="tablist">
+                <ul class="nav nav-tabs mt-2 justify-content-center " id="nav-tabs-modal" role="tablist">
                     <li class="nav-item">
-                        <a class="nav-link" id="" data-toggle="tab" href="#a">Detail Permohonan</a>
+                        <a class="nav-link" id="modal_detail_permohonan" data-toggle="tab" href="#modal_a">Detail Permohonan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="" data-toggle="tab" href="#b">Detail SLIK</a>
+                        <a class="nav-link" id="modal_detail_slik" data-toggle="tab" href="#modal_b">Detail SLIK</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="detail_analisa" data-toggle="tab" href="#c">Detail Analisa</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" id="" data-toggle="tab" href="#h">File Berkas</a>
+                        <a class="nav-link" id="modal_detail_analisa" data-toggle="tab" href="#modal_c">Detail Analisa</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link active" id="rekomendasi_komite" data-toggle="tab" href="#d">Rekomendasi Komite</a>
+                        <a class="nav-link" id="modal_file_berkas" data-toggle="tab" href="#modal_h">File Berkas</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link " id="" data-toggle="tab" href="#e">Keputusan Komite</a>
+                        <a class="nav-link active" id="modal_rekomendasi_komite" data-toggle="tab" href="#modal_d">Rekomendasi Komite</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link " id="modal_keputusan_kredit" data-toggle="tab" href="#modal_e">Keputusan Komite</a>
                     </li>
 
                 </ul>
@@ -209,7 +209,7 @@ if (!empty($detail)) {
 
 
                 <div class="tab-content">
-                    <div class="tab-pane" id="a">
+                    <div class="tab-pane" id="modal_a">
 
                         <div class="row">
                             <div class="col-md-6">
@@ -489,11 +489,11 @@ if (!empty($detail)) {
                                                     <td><?= number_format(($data['detail']['nilai_jaminan']), 0, ',', '.');  ?></td>
                                                 </tr>
                                                 <tr>
-                                                    <td style="width: 200px; background-color: #F4F4F4; ">Nama Marketing</td>
+                                                    <td style="width: 200px; background-color: #F4F4F4; ">Nama <?= level_6 ?></td>
                                                     <td><?= $data['detail']['id_marketing'] ?></td>
                                                 </tr>
                                                 <tr>
-                                                    <td style="width: 200px; background-color: #F4F4F4; ">Nama Analis</td>
+                                                    <td style="width: 200px; background-color: #F4F4F4; ">Nama <?= level_3 ?></td>
                                                     <td><?= $data['detail']['id_analis'] ?></td>
                                                 </tr>
                                             </tbody>
@@ -692,7 +692,7 @@ if (!empty($detail)) {
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane " id="b">
+                    <div class="tab-pane " id="modal_b">
 
                         <div class="row">
                             <div class="col-12">
@@ -1006,20 +1006,19 @@ if (!empty($detail)) {
 
 
                     </div>
-
-                    <div class="tab-pane " id="c">
+                    <div class="tab-pane " id="modal_c">
                         <ul class="nav nav-tabs mt-2 justify-content-center " id="" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="" data-toggle="tab" href="#aa">Analisa dan Usulan Analis</a>
+                                <a class="nav-link active" id="" data-toggle="tab" href="#modal_aa">Analisa dan Usulan Analis</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="" data-toggle="tab" href="#bb">Daftar Jaminan</a>
+                                <a class="nav-link" id="" data-toggle="tab" href="#modal_bb">Daftar Jaminan</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="" data-toggle="tab" href="#cc">Analisa Kemampuan</a>
+                                <a class="nav-link" id="" data-toggle="tab" href="#modal_cc">Analisa Kemampuan</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="" data-toggle="tab" href="#dd">Sandi Sandi</a>
+                                <a class="nav-link" id="" data-toggle="tab" href="#modal_dd">Sandi Sandi</a>
                             </li>
                         </ul>
 
@@ -1027,7 +1026,7 @@ if (!empty($detail)) {
 
                         <div class="tab-content">
 
-                            <div class="tab-pane active" id="aa">
+                            <div class="tab-pane active" id="modal_aa">
 
 
                                 <div class="row mt-3">
@@ -1223,6 +1222,11 @@ if (!empty($detail)) {
                                                 <td id='td_tabel_modal'><?= isset($data['get_tbl_wawancara']['pejabat_ttd_sppk']) ? $data['get_tbl_wawancara']['pejabat_ttd_sppk'] : '-' ?></td>
                                             </tr>
 
+                                            <tr>
+                                                <td id='td_tabel_modal_ket'>Informasi Pihak Ketiga</td>
+                                                <td><textarea class='form-control h-18' rows='12'><?= isset($data['get_tbl_wawancara']['informasi_pihak_ketiga']) ? $data['get_tbl_wawancara']['informasi_pihak_ketiga'] : '-' ?></textarea></td>
+                                            </tr>
+
 
                                         </table>
                                     </div>
@@ -1257,7 +1261,7 @@ if (!empty($detail)) {
 
                             </div>
 
-                            <div class="tab-pane" id="bb">
+                            <div class="tab-pane" id="modal_bb">
                                 <div class="row mt-3">
                                     <div class="col-6">
                                         <table class='table-hover' cellpadding=5 cellspacing=15 id='tabel_modal'>
@@ -1367,7 +1371,7 @@ if (!empty($detail)) {
                                 </div>
                             </div>
 
-                            <div class="tab-pane" id="cc">
+                            <div class="tab-pane" id="modal_cc">
                                 <div class="row mt-3">
                                     <div class="col-6">
                                         <table class='table-hover' cellpadding=5 cellspacing=15 id='tabel_modal'>
@@ -1753,7 +1757,8 @@ if (!empty($detail)) {
 
 
                             </div>
-                            <div class="tab-pane" id="dd">
+
+                            <div class="tab-pane" id="modal_dd">
                                 <div class="row">
                                     <div class="col-6">
                                         <table class='table-hover' cellpadding=5 cellspacing=15 id='tabel_modal'>
@@ -1834,15 +1839,11 @@ if (!empty($detail)) {
                                 </div>
                             </div>
 
-
                         </div>
 
 
-
-
-
                     </div>
-                    <div class="tab-pane active" id="d">
+                    <div class="tab-pane active" id="modal_d">
                         <div class="row mt-3">
                             <?php
 
@@ -2083,9 +2084,7 @@ if (!empty($detail)) {
 
                         </div>
                     </div>
-
-
-                    <div class="tab-pane" id="e">
+                    <div class="tab-pane" id="modal_e">
                         <div class="row mt-3">
 
                             <?php
@@ -2221,9 +2220,7 @@ if (!empty($detail)) {
 
                         </div>
                     </div>
-
-
-                    <div class="tab-pane" id="h">
+                    <div class="tab-pane" id="modal_h">
                         <div class="card">
                             <div class="card-body">
 

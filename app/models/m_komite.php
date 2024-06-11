@@ -492,6 +492,14 @@ class m_komite
         return $this->db->single();
     }
 
+    public function syarat_lainnya($id)
+    {
+
+        $this->db->query('SELECT GROUP_CONCAT(syarat_lainnya SEPARATOR \'\n\') AS semua_syarat_lainnya FROM tbl_komite WHERE no_permohonan_kredit = :no_permohonan_kredit');
+        $this->db->bind('no_permohonan_kredit', $id);
+        return $this->db->single();
+    }
+
 
     public function cek_aturan_komite($id)
     {
@@ -759,19 +767,36 @@ class m_komite
                 $this->db->bind('komite_3', $_COOKIE['username']);
                 return $this->db->resultSet();
             } else {
-                $this->db->query("SELECT A.no_permohonan_kredit, A.kode_cabang, A.id_analis, A.nama_pemohon, A.nama_instansi, A.tipe_kredit, A.tanggal_permohonan, A.tanggal_wawancara, B.plafond,B.jangka_waktu, B.status,B.catatan_pending,A.tipe_kredit
+
+                if ($_COOKIE['kode_cabang'] == "00") {
+                    $this->db->query("SELECT A.no_permohonan_kredit, A.kode_cabang, A.id_analis, A.nama_pemohon, A.nama_instansi, A.tipe_kredit, A.tanggal_permohonan, A.tanggal_wawancara, B.plafond,B.jangka_waktu, B.status,B.catatan_pending,A.tipe_kredit
                 FROM tbl_permohon_kredit A
-                JOIN tbl_wawancara B ON A.no_permohonan_kredit = B.no_permohonan_kredit WHERE A.kode_cabang=:kode_cabang AND (B.plafond >= :limit_direksi_awal AND B.plafond <= :limit_direksi_akhir) AND A.tipe_kredit = :tipe_kredit AND (B.status =:status1 OR B.status =:status2)  AND (B.komite_1 !=:komite_1 ) AND (B.komite_2 !=:komite_2 ) AND (B.komite_3 !=:komite_3) ");
-                $this->db->bind('status1', 'DIAJUKAN TOLAK');
-                $this->db->bind('status2', 'DIAJUKAN BATAL');
-                $this->db->bind('limit_direksi_awal', $limit_direksi_awal);
-                $this->db->bind('limit_direksi_akhir', $limit_direksi_akhir);
-                $this->db->bind('kode_cabang', $_COOKIE['kode_cabang']);
-                $this->db->bind('tipe_kredit', $_COOKIE['tipe_kredit']);
-                $this->db->bind('komite_1', $_COOKIE['username']);
-                $this->db->bind('komite_2', $_COOKIE['username']);
-                $this->db->bind('komite_3', $_COOKIE['username']);
-                return $this->db->resultSet();
+                JOIN tbl_wawancara B ON A.no_permohonan_kredit = B.no_permohonan_kredit WHERE (B.plafond >= :limit_direksi_awal AND B.plafond <= :limit_direksi_akhir) AND A.tipe_kredit = :tipe_kredit AND (B.status =:status1 OR B.status =:status2)  AND (B.komite_1 !=:komite_1 ) AND (B.komite_2 !=:komite_2 ) AND (B.komite_3 !=:komite_3) ");
+                    $this->db->bind('status1', 'DIAJUKAN TOLAK');
+                    $this->db->bind('status2', 'DIAJUKAN BATAL');
+                    $this->db->bind('limit_direksi_awal', $limit_direksi_awal);
+                    $this->db->bind('limit_direksi_akhir', $limit_direksi_akhir);
+                    $this->db->bind('tipe_kredit', $_COOKIE['tipe_kredit']);
+                    $this->db->bind('komite_1', $_COOKIE['username']);
+                    $this->db->bind('komite_2', $_COOKIE['username']);
+                    $this->db->bind('komite_3', $_COOKIE['username']);
+                    return $this->db->resultSet();
+                } else {
+
+                    $this->db->query("SELECT A.no_permohonan_kredit, A.kode_cabang, A.id_analis, A.nama_pemohon, A.nama_instansi, A.tipe_kredit, A.tanggal_permohonan, A.tanggal_wawancara, B.plafond,B.jangka_waktu, B.status,B.catatan_pending,A.tipe_kredit
+                    FROM tbl_permohon_kredit A
+                    JOIN tbl_wawancara B ON A.no_permohonan_kredit = B.no_permohonan_kredit WHERE A.kode_cabang=:kode_cabang AND (B.plafond >= :limit_direksi_awal AND B.plafond <= :limit_direksi_akhir) AND A.tipe_kredit = :tipe_kredit AND (B.status =:status1 OR B.status =:status2)  AND (B.komite_1 !=:komite_1 ) AND (B.komite_2 !=:komite_2 ) AND (B.komite_3 !=:komite_3) ");
+                    $this->db->bind('status1', 'DIAJUKAN TOLAK');
+                    $this->db->bind('status2', 'DIAJUKAN BATAL');
+                    $this->db->bind('limit_direksi_awal', $limit_direksi_awal);
+                    $this->db->bind('limit_direksi_akhir', $limit_direksi_akhir);
+                    $this->db->bind('kode_cabang', $_COOKIE['kode_cabang']);
+                    $this->db->bind('tipe_kredit', $_COOKIE['tipe_kredit']);
+                    $this->db->bind('komite_1', $_COOKIE['username']);
+                    $this->db->bind('komite_2', $_COOKIE['username']);
+                    $this->db->bind('komite_3', $_COOKIE['username']);
+                    return $this->db->resultSet();
+                }
             }
         }
     }
@@ -820,20 +845,38 @@ class m_komite
                 $this->db->execute();
                 return $this->db->rowCount();
             } else {
-                $this->db->query("SELECT A.no_permohonan_kredit, A.kode_cabang, A.id_analis, A.nama_pemohon, A.nama_instansi, A.tipe_kredit, A.tanggal_permohonan, A.tanggal_wawancara, B.plafond,B.jangka_waktu, B.status,B.catatan_pending,A.tipe_kredit
+
+                if ($_COOKIE['kode_cabang'] == "00") {
+                    $this->db->query("SELECT A.no_permohonan_kredit, A.kode_cabang, A.id_analis, A.nama_pemohon, A.nama_instansi, A.tipe_kredit, A.tanggal_permohonan, A.tanggal_wawancara, B.plafond,B.jangka_waktu, B.status,B.catatan_pending,A.tipe_kredit
                 FROM tbl_permohon_kredit A
-                JOIN tbl_wawancara B ON A.no_permohonan_kredit = B.no_permohonan_kredit WHERE A.kode_cabang=:kode_cabang AND (B.plafond >= :limit_direksi_awal AND B.plafond <= :limit_direksi_akhir) AND A.tipe_kredit = :tipe_kredit AND (B.status =:status1 OR B.status =:status2)  AND (B.komite_1 !=:komite_1 ) AND (B.komite_2 !=:komite_2 ) AND (B.komite_3 !=:komite_3) ");
-                $this->db->bind('status1', 'DIAJUKAN TOLAK');
-                $this->db->bind('status2', 'DIAJUKAN BATAL');
-                $this->db->bind('limit_direksi_awal', $limit_direksi_awal);
-                $this->db->bind('limit_direksi_akhir', $limit_direksi_akhir);
-                $this->db->bind('kode_cabang', $_COOKIE['kode_cabang']);
-                $this->db->bind('tipe_kredit', $_COOKIE['tipe_kredit']);
-                $this->db->bind('komite_1', $_COOKIE['username']);
-                $this->db->bind('komite_2', $_COOKIE['username']);
-                $this->db->bind('komite_3', $_COOKIE['username']);
-                $this->db->execute();
-                return $this->db->rowCount();
+                JOIN tbl_wawancara B ON A.no_permohonan_kredit = B.no_permohonan_kredit WHERE (B.plafond >= :limit_direksi_awal AND B.plafond <= :limit_direksi_akhir) AND A.tipe_kredit = :tipe_kredit AND (B.status =:status1 OR B.status =:status2)  AND (B.komite_1 !=:komite_1 ) AND (B.komite_2 !=:komite_2 ) AND (B.komite_3 !=:komite_3) ");
+                    $this->db->bind('status1', 'DIAJUKAN TOLAK');
+                    $this->db->bind('status2', 'DIAJUKAN BATAL');
+                    $this->db->bind('limit_direksi_awal', $limit_direksi_awal);
+                    $this->db->bind('limit_direksi_akhir', $limit_direksi_akhir);
+                    $this->db->bind('tipe_kredit', $_COOKIE['tipe_kredit']);
+                    $this->db->bind('komite_1', $_COOKIE['username']);
+                    $this->db->bind('komite_2', $_COOKIE['username']);
+                    $this->db->bind('komite_3', $_COOKIE['username']);
+                    $this->db->execute();
+                    return $this->db->rowCount();
+                } else {
+
+                    $this->db->query("SELECT A.no_permohonan_kredit, A.kode_cabang, A.id_analis, A.nama_pemohon, A.nama_instansi, A.tipe_kredit, A.tanggal_permohonan, A.tanggal_wawancara, B.plafond,B.jangka_waktu, B.status,B.catatan_pending,A.tipe_kredit
+                    FROM tbl_permohon_kredit A
+                    JOIN tbl_wawancara B ON A.no_permohonan_kredit = B.no_permohonan_kredit WHERE A.kode_cabang=:kode_cabang AND (B.plafond >= :limit_direksi_awal AND B.plafond <= :limit_direksi_akhir) AND A.tipe_kredit = :tipe_kredit AND (B.status =:status1 OR B.status =:status2)  AND (B.komite_1 !=:komite_1 ) AND (B.komite_2 !=:komite_2 ) AND (B.komite_3 !=:komite_3) ");
+                    $this->db->bind('status1', 'DIAJUKAN TOLAK');
+                    $this->db->bind('status2', 'DIAJUKAN BATAL');
+                    $this->db->bind('limit_direksi_awal', $limit_direksi_awal);
+                    $this->db->bind('limit_direksi_akhir', $limit_direksi_akhir);
+                    $this->db->bind('kode_cabang', $_COOKIE['kode_cabang']);
+                    $this->db->bind('tipe_kredit', $_COOKIE['tipe_kredit']);
+                    $this->db->bind('komite_1', $_COOKIE['username']);
+                    $this->db->bind('komite_2', $_COOKIE['username']);
+                    $this->db->bind('komite_3', $_COOKIE['username']);
+                    $this->db->execute();
+                    return $this->db->rowCount();
+                }
             }
         }
     }

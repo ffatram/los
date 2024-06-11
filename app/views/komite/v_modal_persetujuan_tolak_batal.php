@@ -471,11 +471,11 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                             <td><?= number_format(($data['detail']['nilai_jaminan']), 0, ',', '.');  ?></td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 200px; background-color: #F4F4F4; ">Nama Marketing</td>
+                                            <td style="width: 200px; background-color: #F4F4F4; ">Nama <?= level_6 ?></td>
                                             <td><?= $data['detail']['id_marketing'] ?></td>
                                         </tr>
                                         <tr>
-                                            <td style="width: 200px; background-color: #F4F4F4; ">Nama Analis</td>
+                                            <td style="width: 200px; background-color: #F4F4F4; ">Nama <?= level_3 ?></td>
                                             <td><?= $data['detail']['id_analis'] ?></td>
                                         </tr>
                                     </tbody>
@@ -1208,6 +1208,11 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                         <td id='td_tabel_modal_ket'>Pejabat TTD SPPK</td>
 
                                         <td id='td_tabel_modal'><?= $data['get_tbl_wawancara']['pejabat_ttd_sppk'] ?></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td id='td_tabel_modal_ket'>Informasi Pihak Ketiga</td>
+                                        <td><textarea class='form-control h-22' rows='12'><?= $detail['informasi_pihak_ketiga'] ?></textarea></td>
                                     </tr>
 
 
@@ -2160,7 +2165,7 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
 
 
 <script>
-    $(document).ready(function(){
+    $(document).ready(function() {
         $("#example2").DataTable({})
     })
 </script>

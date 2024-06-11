@@ -159,6 +159,30 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
         <div class="row mt-3">
 
             <div class="col-12">
+                <style>
+                    /* CSS untuk animasi berkedip */
+                    @keyframes blink {
+                        50% {
+                            opacity: 0;
+                        }
+                    }
+
+                    .flashing-alert {
+                        animation: blink 3s infinite;
+                        display: none;
+                        /* Menyembunyikan elemen secara default */
+                    }
+                </style>
+
+                <div class="container mt-5">
+                    <div class="alert alert-danger flashing-alert cek_tolak" role="alert">
+                        Permohonan pernah di tolak!!
+                    </div>
+                </div>
+
+
+
+
 
 
                 <ul class="nav nav-tabs mt-2 justify-content-center " id="" role="tablist">
@@ -232,7 +256,7 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 200px; background-color: #F4F4F4; ">No. KTP</td>
-                                                    <td><?= $data['detail']['no_ktp_pemohon'] ?></td>
+                                                    <td class='no_ktp_pemohon'><?= $data['detail']['no_ktp_pemohon'] ?></td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 200px; background-color: #F4F4F4; ">No. NPWP</td>
@@ -473,11 +497,11 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                                     <td><?= number_format(($data['detail']['nilai_jaminan']), 0, ',', '.');  ?></td>
                                                 </tr>
                                                 <tr>
-                                                    <td style="width: 200px; background-color: #F4F4F4; ">Nama Marketing</td>
+                                                    <td style="width: 200px; background-color: #F4F4F4; ">Nama <?= level_6 ?></td>
                                                     <td><?= $data['detail']['id_marketing'] ?></td>
                                                 </tr>
                                                 <tr>
-                                                    <td style="width: 200px; background-color: #F4F4F4; ">Nama Analis</td>
+                                                    <td style="width: 200px; background-color: #F4F4F4; ">Nama <?= level_3 ?></td>
                                                     <td><?= $data['detail']['id_analis'] ?></td>
                                                 </tr>
                                             </tbody>
@@ -730,7 +754,7 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                         <div class="row">
                             <div class="col-12">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-hover first display nowrap tabel_slik_pemohon">
+                                    <table class="table table-striped table-hover first display nowrap komite_tabel_slik_pemohon">
                                         <thead>
                                             <tr>
                                                 <td>
@@ -878,7 +902,7 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                         <div class="row">
                             <div class="col-12">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-hover first display nowrap tabel_slik_pemohon">
+                                    <table class="table table-striped table-hover first display nowrap komite_tabel_slik_pemohon">
                                         <thead>
                                             <tr>
                                                 <td>
@@ -1210,6 +1234,10 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                                 <td id='td_tabel_modal_ket'>Pejabat TTD SPPK</td>
 
                                                 <td id='td_tabel_modal'><?= $data['get_tbl_wawancara']['pejabat_ttd_sppk'] ?></td>
+                                            </tr>
+                                            <tr>
+                                                <td id='td_tabel_modal_ket'>Informasi Pihak Ketiga</td>
+                                                <td><textarea class='form-control h-22' rows='12'><?= $detail['informasi_pihak_ketiga'] ?></textarea></td>
                                             </tr>
 
 
@@ -2378,7 +2406,8 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                         <tbody>
                                             <tr style="margin: 0; padding: 0;">
 
-                                                <td><textarea id='syarat_lainnya' name="syarat_lainnya" class="form-control h-25" rows="9" style="margin: 0; padding: 0;"><?= $data_tbl_wawancara['syarat_lainnya'] ?></textarea></td>
+                                                <!-- <td><textarea id='syarat_lainnya' name="syarat_lainnya" class="form-control h-25" rows="9" style="margin: 0; padding: 0;"><?= $data_tbl_wawancara['syarat_lainnya'] ?></textarea></td> -->
+                                                <td><textarea id='syarat_lainnya' name="syarat_lainnya" class="form-control h-25" rows="9" style="margin: 0; padding: 0;"></textarea></td>
 
                                             </tr>
 
@@ -2490,7 +2519,9 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                                         <th>
                                                             Status
                                                         </th>
-
+                                                        <th>
+                                                            Aksi
+                                                        </th>
 
                                                     </tr>
                                                 </thead>
@@ -2536,6 +2567,10 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                                                 ?>
 
                                                             </td>
+
+                                                            <th>
+                                                                <button class="btn btn-info btn-lihat-detail-riwayat" data-toggle="modal" data-target=".modal_detail_all" data-id="<?= $row['no_permohonan_kredit'] ?>">Lihat Detail</button>
+                                                            </th>
 
 
 

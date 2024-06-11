@@ -425,7 +425,7 @@
 
                                                 <label class="mt-2 mb-2">Nilai Perkiraan Jaminan (Rp) </label>
                                                 <input type="text" id="2" class="form-control nilai_jaminan" name="nilai_jaminan" onkeypress="return hanyaAngka(event)" value="<?= $data['data_kredit']['nilai_jaminan'] ?>" />
-                                                <label class="mt-2 mb-2">Nama Marketing</label><span class="ml-1" style="color:red;">*</span>
+                                                <label class="mt-2 mb-2">Nama <?= level_6 ?></label><span class="ml-1" style="color:red;">*</span>
                                                 <select name="id_marketing" class="form-control" required>
                                                     <option value="" selected>- Silahkan Pilih -</option>
                                                     <?php foreach ($data['nama_marketing'] as $i) : ?>
@@ -433,7 +433,7 @@
                                                     <?php endforeach; ?>
                                                 </select>
 
-                                                <label class="mt-2 mb-2">Nama RO</label><span class="ml-1" style="color:red;">*</span>
+                                                <label class="mt-2 mb-2">Nama <?= level_3 ?></label><span class="ml-1" style="color:red;">*</span>
                                                 <select name="id_analis" class="form-control" required>
                                                     <option value="" selected>- Silahkan Pilih -</option>
                                                     <?php foreach ($data['nama_ro'] as $i) : ?>

@@ -2098,15 +2098,13 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                 <table class="table table-hover table-bordered">
                                     <thead>
                                         <tr>
-                                            <th colspan="2">Syarat Lainnya</th>
+                                            <th colspan="2">Syaratt Pencairan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td><textarea disabled id='syarat_lainnya' name="syarat_lainnya" class="form-control h-25" rows="9" style="margin: 0; padding: 0;"><?= $data_tbl_wawancara['syarat_lainnya'] ?></textarea></td>
-
+                                            <td><textarea id='syarat_lainnya' name="syarat_lainnya" class="form-control h-25" rows="13" style="margin: 0; padding: 0;"><?= $data['syarat_lainnya']['semua_syarat_lainnya'] ?></textarea></td>
                                         </tr>
-
                                     </tbody>
                                 </table>
                             </div>
@@ -2116,7 +2114,7 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
 
 
 
-                        <div class="row">
+                        <div class="row mt-5">
                             <div class="col">
 
                                 <div class="d-flex flex-row-reverse">

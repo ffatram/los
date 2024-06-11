@@ -173,7 +173,7 @@
 
 
                                                 <div class="tab-pane" id="daftar_tolak_ro">
-                                                    <h1 class="h3 mt-3 mb-3 text-center"><strong> Daftar Tolak RO</strong> </h1>
+                                                    <h1 class="h3 mt-3 mb-3 text-center"><strong> Daftar Tolak <?= level_3?></strong> </h1>
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <div class="card">
@@ -252,7 +252,7 @@
 
 
                                                 <div class="tab-pane" id="daftar_batal">
-                                                    <h1 class="h3 mt-3 mb-3 text-center"><strong> Daftar Batal</strong> </h1>
+                                                    <h1 class="h3 mt-3 mb-3 text-center"><strong> Daftar Batal <?= level_3?></strong> </h1>
                                                     <div class="row">
                                                         <div class="col-12">
                                                             <div class="card">
@@ -697,12 +697,12 @@
                                                     </tr>
 
                                                     <tr>
-                                                        <td>Nama Marketing</td>
+                                                        <td>Nama <?= level_6?></td>
                                                         <td>:</td>
                                                         <td id="49"></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Nama Analis</td>
+                                                        <td>Nama <?= level_3?></td>
                                                         <td>:</td>
                                                         <td id="50"></td>
                                                     </tr>

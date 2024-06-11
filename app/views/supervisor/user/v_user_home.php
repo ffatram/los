@@ -646,7 +646,8 @@
                                         location.reload();
                                     })
                                 } else {
-                                    alert('Belum ada data yang di update')
+                                    alert('Tidak ada yang diupdate')
+                                    location.reload();
                                 }
                             },
                             error: function(res) {
@@ -690,7 +691,8 @@
                                                     location.reload();
                                                 })
                                             } else {
-                                                alert('Belum ada data yang di update')
+                                                alert('Tidak ada yang diupdate')
+                                                location.reload();
                                             }
                                         },
                                         error: function(res) {
@@ -745,7 +747,8 @@
                                         location.reload();
                                     })
                                 } else {
-                                    alert('Belum ada data yang di update')
+                                    alert('Tidak ada yang diupdate')
+                                    location.reload();
                                 }
                             },
                             error: function(res) {

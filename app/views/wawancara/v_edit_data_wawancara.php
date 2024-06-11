@@ -360,8 +360,8 @@
                                                                             <input type="text" name="jaminan_utama" class="form-control" oninput="this.value = this.value.toUpperCase()" value='<?= $data['data_wawancara']['jaminan_utama'] ?>' />
 
 
-                                                                            <label class="mt-2 mb-2">Dasar Pertimbangan Analis</label>
-                                                                            <textarea name="dasar_pertimbangan_analis" class="form-control h-25" rows="15"><?= $data['data_wawancara']['dasar_pertimbangan_analis'] ?></textarea>
+                                                                            <label class="mt-3 mb-2">Dasar Pertimbangan Analis</label>
+                                                                            <textarea name="dasar_pertimbangan_analis" class="form-control h-27" rows="18"><?= $data['data_wawancara']['dasar_pertimbangan_analis'] ?></textarea>
 
                                                                         </div>
                                                                     </div>
@@ -457,6 +457,10 @@
                                                                         <option value="<?= $i['nama_pejabat'] ?>" <?= $i['nama_pejabat'] == $data['data_wawancara']['pejabat_ttd_sppk'] ? 'selected="selected"' : ''; ?>><?= $i['nama_pejabat'] ?></option>
                                                                     <?php endforeach; ?>
                                                                 </select>
+
+                                                                <label class="mt-2 mb-2">Informasi Pihak Ketiga</label>
+                                                                <textarea name="informasi_pihak_ketiga" class="form-control h-5" rows="5" placeholder=""><?= $data['data_wawancara']['informasi_pihak_ketiga'] ?></textarea>
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1772,7 +1776,7 @@
                                 Swal.fire({
                                     position: 'center',
                                     icon: 'warning',
-                                    title: 'Error',
+                                    title: 'Error' + hasilRes,
                                     showConfirmButton: false,
                                     timer: 1000
                                 })

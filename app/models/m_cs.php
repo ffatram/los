@@ -1019,7 +1019,7 @@ class m_cs
 
         $query = "SELECT * FROM tbl_permohon_kredit WHERE no_ktp_pemohon =:no_ktp_pemohon ORDER BY id DESC";
         $this->db->query($query);
-        $this->db->bind('no_ktp_pemohon', $_POST['no_ktp_pemohon']);
+        $this->db->bind('no_ktp_pemohon',  $_POST['no_ktp_pemohon']);
         return $this->db->single();
     }
 }

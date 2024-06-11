@@ -143,12 +143,10 @@
 
                 </th>
                 <th>
-                    MARKETING
-
+                    <?= level_6 ?>
                 </th>
                 <th>
-                    ANALIS
-
+                    <?= level_3 ?>
                 </th>
                 <th>
                     JENIS BERKAS
@@ -224,8 +222,6 @@
 
 
     <script>
-      
-
         document.title = 'LAPORAN PERMOHONAN KREDIT';
 
 

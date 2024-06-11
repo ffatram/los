@@ -375,8 +375,8 @@
 
 
 
-                                                                            <label class="mt-2 mb-2">Dasar Pertimbangan Analis</label>
-                                                                            <textarea name="dasar_pertimbangan_analis" class="form-control h-25" rows="15" placeholder=""></textarea>
+                                                                            <label class="mt-3 mb-2">Dasar Pertimbangan Analis</label>
+                                                                            <textarea name="dasar_pertimbangan_analis" class="form-control h-27" rows="18" placeholder=""></textarea>
 
                                                                         </div>
                                                                     </div>
@@ -472,6 +472,11 @@
                                                                         <option value="<?= $i['nama_pejabat'] ?>"><?= $i['nama_pejabat'] ?></option>
                                                                     <?php endforeach; ?>
                                                                 </select>
+
+                                                                <label class="mt-2 mb-2">Informasi Pihak Ketiga</label>
+                                                                <textarea name="informasi_pihak_ketiga" class="form-control h-5" rows="5" placeholder=""></textarea>
+
+
                                                             </div>
                                                         </div>
                                                     </div>
@@ -889,7 +894,7 @@
                                                                 <label class="mt-2 mb-2">Sektor Ekonomi</label><span class="ml-1" style="color:red;">*</span>
                                                                 <select name="kode_sektor_ekonomi" class="form-control select2bs4 kode_sektor_ekonomi">
                                                                     <option value="" required selected>- Silahkan Pilih -</option>
-                                                                 
+
                                                                 </select>
 
 

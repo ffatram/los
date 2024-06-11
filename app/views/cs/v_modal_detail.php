@@ -284,11 +284,11 @@
                             <td><?= number_format(($data['detail']['nilai_jaminan']), 0, ',', '.');  ?></td>
                         </tr>
                         <tr>
-                            <td style="width: 200px; background-color: #F4F4F4; ">Nama Marketing</td>
+                            <td style="width: 200px; background-color: #F4F4F4; ">Nama <?= level_6 ?></td>
                             <td><?= $data['detail']['id_marketing'] ?></td>
                         </tr>
                         <tr>
-                            <td style="width: 200px; background-color: #F4F4F4; ">Nama Analis</td>
+                            <td style="width: 200px; background-color: #F4F4F4; ">Nama <?= level_3 ?></td>
                             <td><?= $data['detail']['id_analis'] ?></td>
                         </tr>
                     </tbody>

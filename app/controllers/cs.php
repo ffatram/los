@@ -1027,7 +1027,7 @@ class cs extends Controller
         if ($_COOKIE['level'] == "SKAI" || $_COOKIE['level'] == "KOMITE") {
             $data['cabang'] = $this->model('m_cabang')->daftar_cabang();
             $this->view('cs/v_export_csv', $data);
-        } else {
+        } else {    
             $data = $this->model('m_ro')->get_all_ro();
             $this->view('cs/v_export_csv', $data);
         }

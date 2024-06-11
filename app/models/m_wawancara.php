@@ -2,7 +2,7 @@
 
 class m_wawancara
 {
-    
+
     public $db;
     public function __construct()
     {
@@ -265,6 +265,7 @@ class m_wawancara
                 asuransi_kerugian,
                 sistem_pembayaran,
                 pejabat_ttd_sppk,
+                informasi_pihak_ketiga,
                 penghasilan_pemohon_perbulan,
                 penghasilan_pemohon_perbulan_ket,
                 penghasilan_pemohon_tambahan_1,
@@ -406,6 +407,7 @@ class m_wawancara
                 :asuransi_kerugian,
                 :sistem_pembayaran,
                 :pejabat_ttd_sppk,
+                :informasi_pihak_ketiga,
                 :penghasilan_pemohon_perbulan,
                 :penghasilan_pemohon_perbulan_ket,
                 :penghasilan_pemohon_tambahan_1,
@@ -549,6 +551,7 @@ class m_wawancara
         $this->db->bind('asuransi_kerugian',  $_POST['asuransi_kerugian']);
         $this->db->bind('sistem_pembayaran',  $_POST['sistem_pembayaran']);
         $this->db->bind('pejabat_ttd_sppk',  $_POST['pejabat_ttd_sppk']);
+        $this->db->bind('informasi_pihak_ketiga',  $_POST['informasi_pihak_ketiga']);
         $this->db->bind('penghasilan_pemohon_perbulan',  $_POST['penghasilan_pemohon_perbulan']);
         $this->db->bind('penghasilan_pemohon_perbulan_ket',  $_POST['penghasilan_pemohon_perbulan_ket']);
         for ($a = 1; $a <= 3; $a++) {
@@ -617,7 +620,6 @@ class m_wawancara
     public function update_tbl_wawancara()
     {
 
-
         $query = "UPDATE tbl_wawancara SET 
         no_permohonan_kredit=:no_permohonan_kredit,
         karakter=:karakter,
@@ -651,6 +653,7 @@ class m_wawancara
         asuransi_kerugian=:asuransi_kerugian,
         sistem_pembayaran=:sistem_pembayaran,
         pejabat_ttd_sppk=:pejabat_ttd_sppk,
+        informasi_pihak_ketiga=:informasi_pihak_ketiga,
         penghasilan_pemohon_perbulan=:penghasilan_pemohon_perbulan,
         penghasilan_pemohon_perbulan_ket=:penghasilan_pemohon_perbulan_ket,
         penghasilan_pemohon_tambahan_1=:penghasilan_pemohon_tambahan_1,
@@ -796,6 +799,7 @@ class m_wawancara
         $this->db->bind('asuransi_kerugian',  $_POST['asuransi_kerugian']);
         $this->db->bind('sistem_pembayaran',  $_POST['sistem_pembayaran']);
         $this->db->bind('pejabat_ttd_sppk',  $_POST['pejabat_ttd_sppk']);
+        $this->db->bind('informasi_pihak_ketiga',  $_POST['informasi_pihak_ketiga']);
         $this->db->bind('penghasilan_pemohon_perbulan',  $_POST['penghasilan_pemohon_perbulan']);
         $this->db->bind('penghasilan_pemohon_perbulan_ket',  $_POST['penghasilan_pemohon_perbulan_ket']);
         for ($a = 1; $a <= 3; $a++) {
@@ -1260,7 +1264,7 @@ class m_wawancara
 
 
 
-   
+
 
 
 }
