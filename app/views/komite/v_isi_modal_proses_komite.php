@@ -1943,7 +1943,7 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                                     </tr>
 
                                                     <tr>
-                                                        <td id='td_tabel_modal_ket'>Syarat Lainnya</td>
+                                                        <td id='td_tabel_modal_ket'>Syarat Pencairan</td>
 
                                                         <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control h-25' rows='5'><?= $data_tbl_komite[$a - 1]['syarat_lainnya'] ?></textarea></td>
                                                     </tr>
@@ -2043,7 +2043,7 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                                     </tr>
 
                                                     <tr>
-                                                        <td id='td_tabel_modal_ket'>Syarat Lainnya</td>
+                                                        <td id='td_tabel_modal_ket'>Syarat Pencairan</td>
                                                         <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control' rows='5'><?= "" ?></textarea></td>
                                                     </tr>
 
@@ -2399,7 +2399,7 @@ $kode_hubungan_debitur_dengan_bank = $data['kode_hubungan_debitur_dengan_bank'];
                                         <thead>
                                             <tr>
 
-                                                <th scope="col">Syarat Lainnya</th>
+                                                <th scope="col">Syarat Pencairan di SPPK</th>
 
                                             </tr>
                                         </thead>

@@ -1912,7 +1912,7 @@ if (!empty($detail)) {
                                                     </tr>
 
                                                     <tr>
-                                                        <td id='td_tabel_modal_ket'>Syarat Lainnya</td>
+                                                        <td id='td_tabel_modal_ket'>Syarat Pencairan</td>
 
                                                         <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control h-25' rows='5'><?= $data_tbl_komite[$a - 1]['syarat_lainnya'] ?></textarea></td>
                                                     </tr>
@@ -2012,7 +2012,7 @@ if (!empty($detail)) {
                                                     </tr>
 
                                                     <tr>
-                                                        <td id='td_tabel_modal_ket'>Syarat Lainnya</td>
+                                                        <td id='td_tabel_modal_ket'>Syarat Pencairan</td>
                                                         <td id='td_tabel_modal'><textarea disabled style=" border: none; outline: none; background-color: white;" class='form-control' rows='5'><?= "" ?></textarea></td>
                                                     </tr>
 
@@ -2143,7 +2143,7 @@ if (!empty($detail)) {
                                 <div class="col-6">
                                     <div class="card center">
                                         <div class="card-header">
-                                            <b style="font-size: 20px;">Syarat Lainnya</b>
+                                            <b style="font-size: 20px;">Syarat Pencairan</b>
                                         </div>
                                         <div class="card-body">
                                             <table cellpadding=5 cellspacing=15 id='tabel_modal'>
